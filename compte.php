@@ -13,14 +13,20 @@ $Mdp2= isset($_POST["Mdp2"])? $_POST["Mdp2"] : "";
 
 
 
-if (isset($_POST['button1'])) {
-	 {
+if (isset($_POST['button1'])) 
 
-	
+   {
+	 if($Nom!=""&&$Mail!=""&&$Telephone!=""&&$Role!=""&&$Mdp1!=""&&$Mdp2!="")
+      {
 
-	 echo "Compte créé";
+         if($Mdp1==$Mdp2)
+         {
+             echo "Compte créé";
+         }
+         else echo "Veuillez saisir le même mot de passe svp";
 
-	}}
+	} else  echo "Veuillez remplir tout les champs svp";
+}
         
 else {echo "Probleme";}
 
