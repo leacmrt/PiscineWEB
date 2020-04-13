@@ -1,10 +1,11 @@
-<?php
+ 
+ <?php
 session_start();
 
 
- if (isset($_SESSION['Mail']) && isset($_SESSION['Mdp']))
-  {
-     echo '<!DOCTYPE html>
+ if (isset($_SESSION['Mail']) && isset($_SESSION['Mdp'])) ?>
+  { 
+     <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -41,7 +42,7 @@ session_start();
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="Connexion.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte :' .$_SESSION['Mail'].'</font></b></a></li>
+        <li><a href="Connexion.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte : <?php echo $_SESSION['Mail']; ?> </font></b></a></li>
         <li><a href="panier.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
       </ul>
     </div>
@@ -153,9 +154,5 @@ session_start();
   
 </body>
 
-</html>';
- }
 
-
-
-?>
+ } else   <?php header ('location: PageAccueil.html'); ?> </html>
