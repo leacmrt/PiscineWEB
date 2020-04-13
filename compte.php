@@ -44,7 +44,7 @@ if (isset($_POST['button1'])) //inscription
               $sql= "INSERT INTO utilisateurs(Nom, Mail, Telephone, Role, Mdp)
                      VALUES('$Nom', '$Mail', '$Telephone', '$Role','$Mdp1')";
                $result = mysqli_query($db_handle, $sql);
-               echo {echo "<script> window.alert(\"Vous êtes bien inscrit sur EBAY ECE\"); history.back(); </script>";}
+               echo "<script> window.alert(\"Vous êtes bien inscrit sur EBAY ECE\"); history.back(); </script>";
            } 
 
 
