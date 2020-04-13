@@ -76,7 +76,15 @@ if (isset($_POST['button2'])) //connexion
 
 			if(mysqli_num_rows($result) != 0) 
 			{
-			  echo "Le compte existe . <br> ";
+			  echo "<script> window.alert(\"Le compte existe . <br>\")";
+			  session_start ();
+			  
+			  $_SESSION['Mail'] = $_POST['Mail1'];
+		      $_SESSION['Mdp'] = $_POST['Mdp3'];
+
+		    // on redirige notre visiteur vers une page de notre section membre
+		     header ('location: PageAccueil.php');
+
               while ($data = mysqli_fetch_assoc($result))
 		      {echo "ID: " . $data['ID'] . "<br>";
 		       echo "Nom: " . $data['Nom'] . "<br>";
@@ -87,7 +95,8 @@ if (isset($_POST['button2'])) //connexion
            } 
 
 
-				else { echo "<script> window.alert(\"Le compte n'existe pas\"); history.back(); </script>";}
+				else { echo "<script> window.alert(\"Le compte n'existe pas\"); history.back(); </script>";
+			           header ('location: deco.php');}
             
             }
 		else {echo "<script> window.alert(\"Database not found\"); history.back(); </script>";}

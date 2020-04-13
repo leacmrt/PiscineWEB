@@ -14,6 +14,13 @@
 
 <body style="background-color:#c7ecee">
 
+<?php
+session_start ();
+
+session_unset ();
+
+session_destroy ();
+?>
   
 
 <nav class="navbar navbar-inverse" style="background-color:#22a6b3">
@@ -113,7 +120,7 @@
     <div class="col-sm-4">
       <div class="panel panel-primary">
         <div class="panel-heading" style="background-color:#22a6b3">Catégories </div> <a href="categorie.html">
-        <div class="panel-body"><img src="Img_Cat.png" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-body"><img src="loupe.png" class="img-responsive" style="width:100%" alt="Image"></div>
         <div class="panel-footer">Clickez pour en savoir plus</div> </a>
       </div>
     </div>
