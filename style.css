@@ -3,6 +3,10 @@
       border-radius: 0;
     }
     
+
+    body {
+  position: relative;
+    }
     /* Remove the jumbotron's default bottom margin */ 
      .jumbotron {
       margin-bottom: 0;
