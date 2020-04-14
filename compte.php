@@ -83,6 +83,7 @@ if (isset($_POST['button2'])) //connexion
 		      $_SESSION['Mdp'] = $_POST['Mdp3'];
 
 
+
 		    // on redirige notre visiteur vers une page de notre section membre
 		     header ('location: PageAccueil.php');
 
@@ -96,6 +97,8 @@ if (isset($_POST['button2'])) //connexion
 
 
              $_SESSION['ID_vendeur']= $data['ID'];
+             $_SESSION['Pseudo']= $data['Nom'];
+             $_SESSION['Role']= $data['Role'];
 		      }
            } 
 
