@@ -8,6 +8,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+
+
+  <script type="text/javascript">
+    function validation() {
+      alert("Vous avez acheté l'article !")
+    }
+  </script>
+
+
 </head>
 
 <nav class="navbar navbar-inverse" style="background-color:#22a6b3">
@@ -92,9 +101,9 @@
 
      Cet article est en vente <strong> immédiate </strong>. <br>
      
-     Pour acheter l'article cliquer sur le bouton Acheter ! <br> <br>
+     Pour acheter l'article cliquer sur le bouton Passer à la commande ! <br> <br>
      
-     <form> <input type="button" class="btn btn-secondary btn-block" value="Acheter" name="acheter" style="background-color:white"> </form>
+     <form> <input type="button" class="btn btn-secondary btn-block" value="Passer la commande" onclick="validation()" name="passercommande style="background-color:white"> </form>
      <!-- Il faudra ajouter une fonction javascript ou PHP pour envoyer un pop up pour valider l'achat -->
     
     </div>
