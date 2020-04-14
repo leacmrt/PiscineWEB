@@ -8,6 +8,33 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script type="text/javascript">
+    function saisirenchere() {
+      prixactuel = 4000
+      var reponse = prompt("Acceptez vous la clause d'achat ? Rappel de la clause d'achat : Si l'acheteur fait une offre que le vendeur accepte, l'acheteur est dans l'obligation de payer. Répondez par \"Oui\" ou \"Non\"");
+      
+      if (reponse =="Non"){
+          alert("L'opération est annulée.");}
+        
+      if (reponse =="Oui"){ 
+
+          var montant = prompt("Entrez le montant maximum pour cette enchère.");
+          if (montant >= prixactuel){
+            alert("Vous avez pris part aux enchères avec un montant maximum de "+montant+" €.");}
+          if(montant ==""){
+            alert("Pas de montant saisie. Veuillez recommancer.")
+          }
+          if(montant < prixactuel){
+            alert("Le montant maximum saisi est inférieur aux enchères acutelles.");}
+      }
+
+      // else {alert("Les données saises sont invalides.");}  Petit soucis si on ajoute cette ligne, en mettant "Non" en réponse ça affiche quand même ce pop-up aussi. 
+    }
+  </script>
+  
+<!-- Il faudra trouver un moyen pour changer le prix actuel dans la fonction-->
+
 </head>
 
 <nav class="navbar navbar-inverse" style="background-color:#22a6b3">
@@ -92,9 +119,9 @@
      Cet article est en vente aux enchères du <strong> lundi 20 avril 2020 à 13h00 </strong> au <strong> vendredi 24 avril 2020 à 19h00 </strong> <br>
      
      L'enchère la plus élevée est actuellement de :     €. <br> <!-- A voir si on peut (ou pas) ajouter une fonction pour afficher le montant le plus elevée au moment de la consultation de la page -->
-     Pour enchérir cliquer sur le bouton enchérir ! <br> <br>
+     Pour participer aux enchères cliquer sur le bouton enchérir ! <br> <br>
      
-     <form> <input type="button" class="btn btn-secondary btn-block" value="Enchérir" name="encherir" style="background-color:white"> </form>
+     <form> <input type="button" onclick="saisirenchere()" class="btn btn-secondary btn-block" value="Enchérir" name="encherir" style="background-color:white"> </form>
       <!-- Il faudra ajouter une fonction javascript ou PHP pour envoyer l'information du montant max de l'enchère -->
     
     </div>
