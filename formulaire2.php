@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 
 $ID=isset($_POST["ID"])? $_POST["ID"] : ""; //généré par phpmyadmin   
 $Nom= isset($_POST["Nom"])? $_POST["Nom"] : "";
@@ -53,13 +53,14 @@ if (isset($_POST['button1']))
      			{
           			
           			//echo '<img src='.$dossier."/".$fichier.' width=100 height=100 > <br>'; //afficher une image sur l'écran
-          			$rec='<img src='.$dossier."/".$fichier;
+          			$rec='<img src='.$dossier."/".$fichier.'>;';
      			}
 
                 //partie sql
                 
 				if ($db_found) 
          	{
+
              $sql = "SELECT * FROM items";
 				if ($Nom != "") {//on cherche le livre avec les paramètres titre et auteur
 			 $sql .= " WHERE Nom LIKE '%$Nom%'";
@@ -70,26 +71,29 @@ if (isset($_POST['button1']))
 
 			if(mysqli_num_rows($result) != 0) 
 			{
-			  echo "resulat";
+			  session_start();
+			   while ($data = mysqli_fetch_assoc($result))
+			   {
+			  $_SESSION['NomArticle'] = $data['Nom'];
+		      $_SESSION['Photo1'] = $data['Photo1'] ;
+		      $_SESSION['Description'] = $data['Description'];
+		      $_SESSION['Enchere'] = $data['Enchere'];
+		      header ('location: article.php');}
 
-              while ($data = mysqli_fetch_assoc($result))
-		      {echo "ID: " . $data['ID'] . "<br>";
-		       echo "Nom: " . $data['Nom'] . "<br>";
-		       echo "Description: " . $data['Description'] . "<br>";
-		       echo "Immediat: " . $data['Immediat'] . "<br>";
-		       echo "Enchère " . $data['Enchere'] . "<br>";
-		       echo "Meilleure: " . $data['Meilleure'] . "<br>";
-		       echo "Photo1: " . $data['Photo1'] . "<br>";
-		       echo "Photo2: " . $data['Photo2'] . "<br>";
-		       echo "Photo3: " . $data['Photo3'] . "<br>";
-		       echo "Video: " . $data['Video'] . "<br>";
-		       echo "ID_vendeur: " . $data['ID_vendeur'] . "<br>";
-		       echo "<br>";}
-             } else {
- 
+              
+             } else { 
+             	       session_start();
+                       $_SESSION['NomArticle'] = $_POST['Nom'];
+		               $_SESSION['Photo1'] = $rec;
+		               $_SESSION['Description'] = $_POST['Description'];
+		               $_SESSION['Enchere'] = $Enchere;
+
                        $sql = "INSERT INTO items(Nom, Description, Immediat, Enchere, Meilleure, Photo1,Photo2,Photo3,Video,ID_vendeur)
                        VALUES ('$Nom','$Description','$Immediat','$Enchere','$Offre','$rec','','','','0')"; 
                        $result = mysqli_query($db_handle, $sql);
+                       
+                       header ('location: article.php');
+                       
              }
 
 
