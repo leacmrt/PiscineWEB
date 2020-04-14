@@ -1,6 +1,6 @@
 <?php
 
-
+session_start(); 
 
 $ID=isset($_POST["ID"])? $_POST["ID"] : ""; //généré par phpmyadmin   
 $Nom= isset($_POST["Nom"])? $_POST["Nom"] : "";
@@ -13,7 +13,7 @@ $Immediat=isset($_POST["Immediat"])? $_POST["Immediat"] : "";
 $Enchere=isset($_POST["Enchere"])? $_POST["Enchere"] : "";
 $Offre=isset($_POST["Meilleure"])? $_POST["Meilleure"] : "";
 
-$ID_vendeur="0";
+$ID_vendeur=$_SESSION['ID_vendeur'];
 
 
 //partie SQL
@@ -71,7 +71,7 @@ if (isset($_POST['button1']))
 
 			if(mysqli_num_rows($result) != 0) 
 			{
-			  session_start();
+			  
 			   while ($data = mysqli_fetch_assoc($result))
 			   {
 			  $_SESSION['NomArticle'] = $data['Nom'];
@@ -82,14 +82,14 @@ if (isset($_POST['button1']))
 
               
              } else { 
-             	       session_start();
+             	       
                        $_SESSION['NomArticle'] = $_POST['Nom'];
 		               $_SESSION['Photo1'] = $rec;
 		               $_SESSION['Description'] = $_POST['Description'];
 		               $_SESSION['Enchere'] = $Enchere;
 
                        $sql = "INSERT INTO items(Nom, Description, Immediat, Enchere, Meilleure, Photo1,Photo2,Photo3,Video,ID_vendeur)
-                       VALUES ('$Nom','$Description','$Immediat','$Enchere','$Offre','$rec','','','','0')"; 
+                       VALUES ('$Nom','$Description','$Immediat','$Enchere','$Offre','$rec','','','','$ID_vendeur')"; 
                        $result = mysqli_query($db_handle, $sql);
                        
                        header ('location: article.php');

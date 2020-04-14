@@ -82,6 +82,7 @@ if (isset($_POST['button2'])) //connexion
 			  $_SESSION['Mail'] = $_POST['Mail1'];
 		      $_SESSION['Mdp'] = $_POST['Mdp3'];
 
+
 		    // on redirige notre visiteur vers une page de notre section membre
 		     header ('location: PageAccueil.php');
 
@@ -91,12 +92,16 @@ if (isset($_POST['button2'])) //connexion
 		       echo "Mail: " . $data['Mail'] . "<br>";
 		       echo "Telephone: " . $data['Telephone'] . "<br>";
 		       echo "Role: " . $data['Role'] . "<br>";
-		       echo "<br>";}
+		       echo "<br>";
+
+
+             $_SESSION['ID_vendeur']= $data['ID'];
+		      }
            } 
 
 
 				else { echo "<script> window.alert(\"Le compte n'existe pas\"); history.back(); </script>";
-			           header ('location: deco.php');}
+			           }
             
             }
 		else {echo "<script> window.alert(\"Database not found\"); history.back(); </script>";}
