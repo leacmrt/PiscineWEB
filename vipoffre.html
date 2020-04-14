@@ -8,6 +8,110 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+
+
+  <script type="text/javascript">
+    function negocier() { // Négociation entre le vendeur et l'acheteur.
+      var prixdebase = 800
+      var prixfinal = 0
+
+      var reponse = prompt("Rappel de la clause d'achat : Si l'acheteur fait une offre que le vendeur accepte, l'acheteur est dans l'obligation de payer. Acceptez-vous la clause ? Répondez par \"Oui\" ou \"Non\".");
+      if (reponse =="Non"){
+          alert("L'opération est annulée.");}
+        
+      if (reponse =="Oui"){ 
+
+          var montant1 = prompt("Entrez le montant de votre offre.");
+          if ((montant1 == prixdebase)||(montant1 > prixdebase)){
+            alert("Le vendeur accepte votre offre à "+montant1+" €.");}
+
+          if (montant1 < prixdebase){
+            prixdebase1=prixdebase*0.97;
+            alert("Le vendeur vous fait une contre-offre à "+prixdebase1+" €.") // Contre offre avec 3% de reduc sur le prix de base
+            var reponse1 = prompt("Acceptez vous l'offre à "+prixdebase1+" €. Répondez seulement par Oui ou Non");
+            
+            if (reponse1=="Oui"){
+              alert("Vous avez accepté la contre-offre du vendeur et vous vous engagez à payer la somme de "+prixdebase1+" €.");
+              prixfinal = prixdebase1;}
+
+            if (reponse1=="Non"){
+              alert("Vous avez refusé la contre-offre du vendeur.")
+              var montant2 = prompt("Indiquez votre nouvelle offre au vendeur.")
+
+              if ((montant2 == prixdebase1)||(montant2 > prixdebase1)) {
+                alert("Le vendeur accepte votre offre à "+montant2+" €.");}
+              
+              if (montant2 < prixdebase1){
+                prixdebase2=prixdebase*0.95;
+                alert("Le vendeur vous fait une contre-offre à "+prixdebase2+" €.") // Contre offre avec 5% de reduc sur le prix de base
+                var reponse2 = prompt("Acceptez vous l'offre à "+prixdebase2+" €. Répondez seulement par Oui ou Non");
+
+                if (reponse2=="Oui"){
+                  alert("Vous avez accepté la contre-offre du vendeur et vous vous engagez à payer la somme de "+prixdebase2+" €.");
+                  prixfinal = prixdebase2;}
+
+                if (reponse2=="Non"){
+                  alert("Vous avez refusé la contre-offre du vendeur.")
+                  var montant3 = prompt("Indiquez votre nouvelle offre au vendeur.")}
+
+                  if ((montant3 == prixdebase2)||(montant3 > prixdebase2)) {
+                    alert("Le vendeur accepte votre offre à "+montant3+" €.");}
+
+                  if (montant3 < prixdebase2){
+                    prixdebase3=prixdebase*0.93;
+                    alert("Le vendeur vous fait une contre-offre à "+prixdebase3+" €.") // Contre offre avec 7% de reduc sur le prix de base
+                    var reponse3 = prompt("Acceptez vous l'offre à "+prixdebase3+" €. Répondez seulement par Oui ou Non");
+
+                    if (reponse3=="Oui"){
+                      alert("Vous avez accepté la contre-offre du vendeur et vous vous engagez à payer la somme de "+prixdebase3+" €.");
+                      prixfinal = prixdebase3;}
+
+                    if (reponse3=="Non"){
+                      alert("Vous avez refusé la contre-offre du vendeur.")
+                      var montant4 = prompt("Indiquez votre nouvelle offre au vendeur.");}
+
+                      if ((montant4 == prixdebase3)||(montant4 > prixdebase3)) {
+                        alert("Le vendeur accepte votre offre à "+montant4+" €.");}
+
+                      if (montant4 < prixdebase3){
+                        prixdebase4=prixdebase*0.91;
+                        alert("Le vendeur vous fait une contre-offre à "+prixdebase4+" €."); // Contre offre avec 9% de reduc sur le prix de base
+                        var reponse4 = prompt("Acceptez vous l'offre à "+prixdebase4+" €. Répondez seulement par Oui ou Non");
+
+                        if (reponse4=="Oui"){
+                          alert("Vous avez accepté la contre-offre du vendeur et vous vous engagez à payer la somme de "+prixdebase4+" €.");
+                          prixfinal = prixdebase4;}
+                        
+                        if (reponse3=="Non"){
+                          alert("Vous avez refusé la contre-offre du vendeur.")
+                          var montant5 = prompt("Indiquez votre nouvelle offre au vendeur.")}
+
+                          if ((montant5 == prixdebase4)||(montant5 > prixdebase4)) {
+                            alert("Le vendeur accepte votre offre à "+montant5+" €.");}
+
+                          if (montant5 < prixdebase4){
+                            prixdebase5=prixdebase*0.90;
+                            alert("Le vendeur vous fait une contre-offre à "+prixdebase5+" €.") // Contre offre avec 10% de reduc sur le prix de base
+                            var reponse4 = prompt("Acceptez vous l'offre à "+prixdebase5+" €. Répondez seulement par Oui ou Non");
+
+                            if (reponse4=="Oui"){
+                              alert("Vous avez accepté la contre-offre du vendeur et vous vous engagez à payer la somme de "+prixdebase5+" €.");
+                              prixfinal = prixdebase5;}
+                            
+                            if (reponse4=="Non"){
+                              alert("Vous avez refusé la contre-offre du vendeur.");
+                              alert("Vous et le vendez n'avez pas trouvé de terrain d'entente après 5 proposition pour cet article.");}
+              }
+            }
+          }
+              }
+          }
+        }
+      }
+    }
+  </script>
+
+
 </head>
 
 <nav class="navbar navbar-inverse" style="background-color:#22a6b3">
@@ -94,7 +198,7 @@
      
      Pour négocier l'article cliquer sur le bouton Négocier ! <br> <br>
      
-     <form> <input type="button" class="btn btn-secondary btn-block" value="Négocier" name="acheter" style="background-color:white"> </form>
+     <form> <input type="button" onclick="negocier()" class="btn btn-secondary btn-block" value="Négocier" name="acheter" style="background-color:white"> </form>
      <!-- Il faudra ajouter une fonction javascript ou PHP pour envoyer un pop up pour valider l'achat -->
     
     </div>
