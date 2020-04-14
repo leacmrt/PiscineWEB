@@ -65,7 +65,7 @@ session_start();
           <div class="text-center border border-light p-5">
                Bienvenue <h2 style=" color : darkblue;" > <strong> <?php echo  $_SESSION['Pseudo']; ?> </strong> </h2> Votre role :  <strong> <?php echo  $_SESSION['Role']; ?>
                <?php  if( $_SESSION['Role']=="Vendeur") { ?> 
-                < br>Vos articles en vente :  <?php    }  ?>
+                <br>Vos articles en vente :  <?php    }  ?>
 
 
                 <?php  if( $_SESSION['Role']=="Acheteur") { ?> 

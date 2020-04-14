@@ -53,7 +53,7 @@ if (isset($_POST['button1'])) //inscription
 else {echo "<script> window.alert(\"Database not found\"); history.back(); </script>";}
 
          }
-         else echo "<script> window.alert(\"Veuillez rentrer le même mot de passe svp !\"); history.back();</script>";
+         else echo "<script> window.alert(\"Veuillez rentrer le même mot de passe svp !".$_POST['Role']." \"); history.back();</script>";
 
 	} else { echo "<script> window.alert(\"Veuillez remplir tout les champs svp!\"); history.back();</script>";}
 }
