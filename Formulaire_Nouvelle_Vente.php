@@ -63,7 +63,7 @@ session_start();
               <h4 style="color:#22a6b3"><b><font size = "+1"><br>Nom de votre article:</font></b><br><br></h4>
             </div>
             <div style="float: left; padding-left: 50px; padding-top: 22px">
-              <input name="Nom" class="form-control" placeholder="Nom?" type="text" size="130">
+              <input name="Nom" id="Nom" class="form-control" placeholder="Nom?" type="text" size="130">
             </div>
           </div>
 
@@ -87,6 +87,20 @@ session_start();
               <input type="checkbox" name="Type[]" value="Meilleure">&nbsp Meilleure offre
             </div>
           </div>
+
+          <div class="form-group" style="padding-left: 100px">
+            <div style="float: left;width: 200px;">
+              <h4 style="color:#22a6b3"><b><font size = "+1"><br>Catégorie: </font></b><br><br></h4>
+            </div>
+
+            <div style="float: left; padding-left: 50px; padding-top: 22px;color: #8395a7">
+              <input type="radio" name="Categorie" value="Ferraille ou Trésor">&nbsp Ferraille ou Trésor &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <input type="radio" name="Categorie" value="Bon pour le Musée">&nbsp Bon pour le Musée &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <input type="radio" name="Categorie" value="Accessoire VIP">&nbsp Accessoire VIP
+            </div>
+          </div>
+
+
 
       <div class="form-group" style="padding-left: 100px;">
           <div style="float: left;width: 200px;">

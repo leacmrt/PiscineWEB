@@ -13,6 +13,7 @@ $Immediat=isset($_POST["Immediat"])? $_POST["Immediat"] : "";
 $Enchere=isset($_POST["Enchere"])? $_POST["Enchere"] : "";
 $Offre=isset($_POST["Meilleure"])? $_POST["Meilleure"] : "";
 $Photoprofil= isset($_FILES["Photoprofil"])? $_FILES["Photoprofil"] : "";
+$Categorie= isset($_POST["Categorie"])? $_POST["Categorie"] : "";
 
 $ID_vendeur=$_SESSION['ID_vendeur'];
 
@@ -24,7 +25,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 if (isset($_POST['button1']))
 	{
-		if($Nom!=""&&$Description!=""&&isset($_POST['Type']))
+		if($Nom!=""&&$Description!=""&&isset($_POST['Type'])&&$Categorie!="")
 		{
 			
 
@@ -81,6 +82,7 @@ if (isset($_POST['button1']))
 		      $_SESSION['Enchere'] = $data['Enchere'];
 		      $_SESSION['Meilleure'] = $data['Meilleure'];
 		      $_SESSION['Immediat'] = $data['Immediat'];
+		      $_SESSION['Categorie']=$data['Categorie'];
 
 		      header ('location: article.php');}
 
@@ -93,10 +95,11 @@ if (isset($_POST['button1']))
 		               $_SESSION['Enchere'] = $Enchere;
 		               $_SESSION['Meilleure'] =$Offre;
 		               $_SESSION['Immediat'] = $Immediat;
+		               $_SESSION['Categorie']=$Categorie;
 
 
-                       $sql = "INSERT INTO items(Nom, Description, Immediat, Enchere, Meilleure, Photo1,Photo2,Photo3,Video,ID_vendeur)
-                       VALUES ('$Nom','$Description','$Immediat','$Enchere','$Offre','$rec','','','','$ID_vendeur')"; 
+                       $sql = "INSERT INTO items(Nom, Description, Immediat, Enchere, Meilleure, Photo1,Photo2,Photo3,Video,ID_vendeur,Categorie)
+                       VALUES ('$Nom','$Description','$Immediat','$Enchere','$Offre','$rec','','','','$ID_vendeur','$Categorie')"; 
                        $result = mysqli_query($db_handle, $sql);
                        
                        header ('location: article.php');

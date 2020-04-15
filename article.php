@@ -60,11 +60,13 @@ session_start();
   <div class="form" style=" padding-left: 100px; padding-right: 100px;padding-top: 10px">
     <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
        
-       <h2 style="color:#22a6b3"><b> <?php echo "<center> ".$_SESSION['NomArticle'].'  <br/> Description :'.$_SESSION['Description'] .'<br/>
+       <h2 style="color:#22a6b3"><b> <?php echo "<center> ".$_SESSION['NomArticle'].'  <br/> Description :'.$_SESSION['Description'] . ' <br> Catégorie: '.$_SESSION['Categorie']. '<br/>
         Mode de vente : '.$_SESSION['Enchere']. '  '.$_SESSION['Immediat'].' ' .$_SESSION['Meilleure'].' <br/> Vendu par : '.$_SESSION['Mail'].'</center>'; ?></b></h2>
        <br><br><br> 
 
         <?php echo "<center>".$_SESSION['Photo1']."> ;</center>"; ?>
+
+        
 
        </div>
 
@@ -86,3 +88,4 @@ session_start();
   
 </body>
 </html>
+

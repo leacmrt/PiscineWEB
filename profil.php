@@ -1,10 +1,22 @@
 <?php
 session_start();
-
+$array=array();
 
 $database = "testpiscine";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
+
+ 
+                                $_SESSION['NomArticle']="";
+                                $_SESSION['Description']="";
+                                $_SESSION['Categorie']="";
+                                $_SESSION['Enchere']="";
+                                $_SESSION['Immediat']="";
+                                $_SESSION['Meilleure']="";
+                                $_SESSION['Photo1']="";
+
+         
+
 
  if (isset($_SESSION['Mail']) && isset($_SESSION['Mdp']))  {  ?>
  
@@ -18,6 +30,11 @@ $db_found = mysqli_select_db($db_handle, $database);
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
       <link rel="stylesheet" type="text/css" href="style.css">
+      <script type="text/javascript">
+        
+       
+
+      </script>
     </head>
 <body style="background-color:#c7ecee">
 
@@ -67,7 +84,7 @@ $db_found = mysqli_select_db($db_handle, $database);
   <div style=" border:5px solid; border-color: #22a6b3; padding-left: 30px;padding-right: 30px;background-color:#ffffff">
 
           
-            <h1 style=" color : darkblue"> <center>  Bienvenue</center></h1>       
+            <h1 style=" color : darkblue"> <center> Bienvenue </center></h1>       
                                      <?php  if($_SESSION['Photoprofil']=="")
                                   {?> <div style=" border:5px solid; border-color: #22a6b3;background-color:lightgrey; float: right; width: 120px; height: 160px;">
                                         <br><p>Voulez vous rajouter une photo de profil? </p>
@@ -90,7 +107,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                <?php  if( $_SESSION['Role']=="Vendeur") { ?> 
                <br>       
 
-                <br><br><br><h2  style=" color : darkblue"> <center >Vos articles en vente : </center></h2>  <?php 
+                <br><br><br><h2  style=" color : darkblue"> <center >Vos articles en vente : </center></h2>  <br> <?php 
 
 
                        if ($db_found) 
@@ -102,16 +119,50 @@ $db_found = mysqli_select_db($db_handle, $database);
 
                           if(mysqli_num_rows($result) != 0) 
                            {
+                               $compte=1;
                               while ($data = mysqli_fetch_assoc($result))
                               {
+                                $array[$compte]=$data['ID'];
+                                 
+                              
+                                $essai= "button".$compte;
+            
+                                echo "<center> <div style=\" border:1px solid; border-color: black;width: 230px; height: 230px;text-decoration : underline;\">";
+                                echo "<strong><br> <span title=\"Cliquez pour modifier l'item ".$compte."\">";
+                                echo "<form action=\"\"method=\"post\"><input type=\"submit\" name=\"".$essai;
+                                echo "\"value=\"".$compte." : ".$data['Nom']."\">";
                                 
-                                echo " <center> <div style=\" border:2px solid; border-color: black;  width: 200px; height: 200px; \">  <strong>". $data['Nom']."</strong> <br/>";
-                                echo $data['Photo1']." width=\"150\" height=\"150\"></div>  </center>  <br>"; 
+
+                                 if (isset($_POST[$essai]))
+                                {      
+                                $_SESSION['NomArticle']=$data['Nom'];
+                                $_SESSION['Description']=$data['Description'];
+                                $_SESSION['Categorie']=$data['Categorie'];
+                                $_SESSION['Enchere']=$data['Enchere'];
+                                $_SESSION['Immediat']=$data['Immediat'];
+                                $_SESSION['Meilleure']=$data['Meilleure'];
+                                $_SESSION['Photo1']=$data['Photo1'];
+
+                                echo " <script> location.replace(\"article.php\"); </script>";
+
+                              }
+
+                              $compte=$compte+1;
+                              echo "</form>  </strong> <span class=\"glyphicon glyphicon-info-sign\"> </span></span> <br/>";
+                                echo $data['Photo1']." width=\"150\" height=\"150\"></div>  </center> "; 
+
+                                
+
+                                
                                 }
+
+
                               }
                             } 
 
                           }
+
+                          echo "<br>";
                             ?>
 
 
