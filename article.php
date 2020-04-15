@@ -33,7 +33,7 @@ session_start();
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#"  style="color:#ecf0f1" ><b><font size = "+1">Home</font></b></a></li>
+        <li><a href="PageAccueil.php"  style="color:#ecf0f1" ><b><font size = "+1">Home</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom" ><b><font size = "+1">Catégories</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
@@ -56,15 +56,44 @@ session_start();
       <h2 style="color:#22a6b3"><b> ARTICLE </b></h2>
     </div>
   </div>
-
+ <br>
   <div class="form" style=" padding-left: 100px; padding-right: 100px;padding-top: 10px">
     <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
+    
+    <div style=" padding-top: 50px ; padding-left:50px; " >
+    <div style=" float :left ; border :1px solid  ; border-color:black">
+      <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+         <h2> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <u>Voulez vous modifier cet item ? </u></h2>
+          <br>
+           <h3> &nbsp Modifier la description &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifD" value="oui">&nbsp  oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifD" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
+          
+           <h3> &nbsp Modifier la Catégorie &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifC" value="oui">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifC" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
+          
+           <h3> &nbsp Modifier la Mode de vente &nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifD" value="oui">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifD" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
+          
+          <br><br>
+           <center>
+           <input type="submit" name="button1" value=" Modifier "> &nbsp&nbsp&nbsp&nbsp
+           <input type="submit" name="button2" value=" Supprimer l'item "> </center>
+           <br><br>
+
+
+           
+      </form>
+    </div>
+  </div>
        
-       <h2 style="color:#22a6b3"><b> <?php echo "<center> ".$_SESSION['NomArticle'].'  <br/> Description :'.$_SESSION['Description'] . ' <br> Catégorie: '.$_SESSION['Categorie']. '<br/>
-        Mode de vente : '.$_SESSION['Enchere']. '  '.$_SESSION['Immediat'].' ' .$_SESSION['Meilleure'].' <br/> Vendu par : '.$_SESSION['Mail'].'</center>'; ?></b></h2>
+       <h2 style="color:#22a6b3"><b> <?php echo "<p style =\" float:right \"><u> Nom: </u>".$_SESSION['NomArticle'].'  <br/> <u>  Description </u> :'.$_SESSION['Description'] . ' <br> <u>  Catégorie: </u> '.$_SESSION['Categorie']. '<br/>
+        <u> Mode de vente : </u> '.$_SESSION['Enchere']. '  '.$_SESSION['Immediat'].' ' .$_SESSION['Meilleure'].' <br/> <u> Vendu par :</u>'.$_SESSION['Mail'].'</p>'; ?></b></h2>
        <br><br><br> 
 
-        <?php echo "<center>".$_SESSION['Photo1']."> ;</center>"; ?>
+        <?php echo "<center style=\" padding-bottom: 120px ; padding-left:600px \">".$_SESSION['Photo1']." width=\"200\" height=\"200\" > </center>"; ?>
 
         
 

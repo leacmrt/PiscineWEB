@@ -3,8 +3,7 @@
 session_start();
 
 
- if (isset($_SESSION['Mail']) && isset($_SESSION['Mdp'])) ?>
-  { 
+ if (isset($_SESSION['Mail']) && isset($_SESSION['Mdp']))   { ?>
      <!DOCTYPE html>
 <html lang="en">
 
@@ -154,6 +153,6 @@ session_start();
   <!-- Bootstrap core JavaScript -->
   
 </body>
+</html> 
 
-
- } else   <?php header ('location: PageAccueil.html'); ?> </html>
+ <?php }  else    header ('location: PageAccueil.html'); ?> 
