@@ -1,5 +1,12 @@
 <?php
 session_start();
+$database = "testpiscine";//connectez-vous dans votre BDD//Rappel: votre serveur = localhost et votre login = root et votre password = <rien>
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+$ModifD = isset($_POST["ModifD"])? $_POST["ModifD"] : ""; 
+$ModifC = isset($_POST["ModifC"])? $_POST["ModifC"] : ""; 
+$ModifM = isset($_POST["ModifM"])? $_POST["ModifM"] : ""; 
+
 
 
 ?>
@@ -74,8 +81,8 @@ session_start();
           <input type="radio" name="ModifC" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
           
            <h3> &nbsp Modifier la Mode de vente &nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifD" value="oui">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifD" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
+          <input type="radio" name="ModifM" value="oui">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifM" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
           
           <br><br>
            <center>
@@ -83,7 +90,26 @@ session_start();
            <input type="submit" name="button2" value=" Supprimer l'item "> </center>
            <br><br>
 
+           <?php 
+                      if (isset($_POST['button2'])) 
+                      {   
 
+                             if ($db_found) 
+                             {
+                               echo "<script> window.alert(\"Vous allez supprimer un item!\"); history.back(); </script>";
+  
+                              $sql = "SELECT * FROM items  WHERE Nom LIKE '%".$_SESSION['NomArticle']."%'";
+                              if ($_SESSION['Description']!= "") {
+                              $sql .= " AND Description LIKE '%".$_SESSION['Description']."%'";}
+                                 }
+                                 $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat*/
+
+
+                      }
+                    }
+
+
+           ?> 
            
       </form>
     </div>

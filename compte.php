@@ -9,6 +9,7 @@ $Telephone= isset($_POST["Telephone"])? $_POST["Telephone"] : "";
 $Role = isset($_POST["Role"])? $_POST["Role"] : "";
 $Mdp1= isset($_POST["Mdp1"])? $_POST["Mdp1"] : "";
 $Mdp2= isset($_POST["Mdp2"])? $_POST["Mdp2"] : "";
+$$Photoprofil=" ";
 
  
 $Mail1= isset($_POST["Mail1"])? $_POST["Mail1"] : ""; //partie connexion 
@@ -41,8 +42,8 @@ if (isset($_POST['button1'])) //inscription
 			if(mysqli_num_rows($result) == 0) 
 			{
 			  echo "Le mail n'est pas déjà utilisé . <br> ";
-              $sql= "INSERT INTO utilisateurs(Nom, Mail, Telephone, Role, Mdp)
-                     VALUES('$Nom', '$Mail', '$Telephone', '$Role','$Mdp1')";
+              $sql= "INSERT INTO utilisateurs(Nom, Mail, Telephone, Role, Mdp, Photoprofil)
+                     VALUES('$Nom', '$Mail', '$Telephone', '$Role','$Mdp1','$Photoprofil')";
                $result = mysqli_query($db_handle, $sql);
                echo "<script> window.alert(\"Vous êtes bien inscrit sur EBAY ECE\"); history.back(); </script>";
            } 
