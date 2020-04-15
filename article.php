@@ -63,7 +63,7 @@ session_start();
        <h2 style="color:#22a6b3"><b> <?php echo "<center> ".$_SESSION['NomArticle'].'  <br/> Description :'.$_SESSION['Description'] .'<br/> Mode de vente : '.$_SESSION['Enchere'].' <br/> Vendu par : '.$_SESSION['Mail'].'</center>'; ?></b></h2>
        <br><br><br> 
 
-        <?php echo "<center>".$_SESSION['Photo1']."</center>"; ?>
+        <?php echo "<center>".$_SESSION['Photo1']."> ;</center>"; ?>
 
        </div>
 

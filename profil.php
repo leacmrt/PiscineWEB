@@ -2,6 +2,10 @@
 session_start();
 
 
+$database = "testpiscine";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+
  if (isset($_SESSION['Mail']) && isset($_SESSION['Mdp']))  {  ?>
  
 <!DOCTYPE html>
@@ -33,7 +37,7 @@ session_start();
         <li><a href="#"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
+        <li><a href="Formulaire_Nouvelle_Vente.php" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -61,19 +65,61 @@ session_start();
 
 <div style="padding-top: 50px; padding-right: 250px; padding-left: 250px;">
   <div style=" border:5px solid; border-color: #22a6b3; padding-left: 30px;padding-right: 30px;background-color:#ffffff">
-    
-          <div class="text-center border border-light p-5">
-               Bienvenue <h2 style=" color : darkblue;" > <strong> <?php echo  $_SESSION['Pseudo']; ?> </strong> </h2> Votre role :  <strong> <?php echo  $_SESSION['Role']; ?>
+
+          
+            <h1 style=" color : darkblue"> <center>  Bienvenue</center></h1>       
+                                     <?php  if($_SESSION['PhotoProfil']=="")
+                                  {?> <div style=" border:5px solid; border-color: #22a6b3;background-color:lightgrey; float: right; width: 120px; height: 160px;">
+                                       <br><p>Voulez vous rajouter une photo de profil? </p>
+                                       <input type="file" id="Photoprofil" name="PhotoProfil" style="width: 110px">
+                                      </div>
+                                     <?php  } ?>
+
+             <center>  <h2 style=" color : darkblue; padding-left: 120px" > <strong> <?php echo  $_SESSION['Pseudo']; ?> </strong> </h2><p style="padding-left: 120px"> Votre role :  <strong> <?php echo  $_SESSION['Role']; ?> </strong> </p> </center>
+
+  
+
+
                <?php  if( $_SESSION['Role']=="Vendeur") { ?> 
-                <br>Vos articles en vente :  <?php    }  ?>
+               <br>       
+
+                <br><br><br><h2  style=" color : darkblue"> <center >Vos articles en vente : </center></h2>  <?php 
+
+
+                       if ($db_found) 
+                      {
+
+                                    $sql = "SELECT * FROM items";
+                                    $sql .= " WHERE ID_vendeur LIKE '%".$_SESSION['ID_vendeur']."%' ";
+                                    $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
+
+                          if(mysqli_num_rows($result) != 0) 
+                           {
+                              while ($data = mysqli_fetch_assoc($result))
+                              {
+                                
+                                echo "<center> <strong>". $data['Nom']."</strong> <br/>";
+                                echo $data['Photo1']." width=\"150\" height=\"150\"> </center> <br>"; 
+                                }
+                              }
+                            } 
+
+                          }
+                            ?>
+
 
 
                 <?php  if( $_SESSION['Role']=="Acheteur") { ?> 
-                 <br>Votre panier  : <a href="panier.html" style="color: blue"><span class="glyphicon glyphicon-shopping-cart" > Votre panier  </span>  <?php    }  ?>
+                 <br><br><br><br><center>
+
+                  Votre panier  : <a href="panier.html" style="color: blue"><span class="glyphicon glyphicon-shopping-cart" > Votre panier  </span> </a><br>
+                  Catégorie: <a href="categorie.html" style="color: blue"><span class="glyphicon glyphicon-globe" > Catégorie </span> </a> <br>
+                  Achat: <a href="Achat.html" style="color: blue"><span class="glyphicon glyphicon-eur" > Achat </span> </a>
+                   </center><?php    }  ?>
   
         
       </div>
-    </div>
+    
 
    
 
