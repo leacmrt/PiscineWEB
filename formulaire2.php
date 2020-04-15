@@ -12,6 +12,7 @@ $Video = "LALA";
 $Immediat=isset($_POST["Immediat"])? $_POST["Immediat"] : "";
 $Enchere=isset($_POST["Enchere"])? $_POST["Enchere"] : "";
 $Offre=isset($_POST["Meilleure"])? $_POST["Meilleure"] : "";
+$Photoprofil= isset($_FILES["Photoprofil"])? $_FILES["Photoprofil"] : "";
 
 $ID_vendeur=$_SESSION['ID_vendeur'];
 
@@ -78,6 +79,9 @@ if (isset($_POST['button1']))
 		      $_SESSION['Photo1'] = $data['Photo1'] ;
 		      $_SESSION['Description'] = $data['Description'];
 		      $_SESSION['Enchere'] = $data['Enchere'];
+		      $_SESSION['Meilleure'] = $data['Meilleure'];
+		      $_SESSION['Immediat'] = $data['Immediat'];
+
 		      header ('location: article.php');}
 
               
@@ -87,6 +91,9 @@ if (isset($_POST['button1']))
 		               $_SESSION['Photo1'] = $rec;
 		               $_SESSION['Description'] = $_POST['Description'];
 		               $_SESSION['Enchere'] = $Enchere;
+		               $_SESSION['Meilleure'] =$Offre;
+		               $_SESSION['Immediat'] = $Immediat;
+
 
                        $sql = "INSERT INTO items(Nom, Description, Immediat, Enchere, Meilleure, Photo1,Photo2,Photo3,Video,ID_vendeur)
                        VALUES ('$Nom','$Description','$Immediat','$Enchere','$Offre','$rec','','','','$ID_vendeur')"; 
@@ -110,15 +117,49 @@ if (isset($_POST['button1']))
 
 
 
-	}else echo "probleme1";
+	}
 
-        
-
-
+  ?>
 
 
 
 
+<?php      
+
+if (isset($_POST['button3']))
+	{ 
+      if ($db_found) 
+      {
+
+
+
+      	if(isset($_FILES['Photoprofil']))
+     		{ 
+
+
+     			$dossier = 'upload/';
+     			$fichier = basename($_FILES['Photoprofil']['name']);
+     			if(move_uploaded_file($_FILES['Photoprofil']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+     			{
+          			
+          			//echo '<img src='.$dossier."/".$fichier.' width=100 height=100 > <br>'; //afficher une image sur l'écran
+          			$rec1='<img src='.$dossier."/".$fichier;
+     			}
+
+
+
+           			 echo "coucou";
+            	     $sql ='UPDATE utilisateurs SET Photoprofil="'.$rec1.'" WHERE ID ="'.$ID_vendeur.'"';
+
+            		$result = mysqli_query($db_handle, $sql);
+            		$_SESSION['Photoprofil']=$rec1;
+            		header ('location: profil.php');
+
+      		}
+       }
+
+
+     }
 
 
 ?>

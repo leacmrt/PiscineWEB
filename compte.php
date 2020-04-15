@@ -99,7 +99,7 @@ if (isset($_POST['button2'])) //connexion
              $_SESSION['ID_vendeur']= $data['ID'];
              $_SESSION['Pseudo']= $data['Nom'];
              $_SESSION['Role']= $data['Role'];
-             $_SESSION['PhotoProfil']=$data['Photoprofil'];
+             $_SESSION['Photoprofil']=$data['Photoprofil'];
 		      }
            } 
 

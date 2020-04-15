@@ -68,12 +68,19 @@ $db_found = mysqli_select_db($db_handle, $database);
 
           
             <h1 style=" color : darkblue"> <center>  Bienvenue</center></h1>       
-                                     <?php  if($_SESSION['PhotoProfil']=="")
+                                     <?php  if($_SESSION['Photoprofil']=="")
                                   {?> <div style=" border:5px solid; border-color: #22a6b3;background-color:lightgrey; float: right; width: 120px; height: 160px;">
-                                       <br><p>Voulez vous rajouter une photo de profil? </p>
-                                       <input type="file" id="Photoprofil" name="PhotoProfil" style="width: 110px">
+                                        <br><p>Voulez vous rajouter une photo de profil? </p>
+                                          <form action="Formulaire2.php" method="post" enctype="multipart/form-data" >
+                                            <input type="file" id="Photoprofil" name="Photoprofil" style="width: 110px">
+                                            <input type="submit" name="button3" value="Poster ">
+                                          </form>
                                       </div>
-                                     <?php  } ?>
+                                     <?php  } else if($_SESSION['Photoprofil']!=""){ ?>
+                                        <div style=" border:5px solid; border-color: #22a6b3;background-color:lightgrey; float: right; width: 120px; height: 160px;">
+                                         <?php echo $_SESSION['Photoprofil']." width=\"110\" height=\"150\">"; ?>
+                                      </div> <?php } ?>
+
 
              <center>  <h2 style=" color : darkblue; padding-left: 120px" > <strong> <?php echo  $_SESSION['Pseudo']; ?> </strong> </h2><p style="padding-left: 120px"> Votre role :  <strong> <?php echo  $_SESSION['Role']; ?> </strong> </p> </center>
 
@@ -98,8 +105,8 @@ $db_found = mysqli_select_db($db_handle, $database);
                               while ($data = mysqli_fetch_assoc($result))
                               {
                                 
-                                echo "<center> <strong>". $data['Nom']."</strong> <br/>";
-                                echo $data['Photo1']." width=\"150\" height=\"150\"> </center> <br>"; 
+                                echo " <center> <div style=\" border:2px solid; border-color: black;  width: 200px; height: 200px; \">  <strong>". $data['Nom']."</strong> <br/>";
+                                echo $data['Photo1']." width=\"150\" height=\"150\"></div>  </center>  <br>"; 
                                 }
                               }
                             } 
@@ -115,6 +122,17 @@ $db_found = mysqli_select_db($db_handle, $database);
                   Votre panier  : <a href="panier.html" style="color: blue"><span class="glyphicon glyphicon-shopping-cart" > Votre panier  </span> </a><br>
                   Catégorie: <a href="categorie.html" style="color: blue"><span class="glyphicon glyphicon-globe" > Catégorie </span> </a> <br>
                   Achat: <a href="Achat.html" style="color: blue"><span class="glyphicon glyphicon-eur" > Achat </span> </a>
+                   </center><?php    }  ?>
+
+
+
+
+                <?php  if( $_SESSION['Role']=="ADMIN") { ?> 
+                 <br><br><br><br><center>
+
+                  En premiers temps, un administrateur est le chef vendeur. Il peut ajouter ou supprimer des items dans le site de marché. <br><br> 
+
+                  En second temps, un administrateur peut ajouter ou supprimer des vendeurs (fournisseurs) avec leur email ECE, pseudo et nom sur une base de données.
                    </center><?php    }  ?>
   
         

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 13 avr. 2020 à 17:57
+-- Généré le :  mer. 15 avr. 2020 à 13:56
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -36,15 +36,18 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `Telephone` text NOT NULL,
   `Role` text NOT NULL,
   `Mdp` text NOT NULL,
+  `Photoprofil` text NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `utilisateurs`
 --
 
-INSERT INTO `utilisateurs` (`ID`, `Nom`, `Mail`, `Telephone`, `Role`, `Mdp`) VALUES
-(1, 'commaret', 'lea.commaret@edu.ece.fr', '0660090312', 'Acheteur', 'lalala');
+INSERT INTO `utilisateurs` (`ID`, `Nom`, `Mail`, `Telephone`, `Role`, `Mdp`, `Photoprofil`) VALUES
+(1, 'commaret', 'lea.commaret@edu.ece.fr', '0660090312', 'Acheteur', 'lalala', ''),
+(2, 'Dubois', 'dubois@gmail.com', '661773989', 'Acheteur', 'hihihi', ''),
+(3, 'Courdent', 'courdent@gmail.fr', '545528888', 'Vendeur', 'hohoho', '<img src=upload//profil.jpg');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
