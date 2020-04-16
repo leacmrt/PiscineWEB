@@ -113,9 +113,12 @@ $db_found = mysqli_select_db($db_handle, $database);
                        if ($db_found) 
                       {
 
+                                   
                                     $sql = "SELECT * FROM items";
                                     $sql .= " WHERE ID_vendeur LIKE '%".$_SESSION['ID_vendeur']."%' ";
                                     $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
+                                    echo "<center> <h2 style=\"color  :#5b6bea ;text-decoration : underline; \"> Voici vos articles en vente </h2> </center> <br> <br> ";
+                                 echo " <div class=\"row\">";
 
                           if(mysqli_num_rows($result) != 0) 
                            {
@@ -127,7 +130,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                               
                                 $essai= "button".$compte;
             
-                                echo "<center> <div style=\" border:1px solid; border-color: black;width: 230px; height: 230px;text-decoration : underline;\">";
+                                echo "<center> <div class=\"col-6 col-sm-3\" style=\"  border:1px solid; border-color: black; padding-bottom: 50px\">";
                                 echo "<strong><br> <span title=\"Cliquez pour modifier l'item ".$compte."\">";
                                 echo "<form action=\"\"method=\"post\"><input type=\"submit\" name=\"".$essai;
                                 echo "\"value=\"".$compte." : ".$data['Nom']."\">";
@@ -158,6 +161,9 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 
                               }
+                               echo "</div>";
+
+
                             } 
 
                           }
@@ -179,11 +185,62 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 
                 <?php  if( $_SESSION['Role']=="ADMIN") {  
-                echo "<br><br><br><br>";
-                 
+                echo "<br><br>";
+                   echo" <center><h2> <a href=\"Formulaire_Nouvelle_Vente.php\">  Clickez pour vendre un objet </span> </a></h2>  <span class=\"glyphicon glyphicon-eur\" > </center>";
 
                     if ($db_found) 
                       {
+
+                                    
+                                    $sql = "SELECT * FROM items";
+                                    $sql .= " WHERE ID_vendeur LIKE '%".$_SESSION['ID_vendeur']."%' ";
+                                    $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
+                                    echo "<center> <h2 style=\"color  :#5b6bea ;text-decoration : underline; \"> Voici vos articles en vente </h2> </center> <br> <br> ";
+                                 echo " <div class=\"row\">";
+
+                          if(mysqli_num_rows($result) != 0) 
+                           {
+                               $compte=1;
+                              while ($data = mysqli_fetch_assoc($result))
+                              {
+                                $array[$compte]=$data['ID'];
+                                 
+                              
+                                $essai2= "button".$compte;
+            
+                                echo "<center> <div class=\"col-6 col-sm-3\" style=\"  border:1px solid; border-color: black; padding-bottom: 50px\">";
+                                echo "<strong><br> <span title=\"Cliquez pour modifier l'item ".$compte."\">";
+                                echo "<form action=\"\"method=\"post\"><input type=\"submit\" name=\"".$essai2;
+                                echo "\"value=\"".$compte." : ".$data['Nom']."\">";
+                                
+
+                                 if (isset($_POST[$essai2]))
+                                {      
+                                $_SESSION['NomArticle']=$data['Nom'];
+                                $_SESSION['Description']=$data['Description'];
+                                $_SESSION['Categorie']=$data['Categorie'];
+                                $_SESSION['Enchere']=$data['Enchere'];
+                                $_SESSION['Immediat']=$data['Immediat'];
+                                $_SESSION['Meilleure']=$data['Meilleure'];
+                                $_SESSION['Photo1']=$data['Photo1'];
+
+                                echo " <script> location.replace(\"article.php\"); </script>";
+
+                              }
+
+                              $compte=$compte+1;
+                              echo "</form>  </strong> <span class=\"glyphicon glyphicon-info-sign\"> </span></span> <br/>";
+                                echo '<img src = "'.$data['Photo1'].'" width="150" height="150"></div>  </center> '; 
+
+                                
+
+                                
+                                }
+
+
+                              }
+                               echo "</div>";
+
 
                                     $sql = "SELECT * FROM items";
                                     $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
