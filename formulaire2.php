@@ -49,13 +49,13 @@ if (isset($_POST['button1']))
 		   	        }
 
 
-     			$dossier = 'upload/';
+     			$dossier = '';
      			$fichier = basename($_FILES['Photo1']['name']);
      			if(move_uploaded_file($_FILES['Photo1']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
      			{
           			
           			//echo '<img src='.$dossier."/".$fichier.' width=100 height=100 > <br>'; //afficher une image sur l'écran
-          			$rec=$dossier."/".$fichier;
+          			$rec=$dossier."".$fichier;
      			}
 
                 //partie sql
@@ -140,18 +140,17 @@ if (isset($_POST['button3']))
      		{ 
 
 
-     			$dossier = 'upload/';
+     			$dossier = '';
      			$fichier = basename($_FILES['Photoprofil']['name']);
      			if(move_uploaded_file($_FILES['Photoprofil']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
      			{
           			
           			//echo '<img src='.$dossier."/".$fichier.' width=100 height=100 > <br>'; //afficher une image sur l'écran
-          			$rec1='<img src='.$dossier."/".$fichier;
+          			$rec1='<img src='.$dossier."".$fichier;
      			}
 
 
 
-           			 echo "coucou";
             	     $sql ='UPDATE utilisateurs SET Photoprofil="'.$rec1.'" WHERE ID ="'.$ID_vendeur.'"';
 
             		$result = mysqli_query($db_handle, $sql);

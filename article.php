@@ -6,6 +6,11 @@ $db_found = mysqli_select_db($db_handle, $database);
 $ModifD = isset($_POST["ModifD"])? $_POST["ModifD"] : ""; 
 $ModifC = isset($_POST["ModifC"])? $_POST["ModifC"] : ""; 
 $ModifM = isset($_POST["ModifM"])? $_POST["ModifM"] : ""; 
+$ModifD1 = isset($_POST["ModifD1"])? $_POST["ModifD1"] : ""; 
+$ModifC1 = isset($_POST["ModifC1"])? $_POST["ModifC1"] : ""; 
+$ModifM11 = isset($_POST["ModifM11"])? $_POST["ModifM11"] : ""; 
+$ModifM12 = isset($_POST["ModifM12"])? $_POST["ModifM12"] : ""; 
+$ModifM13 = isset($_POST["ModifM13"])? $_POST["ModifM13"] : ""; 
 
 
 
@@ -64,28 +69,39 @@ $ModifM = isset($_POST["ModifM"])? $_POST["ModifM"] : "";
     </div>
   </div>
  <br>
-  <div class="form" style=" padding-left: 100px; padding-right: 100px;padding-top: 10px">
-    <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
+  <div style=" padding-left: 100px; padding-right: 100px;padding-top: 10px ;">
+    <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3; height: 500px">
     
-    <div style=" padding-top: 50px ; padding-left:50px; " >
-    <div style=" float :left ; border :1px solid  ; border-color:black">
+    <div style="float :left ;padding-top: 50px ; padding-left:50px;" >
+    <div style=" border :1px solid  ; border-color:black ; width: 600px; height: 400px">
       <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
          <h2> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <u>Voulez vous modifier cet item ? </u></h2>
           <br>
-           <h3> &nbsp Modifier la description &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifD" value="oui">&nbsp  oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifD" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
+           <h4 style=" color : black"> &nbsp Modifier la description &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifD" value="oui">&nbsp  oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifD" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h4>
+          <center style="padding-left:130px" ><input type="text" id ="ModifD1" name="ModifD1" placeholder="Modifier la description"></center>
+          <br>
+           <h4 style=" color : black"> &nbsp Modifier la Catégorie &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifC" value="oui">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifC" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h4>
+           <center style="padding-left:130px"  > <select name="ModifC1" size="1">
+                                    <option name="" value="Ferraille ou Trésor">Ferraile ou trésor</option>
+                                    <option name="" value="Bon pour le Musée">Bon pour le Musée</option>
+                                    <option name="" value="Accessoirs VIP">Accessoirs VIP</option>
+          </select></center>
+
+          <br>
+           <h4 style=" color : black"> &nbsp Modifier la Mode de vente &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifM" value="oui">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifM" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h4>
+          <center style="padding-left:130px"  >
+          <input type="checkbox" name="ModifM11" value="Immediat"> Immédiat
+          <input type="checkbox" name="ModifM12" value="Enchere"> Enchère
+          <input type="checkbox" name="ModifM13" value="Meilleure"> Meilleure offre </center>
           
-           <h3> &nbsp Modifier la Catégorie &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifC" value="oui">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifC" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
-          
-           <h3> &nbsp Modifier la Mode de vente &nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifM" value="oui">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifM" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
-          
-          <br><br>
-           <center>
+          <br>
+           <center >
            <input type="submit" name="button1" value=" Modifier "> &nbsp&nbsp&nbsp&nbsp
            <input type="submit" name="button2" value=" Supprimer l'item "> </center>
            <br><br>
@@ -96,16 +112,87 @@ $ModifM = isset($_POST["ModifM"])? $_POST["ModifM"] : "";
 
                              if ($db_found) 
                              {
-                               echo "<script> window.alert(\"Vous allez supprimer un item!\"); history.back(); </script>";
+                               echo "<script> window.alert(\"Vous allez supprimer un item!\");</script>";
   
-                              $sql = "SELECT * FROM items  WHERE Nom LIKE '%".$_SESSION['NomArticle']."%'";
+                              $sql = "DELETE FROM items  WHERE Nom LIKE '%".$_SESSION['NomArticle']."%'";
                               if ($_SESSION['Description']!= "") {
                               $sql .= " AND Description LIKE '%".$_SESSION['Description']."%'";}
                                  }
                                  $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat*/
-
+                                 header ('location: profil.php');
 
                       }
+
+
+                       if (isset($_POST['button1'])) 
+                      {   
+
+                             if ($db_found) 
+                             {
+                               
+                               if($ModifD)//pour modifier la description
+                               { 
+                               
+                                  if($ModifD1!="")
+                                    {
+                                    $sql=" UPDATE items SET Description =\"$ModifD1\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
+                                    $result = mysqli_query($db_handle, $sql);
+                                    $_SESSION['Description']=$ModifD1;
+
+
+                                }
+                              }
+
+
+                                if($ModifC)//pour modifier la description
+                               { 
+                               
+                                  if($ModifC1!="")
+                                    { 
+                                    
+                                    $sql=" UPDATE items SET Categorie =\"$ModifC1\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
+                                    $result = mysqli_query($db_handle, $sql);
+                                    $_SESSION['Categorie']=$ModifC1;
+
+                                     }
+                              }
+
+
+                              if($ModifM)//pour modifier la description
+                               { 
+                               
+                                  if($ModifM11!="")
+                                    { 
+                                    
+                                    $sql=" UPDATE items SET Immediat =\"$ModifM11\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
+                                    $result = mysqli_query($db_handle, $sql);
+                                    $_SESSION['Immediat']=$ModifM11;
+
+                                     }
+
+                                 if($ModifM12!="")
+                                    { 
+                                    
+                                    $sql=" UPDATE items SET Enchere =\"$ModifM12\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
+                                    $result = mysqli_query($db_handle, $sql);
+                                    $_SESSION['Enchere']=$ModifM12;
+
+                                     }
+
+                                 if($ModifM13!="")
+                                    { 
+                                    
+                                    $sql=" UPDATE items SET Immediat =\"$ModifM13\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
+                                    $result = mysqli_query($db_handle, $sql);
+                                    $_SESSION['Meilleure']=$ModifM13;
+
+                                     }
+                              }
+
+
+
+                           }
+                         }
                   
 
 
@@ -114,9 +201,31 @@ $ModifM = isset($_POST["ModifM"])? $_POST["ModifM"] : "";
       </form>
     </div>
   </div>
-       
-       <h2 style="color:#22a6b3"><b> <?php echo "<p style =\" float:right \"><u> Nom: </u>".$_SESSION['NomArticle'].'  <br/> <u>  Description </u> :'.$_SESSION['Description'] . ' <br> <u>  Catégorie: </u> '.$_SESSION['Categorie']. '<br/>
-        <u> Mode de vente : </u> '.$_SESSION['Enchere']. '  '.$_SESSION['Immediat'].' ' .$_SESSION['Meilleure'].' <br/> <u> Vendu par :</u>'.$_SESSION['Mail'].'</p>'; ?></b></h2>
+       <br><br><br>
+        <?php 
+
+                if ($db_found) 
+                {
+                  $sql= "SELECT * FROM items  WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
+                  $result = mysqli_query($db_handle, $sql);
+                   while ($data = mysqli_fetch_assoc($result))
+                              {
+                                $VA=$data['ID_vendeur'];
+                              }
+
+                  $sql="SELECT * FROM utilisateurs WHERE ID=\"".$VA."\"";
+                  $result = mysqli_query($db_handle, $sql);
+                   while ($data = mysqli_fetch_assoc($result))
+                              {
+                                $SA=$data['Mail'];
+                              }
+
+                }
+
+        ?>
+
+       <h2 style="color:#22a6b3"><b> <?php echo "<p style =\" float :right \"><u> Nom: </u>".$_SESSION['NomArticle'].'  <br/> <u>  Description </u> :'.$_SESSION['Description'] . ' <br> <u>  Catégorie: </u> '.$_SESSION['Categorie']. '<br/>
+        <u> Mode de vente : </u> '.$_SESSION['Enchere']. '  '.$_SESSION['Immediat'].' ' .$_SESSION['Meilleure'].' <br/> <u> Vendu par :</u>'.$SA.'</p>'; ?></b></h2>
        <br><br><br> 
 
         <?php echo '<center style=\" padding-bottom: 120px ; padding-left:600px \">'.'<img src="'.$_SESSION['Photo1'].'" width="200" height="200" > </center>'; ?>
