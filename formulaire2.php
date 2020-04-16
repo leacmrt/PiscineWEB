@@ -55,7 +55,7 @@ if (isset($_POST['button1']))
      			{
           			
           			//echo '<img src='.$dossier."/".$fichier.' width=100 height=100 > <br>'; //afficher une image sur l'écran
-          			$rec='<img src='.$dossier."/".$fichier;
+          			$rec=$dossier."/".$fichier;
      			}
 
                 //partie sql

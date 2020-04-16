@@ -3,14 +3,10 @@ session_start();
 $database = "testpiscine";//connectez-vous dans votre BDD//Rappel: votre serveur = localhost et votre login = root et votre password = <rien>
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
-$ModifD = isset($_POST["ModifD"])? $_POST["ModifD"] : "";
-$ModifD1 = isset($_POST["ModifD1"])? $_POST["ModifD1"] : ""; 
+$ModifD = isset($_POST["ModifD"])? $_POST["ModifD"] : ""; 
 $ModifC = isset($_POST["ModifC"])? $_POST["ModifC"] : ""; 
-$ModifC1 = isset($_POST["ModifC1"])? $_POST["ModifC1"] : ""; 
 $ModifM = isset($_POST["ModifM"])? $_POST["ModifM"] : ""; 
-$ModifM11 = isset($_POST["ModifM11"])? $_POST["ModifM11"] : ""; 
-$ModifM12 = isset($_POST["ModifM12"])? $_POST["ModifM12"] : "";
-$ModifM13 = isset($_POST["ModifM13"])? $_POST["ModifM13"] : "";
+
 
 
 ?>
@@ -71,117 +67,46 @@ $ModifM13 = isset($_POST["ModifM13"])? $_POST["ModifM13"] : "";
   <div class="form" style=" padding-left: 100px; padding-right: 100px;padding-top: 10px">
     <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
     
-    <div style=" padding-top: 20px ; padding-left:50px; " >
+    <div style=" padding-top: 50px ; padding-left:50px; " >
     <div style=" float :left ; border :1px solid  ; border-color:black">
       <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-         <h2> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <u>Voulez-vous modifier cet item ? </u></h2>
+         <h2> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <u>Voulez vous modifier cet item ? </u></h2>
           <br>
            <h3> &nbsp Modifier la description &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifD" value="true">&nbsp  oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifD" value="false">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  </h3>
-          <center style="padding-left:200px "><input type="text" name="ModifD1" placeholder=" Modifier Description"> </center>
-
+          <input type="radio" name="ModifD" value="oui">&nbsp  oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifD" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
+          
            <h3> &nbsp Modifier la Catégorie &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifC" value="true">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifC" value="false">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
-           <center style="padding-left:200px "> <select name="ModifC1" size="1">
-                                    <option value="Ferraille ou Trésor">Ferraille ou trésor</option>
-                                    <option value="Bon pour le Musée">Bon pour le musée</option>
-                                    <option value="Accessoirs VIP">Accessoire VIP</option>
-                  </select> </center>
+          <input type="radio" name="ModifC" value="oui">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifC" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
           
            <h3> &nbsp Modifier la Mode de vente &nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifM" value="true">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="ModifM" value="false">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
-          <center style="padding-left:200px " >
-            <input type="checkbox" name="ModifM11" value="Immediat"> Immédiate
-          <input type="checkbox" name="ModifM12" value="Enchere"> Enchère
-          <input type="checkbox" name="ModifM13" value="Meilleure"> Meilleure Offre</center>
-
-
-        
-        
+          <input type="radio" name="ModifM" value="oui">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="radio" name="ModifM" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h3>
           
-          <br>
+          <br><br>
            <center>
            <input type="submit" name="button1" value=" Modifier "> &nbsp&nbsp&nbsp&nbsp
            <input type="submit" name="button2" value=" Supprimer l'item "> </center>
-           <br>
+           <br><br>
 
            <?php 
-
-                    if (isset($_POST['button1'])) 
-                      {   
-
-                             if ($db_found) 
-                             {
-                               
-
-                              if($ModifD&&($ModifD1!="")) 
-                               {$sql ='UPDATE items SET Description="'.$ModifD1.'" WHERE Nom ="'.$_SESSION['NomArticle'].'"';
-                              
-                                
-                                 $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat*/
-                                 $_SESSION['Description']=$ModifD1;
-                                }
-                              
-                                if($ModifC&&($ModifC1=="Ferraille ou Trésor"||$ModifC1=="Bon pour le Musée"||$ModifC1=="Accessoirs VIP")) 
-                                 {$sql ='UPDATE items SET Categorie="'.$ModifC1.'" WHERE Nom ="'.$_SESSION['NomArticle'].'"';
-                              
-                                
-                                 $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat*/
-                                 $_SESSION['Categorie']=$ModifC1;
-                                 }
-
-                                   if($ModifM)
-                                   {
-                                      if($ModifM11!="")
-                                      {$sql ='UPDATE items SET Immediat="'.$ModifM11.'" WHERE Nom ="'.$_SESSION['NomArticle'].'"';
-                                       $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat*/
-                                       $_SESSION['Immediat']=$ModifM11;}
-                                      
-                                      if($ModifM12!="")
-                                      {$sql ='UPDATE items SET Enchere="'.$ModifM12.'" WHERE Nom ="'.$_SESSION['NomArticle'].'"';
-                                       $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat*/
-                                       $_SESSION['Enchere']=$ModifM12;}  
-                                      
-                                      if($ModifM13!="")
-                                      {$sql ='UPDATE items SET Meilleure="'.$ModifM13.'" WHERE Nom ="'.$_SESSION['NomArticle'].'"';
-                                       $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat*/
-                                       $_SESSION['Meilleure']=$ModifM13;}
-
-                                   }
-
-
-                                echo "<script> window.alert(\"Vous avez modifier un item: ".$_SESSION['NomArticle']."\"); </script>";
-                                 echo " <script> location.replace(\"article.php\"); </script>";
-                             }
-
-                      }
-
-
-
-
-
-
                       if (isset($_POST['button2'])) 
                       {   
 
                              if ($db_found) 
                              {
-                               
+                               echo "<script> window.alert(\"Vous allez supprimer un item!\"); history.back(); </script>";
   
-                              $sql = "DELETE FROM items  WHERE Nom LIKE '%".$_SESSION['NomArticle']."%'";
-                              
-                                
+                              $sql = "SELECT * FROM items  WHERE Nom LIKE '%".$_SESSION['NomArticle']."%'";
+                              if ($_SESSION['Description']!= "") {
+                              $sql .= " AND Description LIKE '%".$_SESSION['Description']."%'";}
+                                 }
                                  $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat*/
-                                 echo "<script> window.alert(\"Vous avez supprimé un item: ".$_SESSION['NomArticle']."\");</script>";
-                                 echo " <script> location.replace(\"profil.php\"); </script>";
-                               }
 
 
                       }
-                    
+                  
 
 
            ?> 
@@ -194,7 +119,7 @@ $ModifM13 = isset($_POST["ModifM13"])? $_POST["ModifM13"] : "";
         <u> Mode de vente : </u> '.$_SESSION['Enchere']. '  '.$_SESSION['Immediat'].' ' .$_SESSION['Meilleure'].' <br/> <u> Vendu par :</u>'.$_SESSION['Mail'].'</p>'; ?></b></h2>
        <br><br><br> 
 
-        <?php echo "<center style=\" padding-bottom: 120px ; padding-left:600px \">".$_SESSION['Photo1']." width=\"200\" height=\"200\" > </center>"; ?>
+        <?php echo '<center style=\" padding-bottom: 120px ; padding-left:600px \">'.'<img src="'.$_SESSION['Photo1'].'" width="200" height="200" > </center>'; ?>
 
         
 
@@ -218,4 +143,3 @@ $ModifM13 = isset($_POST["ModifM13"])? $_POST["ModifM13"] : "";
   
 </body>
 </html>
-

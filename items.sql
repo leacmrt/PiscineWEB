@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 15 avr. 2020 à 20:15
+-- Généré le :  jeu. 16 avr. 2020 à 08:27
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -43,16 +43,18 @@ CREATE TABLE IF NOT EXISTS `items` (
   `ID_vendeur` int(11) NOT NULL,
   `Categorie` text NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `items`
 --
 
 INSERT INTO `items` (`ID`, `Nom`, `Description`, `Immediat`, `Enchere`, `Meilleure`, `Photo1`, `Photo2`, `Photo3`, `Video`, `ID_vendeur`, `Categorie`) VALUES
-(32, 'mario encore', 'toile ancienne', '', 'Enchere', '', '<img src=upload//jpg.jpg', '', '', '', 3, ''),
-(33, 'autre photo', 'test', '', 'Enchere', '', '<img src=upload//GPPT0434.JPG', '', '', '', 3, ''),
-(38, 'Autre mario', 'salut', '', '', 'Meilleure', '<img src=upload//profil.jpg', '', '', '', 3, '');
+(32, 'mario encore', 'toile ancienne', '', 'Enchere', '', 'upload//jpg.jpg', '', '', '', 3, ''),
+(33, 'autre photo', 'test', '', 'Enchere', '', 'upload//GPPT0434.jpg', '', '', '', 3, ''),
+(38, 'Autre mario', 'salut', '', '', 'Meilleure', 'upload//profil.jpg', '', '', '', 3, ''),
+(41, 'Link', 'Link > Mario', 'Immediate', 'Enchere', '', 'upload//link.jpg ', '', '', '', 4, 'Accessoire VIP'),
+(42, 'test', 'test', 'Immediate', '', '', 'upload//broche2.jpg', '', '', '', 4, 'Ferraille ou TrÃ©sor');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -149,7 +149,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
                               $compte=$compte+1;
                               echo "</form>  </strong> <span class=\"glyphicon glyphicon-info-sign\"> </span></span> <br/>";
-                                echo $data['Photo1']." width=\"150\" height=\"150\"></div>  </center> "; 
+                                echo '<img src = "'.$data['Photo1'].'" width="150" height="150"></div>  </center> '; 
 
                                 
 
