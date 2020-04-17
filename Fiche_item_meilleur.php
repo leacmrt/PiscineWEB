@@ -13,6 +13,8 @@
   <script type="text/javascript">
     function validation() {
       alert("Vous avez acheté l'article !")
+      <?php  header ('location: Formulaire_Livraison.php');?>
+
     }
   </script>
 
@@ -156,7 +158,7 @@ while ($Item = mysqli_fetch_assoc($R_Item))
 
 
   <!-- Footer -->
-  <footer class="container-fluid text-center">
+  <footer class="container-fluid text-center" style="background-color: lightgrey">
     <p>©EBAY-ECE 2020</p>  
     <form class="form-inline">Rejoignez notre newsletter:
       <input type="email" class="form-control" size="50" placeholder="Adresse E-mail">

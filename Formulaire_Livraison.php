@@ -16,7 +16,6 @@ $CVC= isset($_POST["CVC"])? $_POST["CVC"] : "";
 $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : ""; 
 
 
-
 ?>
 
 
@@ -50,14 +49,14 @@ $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : "";
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
+        <li><a href="PageAcceuil.php"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
+        <li><a href="PageAchat.html" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="develop1.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
+        <li><a href="profil.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
         <li><a href="panier.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
       </ul>
     </div>
@@ -146,10 +145,7 @@ $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : "";
   </center>
   </div>
 
-   
-
-
-<footer class="container-fluid text-center">
+<footer class="container-fluid text-center" style="background-color: lightgrey">
   <p><br><br>©EBAY-ECE 2020</p>  
 </footer>
 

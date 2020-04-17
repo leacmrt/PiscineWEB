@@ -103,7 +103,7 @@
 <!-- /.container -->
 
   <!-- Footer -->
-<footer class="container-fluid text-center" style="padding-top: 30px">
+<footer class="container-fluid text-center" style="padding-top: 30 background-color: lightgrey">
   <p>©EBAY-ECE 2020</p>  
   <form class="form-inline">Rejoignez notre newsletter:
     <input type="email" class="form-control" size="50" placeholder="Adresse E-mail">

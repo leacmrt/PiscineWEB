@@ -60,7 +60,7 @@
             <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="develop1.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
+            <li><a href="profil.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
             <li><a href="panier.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
         </ul>
         </div>

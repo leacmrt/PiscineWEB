@@ -13,6 +13,7 @@
   <script type="text/javascript">
     function validation() {
       alert("Vous avez acheté l'article !")
+       location.replace("Formulaire_Livraison.php"); 
     }
   </script>
 
@@ -31,15 +32,15 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
+        <li><a href="PageAccueil.php"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
+        <li><a href="PageAchat.html" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
+        <li><a href="Formulaire_de_Vente.php" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="develop1.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
-        <li><a href="panier.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
+        <li><a href="Profil.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
+        <li><a href="Panier.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
       </ul>
     </div>
   </div>
@@ -114,7 +115,7 @@
 
 
   <!-- Footer -->
-  <footer class="container-fluid text-center">
+  <footer class="container-fluid text-center" style="background-color: lightgrey">
     <p>©EBAY-ECE 2020</p>  
     <form class="form-inline">Rejoignez notre newsletter:
       <input type="email" class="form-control" size="50" placeholder="Adresse E-mail">

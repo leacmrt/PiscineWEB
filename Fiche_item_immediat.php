@@ -61,7 +61,7 @@ try    //Tentative de connexion à la bdd
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="develop1.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
+        <li><a href="profil.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
         <li><a href="panier.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
       </ul>
     </div>
@@ -156,7 +156,7 @@ while ($Item = mysqli_fetch_assoc($R_Item))
 
 
   <!-- Footer -->
-  <footer class="container-fluid text-center">
+  <footer class="container-fluid text-center" style="background-color: lightgrey">
     <p>©EBAY-ECE 2020</p>  
     <form class="form-inline">Rejoignez notre newsletter:
       <input type="email" class="form-control" size="50" placeholder="Adresse E-mail">
