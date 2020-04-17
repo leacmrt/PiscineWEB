@@ -59,7 +59,8 @@ if (isset($_POST['button2']))
 			  
 			   while ($data = mysqli_fetch_assoc($result))
 			   {
-			  $_SESSION['NomArticle'] = $data['Nom'];
+			   $_SESSION['NomArticle'] = $data['Nom'];
+         $_SESSION['ID'] = $data['ID'];
 		      $_SESSION['Photo1'] = $data['Photo1'] ;
           $_SESSION['Photo2'] = $data['Photo2'] ;
           $_SESSION['Photo3'] = $data['Photo3'] ;
@@ -119,6 +120,7 @@ if (isset($_POST['button2']))
                       }
                       
                      $_SESSION['NomArticle'] = $_POST['Nom'];
+                     $_SESSION['ID'] = $IDMAX;
                      $_SESSION['Photo1'] = $Photo1;
                      $_SESSION['Photo2'] = $Photo2;
                      $_SESSION['Photo3'] = $Photo3;

@@ -11,7 +11,10 @@ $ModifC1 = isset($_POST["ModifC1"])? $_POST["ModifC1"] : "";
 $ModifM11 = isset($_POST["ModifM11"])? $_POST["ModifM11"] : ""; 
 $ModifM12 = isset($_POST["ModifM12"])? $_POST["ModifM12"] : ""; 
 $ModifM13 = isset($_POST["ModifM13"])? $_POST["ModifM13"] : ""; 
-
+$ModifIm1 = isset($_POST["ModifIm1"])? $_POST["ModifIm1"] : ""; 
+$ModifEn1 = isset($_POST["ModifEn1"])? $_POST["ModifEn1"] : "";
+$ModifEn2 = isset($_POST["ModifEn2"])? $_POST["ModifEn2"] : "";
+$ModifMe1 = isset($_POST["ModifMe1"])? $_POST["ModifMe1"] : "";
 
 
 ?>
@@ -72,8 +75,8 @@ $ModifM13 = isset($_POST["ModifM13"])? $_POST["ModifM13"] : "";
   <div style=" padding-left: 100px; padding-right: 100px;padding-top: 10px ;">
     <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3; height: 500px">
     
-    <div style="float :left ;padding-top: 50px ; padding-left:50px;" >
-    <div style=" border :1px solid  ; border-color:black ; width: 600px; height: 400px">
+    <div style="float :left ;padding-top: 15px ; padding-left:50px;" >
+    <div style=" border :1px solid  ; border-color:black ; width: 600px; height: 460px">
       <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
          <h2> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <u>Voulez vous modifier cet item ? </u></h2>
           <br>
@@ -95,10 +98,22 @@ $ModifM13 = isset($_POST["ModifM13"])? $_POST["ModifM13"] : "";
            <h4 style=" color : black"> &nbsp Modifier la Mode de vente &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
           <input type="radio" name="ModifM" value="oui">&nbsp oui &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
           <input type="radio" name="ModifM" value="non">&nbsp non &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </h4>
-          <center style="padding-left:130px"  >
+          <center>
           <input type="checkbox" name="ModifM11" value="Immediat"> Immédiat
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
           <input type="checkbox" name="ModifM12" value="Enchere"> Enchère
-          <input type="checkbox" name="ModifM13" value="Meilleure"> Meilleure offre </center>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="checkbox" name="ModifM13" value="Meilleure"> Meilleure offre </center><br>
+
+          <center>
+           <input type="text" id ="ModifIm1" name="ModifIm1" placeholder="Prix">
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+           <input type="text" id ="ModifEn1" name="ModifEn1" placeholder="Prix min">
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          <input type="text" id ="ModifMe1" name="ModifMe1" placeholder="Prix min"> </center><br>
+
+          <center> <input type="text" id ="ModifEn2" name="ModifEn2" placeholder="Date lim"> </center>
+
           
           <br>
            <center >
@@ -112,20 +127,24 @@ $ModifM13 = isset($_POST["ModifM13"])? $_POST["ModifM13"] : "";
 
                              if ($db_found) 
                              {
-                               echo "<script> window.alert(\"Vous allez supprimer un item!\");</script>";
-  
-                              $sql = "DELETE FROM items  WHERE Nom LIKE '%".$_SESSION['NomArticle']."%'";
-                              if ($_SESSION['Description']!= "") {
-                              $sql .= " AND Description LIKE '%".$_SESSION['Description']."%'";}
-                                 }
-                                 $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat*/
-                                 header ('location: profil.php');
+                                echo "<script> window.alert(\"Vous allez supprimer un item!\");</script>";
+    
+                                $sql = "DELETE FROM items  WHERE Nom LIKE '%".$_SESSION['NomArticle']."%'";
+                                if ($_SESSION['Description']!= "") 
+                                {
+                                  $sql .= " AND Description LIKE '%".$_SESSION['Description']."%'";
+                                }
+
+                              }
+
+                              $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat*/
+                              header ('location: profil.php');
 
                       }
 
 
                        if (isset($_POST['button1'])) 
-                      {   
+                        {   
 
                              if ($db_found) 
                              {
@@ -138,13 +157,11 @@ $ModifM13 = isset($_POST["ModifM13"])? $_POST["ModifM13"] : "";
                                     $sql=" UPDATE items SET Description =\"$ModifD1\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
                                     $result = mysqli_query($db_handle, $sql);
                                     $_SESSION['Description']=$ModifD1;
-
-
-                                }
+                                    }
                               }
 
 
-                                if($ModifC)//pour modifier la description
+                                if($ModifC)//pour modifier la catégorie
                                { 
                                
                                   if($ModifC1!="")
@@ -158,45 +175,133 @@ $ModifM13 = isset($_POST["ModifM13"])? $_POST["ModifM13"] : "";
                               }
 
 
-                              if($ModifM)//pour modifier la description
+                              if($ModifM)//pour modifier les ventes
                                { 
                                
-                                  if($ModifM11!="")
+                                  if($ModifM11!="") //Immédiat
                                     { 
-                                    
-                                    $sql=" UPDATE items SET Immediat =\"$ModifM11\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
-                                    $result = mysqli_query($db_handle, $sql);
-                                    $_SESSION['Immediat']=$ModifM11;
 
-                                     }
+                                      if ($_SESSION['Immediat']!="")
+                                      {
+                                        if ($ModifIm1!="")
+                                          {
+                                            $sql2=" UPDATE vente_immediate SET Prix =\"$ModifIm1\" WHERE ID_Item =\"".$_SESSION['ID']."\" ";
+                                            $result2 = mysqli_query($db_handle, $sql2);
+                                          }
+                                      }
+                                      else
+                                      {
+                                        $sql=" UPDATE items SET Immediat =\"$ModifM11\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
+                                        $result = mysqli_query($db_handle, $sql);
+                                        $_SESSION['Immediat']=$ModifM11;
 
-                                 if($ModifM12!="")
-                                    { 
-                                    
-                                    $sql=" UPDATE items SET Enchere =\"$ModifM12\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
-                                    $result = mysqli_query($db_handle, $sql);
-                                    $_SESSION['Enchere']=$ModifM12;
+                                        $sql2=" INSERT INTO vente_immediate (ID_Item, Prix) VALUES (\"".$_SESSION['ID']."\",\"$ModifIm1\")";
+                                        $result2 = mysqli_query($db_handle, $sql2);
+                                      }
+                                    }
 
-                                     }
+                                    else
+                                    {
+                                      if ($_SESSION['Immediat']!="")
+                                      {
 
-                                 if($ModifM13!="")
-                                    { 
-                                    
-                                    $sql=" UPDATE items SET Immediat =\"$ModifM13\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
-                                    $result = mysqli_query($db_handle, $sql);
-                                    $_SESSION['Meilleure']=$ModifM13;
+                                        $sql=" UPDATE items SET Immediat =\"$ModifM11\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
+                                        $result = mysqli_query($db_handle, $sql);
+                                        $_SESSION['Immediat']=$ModifM11;
 
-                                     }
+
+
+                                        $sql2="DELETE FROM vente_immediate WHERE ID_Item = ".$_SESSION['ID']."";
+                                        $result2 = mysqli_query($db_handle, $sql2);
+                                      }
+                                    }
+
+
+
+
+                                    if($ModifM12!="") //Enchere
+                                    {  
+                                      if ($_SESSION['Enchere']!="")
+                                      {
+                                        if ($ModifEn1!="")
+                                          {
+                                            $sql2=" UPDATE vente_enchere SET Prix_min =\"$ModifEn1\" WHERE ID_Item =\"".$_SESSION['ID']."\" ";
+                                            $result2 = mysqli_query($db_handle, $sql2);
+                                          }
+
+                                          if ($ModifEn2!="")
+                                          {
+                                            $sql3=" UPDATE vente_enchere SET Date_lim =\"$ModifEn2\" WHERE ID_Item =\"".$_SESSION['ID']."\" ";
+                                            $result3 = mysqli_query($db_handle, $sql3);
+                                          }
+                                      }
+                                      else
+                                      {
+                                        $sql=" UPDATE items SET Enchere =\"$ModifM12\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
+                                        $result = mysqli_query($db_handle, $sql);
+                                        $_SESSION['Enchere']=$ModifM12;
+
+                                        $sql2=" INSERT INTO vente_enchere (ID_Item,Prix_min,Date_lim) VALUES (\"".$_SESSION['ID']."\",\"$ModifEn1\",\"$ModifEn2\")";
+                                        $result2 = mysqli_query($db_handle, $sql2);
+                                      }
+                                    }
+
+                                    else
+                                    {
+                                      if ($_SESSION['Enchere']!="")
+                                      {
+
+                                        $sql=" UPDATE items SET Enchere =\"$ModifM12\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
+                                        $result = mysqli_query($db_handle, $sql);
+                                        $_SESSION['Enchere']=$ModifM12;
+
+
+                                        $sql2="DELETE FROM vente_enchere WHERE ID_Item = ".$_SESSION['ID']."";
+                                        $result2 = mysqli_query($db_handle, $sql2);
+                                      }
+                                    }
+
+
+                                 if($ModifM13!="") //Meilleur prix
+                                  { 
+                                    if ($_SESSION['Meilleure']!="")
+                                      {
+                                        if ($ModifMe1!="")
+                                          {
+                                            $sql2=" UPDATE vente_meilleur SET Prix_min =\"$ModifMe1\" WHERE ID_Item =\"".$_SESSION['ID']."\" ";
+                                            $result2 = mysqli_query($db_handle, $sql2);
+                                          }
+                                      }
+                                      else
+                                      {
+                                        $sql=" UPDATE items SET Meilleure =\"$ModifM13\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
+                                        $result = mysqli_query($db_handle, $sql);
+                                        $_SESSION['Meilleure']=$ModifM13;
+
+                                        $sql2=" INSERT INTO vente_meilleur (ID_Item,Prix_min) VALUES (\"".$_SESSION['ID']."\",\"$ModifMe1\")";
+                                        $result2 = mysqli_query($db_handle, $sql2);
+                                      }
+                                    }
+
+                                    else
+                                    {
+                                      if ($_SESSION['Meilleure']!="")
+                                      {
+
+                                        $sql=" UPDATE items SET Meilleure =\"$ModifM13\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
+                                        $result = mysqli_query($db_handle, $sql);
+                                        $_SESSION['Meilleure']=$ModifM13;
+
+
+                                        $sql2="DELETE FROM vente_meilleur WHERE ID_Item = ".$_SESSION['ID']."";
+                                        $result2 = mysqli_query($db_handle, $sql2);
+                                      }
+                                    }
+                                }
                               }
+                        }
 
-
-
-                           }
-                         }
-                  
-
-
-           ?> 
+                        ?> 
            
       </form>
     </div>
