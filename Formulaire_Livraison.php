@@ -133,7 +133,7 @@ $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : "";
             <div class='form-row'>
               <br>
               <div class='col-md-12 form-group'>
-                <button class='form-control btn btn-primary submit-button' name="button1" type='submit'>Proceder au payement »</button> 
+                <a href="commande1.php"><button class='form-control btn btn-primary submit-button' name="button1" type='submit'>Valider</button></a>
               </div><br><br>
             </div>
             <br><br>
@@ -175,7 +175,7 @@ $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : "";
                           else
                           {
                                $sql= "INSERT INTO donnees(Adresse1, Adresse2, Ville, CodeP, Pays, CarteNom,CarteNum,CVC,Expiration,ID_Vendeur)
-                               VALUES('$Adresse1', '$Adresse2', '$Ville', '$CodeP','$Pays','$CarteNom','$CarteNum', '$CVC','$Expiration','0')";
+                               VALUES('$Adresse1', '$Adresse2', '$Ville', '$CodeP','$Pays','$CarteNom','$CarteNum', '$CVC','$Expiration','4')";
                               $result = mysqli_query($db_handle, $sql);
                               echo "<script> window.alert(\"Vos données sont bien enregistrées\"); history.back(); </script>";
 
