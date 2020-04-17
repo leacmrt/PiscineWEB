@@ -13,7 +13,7 @@
   <script type="text/javascript">
     function validation() {
       alert("Vous avez acheté l'article !")
-      <?php  header ('location: Formulaire_Livraison.php');?>
+      <?php  header ('location.replace("Formulaire_livraison.php")');?>
 
     }
   </script>
@@ -114,13 +114,48 @@ while ($Item = mysqli_fetch_assoc($R_Item))
         <br> 
           <ul> <?php echo $Item['Nom'] ?> </ul>
           <ul> <?php echo $Item['Description'] ?> </ul>
-          <ul> Prix minimal : <?php echo $Item['Prix_min'] ?> </ul>
+          <ul> Prix minimal : <?php echo $Item['Prix_min'] ?> </ul><br><br>
 
           <ul>
-          <form action="Offre_meilleur.php" method="post"> 
-                <input type="hidden" name="ID_Item" value=<?php echo $Item['ID_Item'] ?> >
-                <input type="submit" name="button" value="Faire une offre" style="background-color: #ffffff">
-              </form>
+
+
+
+
+            <?php
+
+            $sqlRecherche = "SELECT * FROM offre WHERE ((ID_Acheteur = '4') AND (ID_Item = ".$ID_Item."))";
+            $resultRecherche = mysqli_query($db_handle,$sqlRecherche);
+
+            if ($Echange = mysqli_fetch_assoc($resultRecherche))
+            {
+              if (($Echange['Valide'] == 'Non') AND ($Echange['Numero'] == 5))
+              {
+                echo "Vottre offre à été définitivement refusée <br><br>";
+              }
+
+              if (($Echange['Valide'] == 'Non') AND ($Echange['Numero'] != 5)) 
+              {
+                echo "Vottre offre à été refusée <br><br>" ?> <form action="commande1.php" method="post">
+                <input type="hidden" name="ID_Item" value=<?php echo $ID_Item ?> >
+                <input type="submit" name="button" value="Faire une nouvelle offre" style="background-color: #ffffff"></form> <?php
+              }
+
+              if ($Echange['Valide'] == 'Attente')
+              {
+                echo "Vottre offre est en attente de validation <br><br>";
+              }
+
+            }
+            else
+            {
+              echo '<form action="commande1.php" method="post"> 
+                <input type="hidden" name="ID_Item" value='.$ID_Item.'>
+                <input type="submit" name="button" value="Faire une offre" style="background-color: #ffffff"></form>';
+            }
+            ?>
+
+
+
 
              <form action="Affichage_panier.php" method="post"> 
                 <input type="hidden" name="ID_Item" value=<?php echo $Item['ID_Item'] ?> >

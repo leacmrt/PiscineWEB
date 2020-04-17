@@ -21,6 +21,10 @@
 
 
 <?php
+
+$ID_Item= isset($_POST["ID_Item"])?$_POST["ID_Item"] : "";
+
+
 try    //Tentative de connexion à la bdd
       {
         $bdd = "testpiscine";
@@ -80,7 +84,12 @@ try    //Tentative de connexion à la bdd
           echo '<center>'.$donnee['Ville'].'   '.$donnee['CodeP'].'   '.$donnee['Pays'].'</center><br>';
           echo '<center> Carte: '.$donnee['CarteNum'].'   CVC: '.$donnee['CVC'].'   Expiration: '.$donnee['Expiration'].'<br><br>';
 
-          echo '<a href="#" style=" color:#ffffff;"><b><font size = "+1"><input type="submit" name="button1" value="Valider" style="background-color:#22a6b3;"></font></b></a>'.'   '.'<a href="Formulaire_livraison.php" style=" color:#ffffff;"><b><font size = "+1"><input type="submit" name="button2" value="Modifier" style="background-color:#22a6b3;"></font></b></a>';
+
+
+          echo '<form action="Montant_Meilleur.php" method="post">
+            <input type="hidden" name="ID_Item" value='.$ID_Item.'> 
+
+          <a href="#" style=" color:#ffffff;"><b><font size = "+1"><input type="submit" name="button1" value="Continuer" style="background-color:#22a6b3;"></font></b></a>'.'   '.'<a href="Formulaire_livraison.php" style=" color:#ffffff;"><b><font size = "+1"><input type="submit" name="button2" value="Modifier" style="background-color:#22a6b3;"></font></b></a></form>';
       }
       else
       {
