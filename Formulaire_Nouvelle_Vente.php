@@ -82,9 +82,9 @@ session_start();
             </div>
 
             <div style="float: left; padding-left: 50px; padding-top: 22px;color: #8395a7">
-              <input type="checkbox" name="Type[]" value="Immediat">&nbsp Immédiate &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-              <input type="checkbox" name="Type[]" value="Enchere">&nbsp Enchère &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-              <input type="checkbox" name="Type[]" value="Meilleure">&nbsp Meilleure offre
+              <input type="checkbox" name="TypeIm" value="Immediat">&nbsp Immédiate &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <input type="checkbox" name="TypeEn" value="Enchere">&nbsp Enchère &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <input type="checkbox" name="TypeMe" value="Meilleure">&nbsp Meilleure offre
             </div>
           </div>
 
@@ -121,8 +121,8 @@ session_start();
           </div>
 
          <div class="form-group" style="padding-left: 510px">
-           <div class="button" style="background-color:#22a6b3; width: 150px"> 
-           <a href="#" style=" color:#ffffff"><b><font size = "+1"><center> <input type="submit" name="button1" value=" Continuer "> </center></font></b></a>
+           <div class="button" style="background-color:#22a6b3; width: 100px"> 
+           <a href="#" style=" color:#ffffff"><b><font size = "+1"><center> <input type="submit" name="button1" value=" Continuer " style="background-color: #22a6b3"> </center></font></b></a>
           </div>
          </div>
 
