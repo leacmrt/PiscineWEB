@@ -21,6 +21,9 @@ $CVC= isset($_POST["CVC"])? $_POST["CVC"] : "";
 $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : ""; 
 
 
+$ID_Item= isset($_POST["ID_Item"])?$_POST["ID_Item"] : "";
+$Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
+
 
 
 ?>
@@ -57,14 +60,15 @@ $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : "";
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="PageAcceuil.php"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
-        <li><a href="PageAchat.html" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
+        <li><a href="Catégories.php" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
+        <li><a href="PageAchat.php" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
+        <li><a href="Formulaire_Nouvelle_Vente.php" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="profil.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
-        <li><a href="panier.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
+        <li><a href="profil.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte : <?php echo $_SESSION['Mail']; ?></font></b></a></li>
+        <li><a href="panier.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
+        <li><a href="deco.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-off"></span><b><font size = "+1"> Deconnexion</font></b></a></li>
       </ul>
     </div>
   </div>
@@ -85,7 +89,9 @@ $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : "";
     <div class="text-center border border-light p-5">
        <h3> Vos informations de payment </h3>
 
-         <form class="form-horizontal" action="" method="post">
+         <form class="form-horizontal" action="commande.php" method="post">
+          <input type="hidden" name="ID_Item" value= <?php echo $ID_Item ?>>
+          <input type="hidden" name="Mode" value=<?php echo $Mode ?>>
              <br>
              <div class='form-row'>
 
@@ -95,7 +101,6 @@ $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : "";
                 <input class='form-control' name="Adresse2"size='4' type='text' placeholder='Ligne 2'>
               </div><br><br><br><br>
               
-
               <div class='form-row'>
               <div class='col-xs-4'>
                 <label class='control-label'>Ville</label>
@@ -140,7 +145,7 @@ $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : "";
             <div class='form-row'>
               <br>
               <div class='col-md-12 form-group'>
-                <a href="commande1.php"><button class='form-control btn btn-primary submit-button' name="button1" type='submit'>Valider</button></a>
+                <button class='form-control btn btn-primary submit-button' name="button1" value = "Submit" type='submit'>Valider</button>
               </div><br><br>
             </div>
             <br><br>
@@ -161,40 +166,5 @@ $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : "";
 
 
 
-<?php
 
-       if (isset($_POST['button1']))//si le formulaire s'envoie
-       {
-           
-            if($Adresse1!=""&&$Ville!=""&&$CodeP!=""&&$Pays!=""&&$CarteNom!=""&&$CarteNum!=""&&$CVC!=""&&$Expiration!="")//si tout les champs sont remplis (sauf adresse 2 on s'en fou) 
-              { 
-                   if($db_found)
-                   {
-                          $sql = "SELECT * FROM donnees";
-                           if ($CarteNum != "") {//on cherche le livre avec les paramètres titre et auteur
-                          $sql .= " WHERE CarteNum LIKE '%$CarteNum%'";
-                           if ($CarteNom != "") {
-                             $sql .= " AND CarteNom LIKE '%$CarteNom%'";}}
-                              $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
-
-                            if(mysqli_num_rows($result) != 0) 
-                          {echo "<script> window.alert(\"Le compte existe . <br>\")";}
-                          else
-                          {
-                               $sql= "INSERT INTO donnees(Adresse1, Adresse2, Ville, CodeP, Pays, CarteNom,CarteNum,CVC,Expiration,ID_Vendeur)
-                               VALUES('$Adresse1', '$Adresse2', '$Ville', '$CodeP','$Pays','$CarteNom','$CarteNum', '$CVC','$Expiration',\"".$_SESSION['ID_vendeur']."\")";
-                              $result = mysqli_query($db_handle, $sql);
-                              echo "<script> window.alert(\"Vos données sont bien enregistrées\"); 
-                              ; </script>";
-
-                              header("location: PageAccueil.php");
-
-
-                          }
-
-                  }
-              }else echo " <script> alert(\"Veuillez remplir tout les champs!\") </script>";
-
-       }
- 
-?>
+  

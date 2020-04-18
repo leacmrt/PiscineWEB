@@ -142,8 +142,9 @@ while ($Item = mysqli_fetch_assoc($R_Item))
 
               if (($Echange['Valide'] == 'Non') AND ($Echange['Numero'] != 5)) 
               {
-                echo "Vottre offre à été refusée <br><br>" ?> <form action="commande1.php" method="post">
+                echo "Vottre offre à été refusée <br><br>" ?> <form action="commande.php" method="post">
                 <input type="hidden" name="ID_Item" value=<?php echo $ID_Item ?> >
+                <input type="hidden" name="Mode" value='Meilleur'>
                 <input type="submit" name="button" value="Faire une nouvelle offre" style="background-color: #ffffff"></form> <?php
               }
 
@@ -155,8 +156,9 @@ while ($Item = mysqli_fetch_assoc($R_Item))
             }
             else
             {
-              echo '<form action="commande1.php" method="post"> 
+              echo '<form action="commande.php" method="post"> 
                 <input type="hidden" name="ID_Item" value='.$ID_Item.'>
+                <input type="hidden" name="Mode" value="Meilleur">
                 <input type="submit" name="button" value="Faire une offre" style="background-color: #ffffff"></form>';
             }
             ?>
