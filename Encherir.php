@@ -5,6 +5,7 @@ session_start() ;
 $database = "testpiscine";//connectez-vous dans votre BDD//Rappel: votre serveur = localhost et votre login = root et votre password = <rien>
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
+$enchmax=$_SESSION['ID_vendeur'];
 
                 ?>
 
@@ -45,15 +46,16 @@ $db_found = mysqli_select_db($db_handle, $database);
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="PageAccueil.html"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
-        <li><a href="PageAchat.html" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
+        <li><a href="PageAccueil.php"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
+        <li><a href="Categories.php" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
+        <li><a href="PageAchat.php" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="develop1.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
+        <li><a href="profil.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
         <li><a href="panier.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
+        <li><a href="deco.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-off"></span><b><font size = "+1"> Deconnexion</font></b></a></li>
       </ul>
     </div>
   </div>
@@ -73,13 +75,13 @@ $db_found = mysqli_select_db($db_handle, $database);
     <div class="row">
      
 
-  
+       
       
         
         <center><h3 style="color:darkblue"> 
-          <ul> <?php echo "<div style=\"border:solid;border-color:#818bd8;width:350px;height:80px\"><br> Article : ".$_SESSION['NomENCH']."<br></div> </ul> <br> <ul> Souhaitez - vous encherir pour ". $_SESSION['Vendeur_min']."€ ? <br>";  ?> </ul>
+          <ul> <?php echo "<div style=\"border:solid;border-color:#818bd8;width:350px;height:80px\"><br> Article : ".$_SESSION['NomENCH']."<br></div> </ul> <br> <ul> Souhaitez - vous encherir pour minimum ". $_SESSION['Vendeur_min']."€ ? <br>"; ?> </ul>
           
-
+            
           <ul>
             </h3></center>
    <br><br>
@@ -90,17 +92,22 @@ $db_found = mysqli_select_db($db_handle, $database);
                 
           </form>
 
-          <?php 
+         <?php 
 
            if(isset($_POST['button12']))
-            {
-
+            {  
+               $go=0;
                $Prixmin=$_SESSION['Prix_min'];
                $PrixMax=$_SESSION['Prix_max'];
                $Prop= isset($_POST["NewEnch"])? $_POST["NewEnch"] : "";
                
                
-               
+               if($PrixMax==0&&$Prixmin==0)
+                { if($Prop>=$_SESSION['Vendeur_min'])
+                   {$Prixmin=$Prop;
+                    $PrixMax=$Prop;
+                    $go=1;}
+               }else {
               
               if(($Prop>$_SESSION['Prix_min'])&&($Prop<$_SESSION['Prix_max'])&&($Prop>$_SESSION['Vendeur_min']))
                 { 
@@ -109,24 +116,31 @@ $db_found = mysqli_select_db($db_handle, $database);
                 if($Prop>$_SESSION['Prix_max'])
                 { $Prixmin=$PrixMax;
                   $PrixMax=$Prop;
+                  $go=1;
+
+                }
                 }
 
              
                         if ($db_found) 
                        {
                       
-                       $sql=" UPDATE vente_enchere SET Enchere_max =\"$PrixMax\"  , Prix_min=\"$Prixmin\"  WHERE ID_Item =\"".$_SESSION['ID_IT_ENCH']."\" "; //mettre avec session le id de l'acheteur à la place de 18
+                       $sql=" UPDATE vente_enchere SET Enchere_max =\"$PrixMax\"  , Enchere_min=\"$Prixmin\"  WHERE ID_Item =\"".$_SESSION['ID_IT_ENCH']."\" ";
                        $result = mysqli_query($db_handle, $sql);
                        
 
-                       if($Prop>$_SESSION['Prix_max'])
+                       if($go==1)
                        {
-                        $sql=" UPDATE vente_enchere SET ID_Encherisseur =\"19\" WHERE ID_Item =\"".$_SESSION['ID_IT_ENCH']."\" "; //mettre avec session le id de l'acheteur à la place de 18
+                        $sql=" UPDATE vente_enchere SET ID_Encherisseur =\"".$enchmax."\" WHERE ID_Item =\"".$_SESSION['ID_IT_ENCH']."\" "; 
                        $result = mysqli_query($db_handle, $sql);
                        $_SESSION['Prix_max']=$PrixMax;
 
                        }
 
+
+
+                      $_SESSION['Prix_max']=$PrixMax;
+                      $_SESSION['Prix_min']=$Prixmin;
                        echo " <script>  alert(\"Votre propostion a bien été prise en compte!\") ;location.replace(\"enchere.php\"); </script>";
                      }
 

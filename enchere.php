@@ -105,7 +105,7 @@ session_start();
                   echo '<img src="'.$Stock_En['Photo1'].'" width="200" height="170" >';
                 echo '</div>';
                 echo '<div style=";padding-left:300px;padding-top:30px">';
-                  echo $Stock_En['Nom'].'<br><br>'.'Date limite : '.$Stock_En['Date_lim'].'<br>'.'Prix minimal: '.$Stock_En['Enchere_min'].' €'.'<br>'.'<input type="submit" name="button" value="Clickez pour en savoir plus !">'; 
+                  echo $Stock_En['Nom'].'<br><br>'.'Date limite : '.$Stock_En['Date_lim'].'<br>'.'Prix minimal: '.$Stock_En['Prix_min'].' €'.'<br>'.'<input type="submit" name="button" value="Clickez pour en savoir plus !">'; 
                 echo '</div></div>';
               ?></form> 
               <?php

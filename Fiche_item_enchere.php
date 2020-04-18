@@ -129,7 +129,7 @@ while ($Item = mysqli_fetch_assoc($R_Item))
         <br> 
           <ul> <?php echo $Item['Nom'] ?> </ul>
           <ul> <?php echo $Item['Description'] ?> </ul>
-          <ul> Prix minimal : <?php echo $Item['Enchere_min'] ?> €</ul>
+          <ul> Prix minimal : <?php echo $Item['Prix_min'] ?> €</ul>
           <ul> Date limite :  <?php echo $Item['Date_lim'] ;
 
           
@@ -146,30 +146,18 @@ $jour=$Date[8].$Date[9];
 
 //cho "Annee : ".$annee." Mois :".$mois." jour :".$jour;
      
-     if($today['month']=='January')
-      $M=1;
-     if($today['month']=='February')
-      $M=2;
-     if($today['month']=='March')
-      $M=3;
-     if($today['month']=='April')
-      $M=4;
-       if($today['month']=='May')
-      $M=5;
-     if($today['month']=='June')
-      $M=6;
-     if($today['month']=='July')
-      $M=7;
-     if($today['month']=='August')
-      $M=8;
-       if($today['month']=='September')
-      $M=9;
-     if($today['month']=='October')
-      $M=10;
-     if($today['month']=='November')
-      $M=11;
-     if($today['month']=='December')
-      $M=12;
+     if($today['month']=='January')$M=1;
+     if($today['month']=='February') $M=2;
+     if($today['month']=='March') $M=3;
+     if($today['month']=='April') $M=4;
+     if($today['month']=='May')$M=5;
+     if($today['month']=='June')$M=6;
+     if($today['month']=='July')$M=7;
+     if($today['month']=='August')$M=8;
+     if($today['month']=='September')$M=9;
+     if($today['month']=='October')$M=10;
+     if($today['month']=='November')$M=11;
+     if($today['month']=='December')$M=12;
 
     $DifA=$annee-$today['year'];
     $DifM=$mois-$M;
@@ -190,11 +178,11 @@ $jour=$Date[8].$Date[9];
                     
                 $_SESSION['ID_IT_ENCH']=$Item['ID'];
                 $_SESSION['Prix_max']=$Item['Enchere_max'];
-                $_SESSION['Vendeur_min']=$Item['Enchere_min'];
-                $_SESSION['Prix_min']=$Item['Prix_min'];
+                $_SESSION['Vendeur_min']=$Item['Prix_min'];
+                $_SESSION['Prix_min']=$Item['Enchere_min'];
                 $_SESSION['NomENCH']=$Item['Nom'];
                 $_SESSION['datelm']=$Item['Date_lim']; 
-       // echo ".   <br>  Il vous reste :".$DifA." années ,".$DifM1."mois  , ".$DifJ1." jours pour enchérir sur cet article <br>";
+       echo ".   <br>  Il vous reste :".$DifA." années ,".$DifM1."mois  , ".$DifJ1." jours pour enchérir sur cet article <br>";
          
 
 
@@ -207,7 +195,7 @@ $jour=$Date[8].$Date[9];
 
    }}
 
-   if ($DifM==0&&$DifA==0&&$DifJ<=-1) 
+   /*if ($DifM==0&&$DifA==0&&$DifJ<=-1) 
    {
              $A=$Item['ID'];
               $sql = "SELECT * FROM Items WHERE ID LIKE '%".$Item['ID']."%'";
@@ -231,7 +219,7 @@ $jour=$Date[8].$Date[9];
                   $acheteur= $data['ID_Encherisseur'];
                   $Prixfinal=$data['Prix_min']+1;
                   /*$sql = "INSERT INTO commandes(ID_Item,ID_Vendeur,ID_Acheteur,Prix) VALUES ('$A','$Vendeur','$acheteur','$Prixfinal')"; //remplacer par ID_utilisateur quand on aura lier avec les sessions  
-                  $result = mysqli_query($db_handle, $sql);*/
+                  $result = mysqli_query($db_handle, $sql);
 
 
                     $sql = "SELECT * FROM vente_immediate  WHERE ID_Item LIKE '%".$Item['ID']."%'";
@@ -252,7 +240,7 @@ $jour=$Date[8].$Date[9];
              echo " <script> location.replace(\"enchere.php\"); </script>";
 
 
-           }?>    </p> </ul>
+           } */?>    </p> </ul>
 
 
 
