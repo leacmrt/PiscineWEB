@@ -13,7 +13,7 @@ $Video = isset($_POST["Vidéo"])? $_POST["Vidéo"] : "";
 $TypeIm=isset($_POST["TypeIm"])? $_POST["TypeIm"] : "";
 $TypeEn=isset($_POST["TypeEn"])? $_POST["TypeEn"] : "";
 $TypeMe=isset($_POST["TypeMe"])? $_POST["TypeMe"] : "";
-$Photoprofil= isset($_POST["Photoprofil"])? $_POST["Photoprofil"] : "";
+$Photoprofil= isset($_FILES["Photoprofil"]['name'])? $_FILES["Photoprofil"]['name'] : "";
 $Categorie= isset($_POST["Categorie"])? $_POST["Categorie"] : "";
 
 $TypeEn= isset($_POST["TypeEn"])? $_POST["TypeEn"] : "";
@@ -109,7 +109,7 @@ if (isset($_POST['button2']))
 
                       if ($TypeEn)
                       {
-                        $sqlEn = "INSERT INTO vente_enchere (ID_Item,Date_lim,Prix_min) VALUES ('$IDMAX','$Date_lim_En','$Prix_min_En')";
+                        $sqlEn = "INSERT INTO vente_enchere (ID_Item,Date_lim,Fin,Prix_min,Enchere_max,Enchere_min,ID_Encherisseur) VALUES ('$IDMAX','$Date_lim_En','Non','$Prix_min_En','0','0','0')";
                         $resultEn = mysqli_query($db_handle, $sqlEn);
                       }
 
@@ -157,7 +157,7 @@ if (isset($_POST['button2']))
 
 <?php      
 
-if (isset($_POST['button3']))
+if (isset($_POST['buttonphoto']))
 	{ 
       if ($db_found) 
       {
@@ -173,7 +173,8 @@ if (isset($_POST['button3']))
 
             		$result = mysqli_query($db_handle, $sql);
             		$_SESSION['Photoprofil']=$Photoprofil;
-            		header ('location: profil.php');
+            		echo " <script> location.replace(\"profil.php\"); </script>";
+
 
       		}
        }

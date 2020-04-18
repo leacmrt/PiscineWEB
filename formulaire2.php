@@ -92,7 +92,7 @@ $ID_Vendeur= $_SESSION['ID_vendeur'];
 
   <input type="hidden" name="TypeIm" value=<?php echo $TypeIm ?> >
   <input type="hidden" name="TypeMe" value=<?php echo $TypeMe ?> >
-  <input type="hidden" name="TypeEn" value=<?php echo $TypeMe ?> >
+  <input type="hidden" name="TypeEn" value=<?php echo $TypeEn ?> >
 
 
 

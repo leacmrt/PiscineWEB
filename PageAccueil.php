@@ -1,7 +1,9 @@
  
  <?php
 session_start();
-
+$database = "testpiscine";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
 
  if (isset($_SESSION['Mail']) && isset($_SESSION['Mdp']))   { ?>
      <!DOCTYPE html>
@@ -35,7 +37,7 @@ session_start();
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="#"  style="color:#ecf0f1" ><b><font size = "+1">Home</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom" ><b><font size = "+1">Catégories</font></b></a></li>
+        <li><a href="Categories.php" style="color:#ecf0f1" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom" ><b><font size = "+1">Catégories</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
@@ -66,6 +68,165 @@ session_start();
   </div>
 </div>
 
+<?php 
+       //partie enchere automatique dès qu'un utilisateur se connecte
+       
+
+
+
+
+       if($db_found)
+        {
+         
+              $sql14 = "SELECT * FROM vente_enchere ";
+              $result14 = mysqli_query($db_handle, $sql14);
+
+              if(mysqli_num_rows($result14)!=0) 
+               {  
+
+                while ($data=mysqli_fetch_assoc($result14))
+                  {
+                    date_default_timezone_set('Europe/Paris');
+                    $today = getdate();
+
+                    $Date= $data['Date_lim'];
+                    $annee=$Date[0].$Date[1].$Date[2].$Date[3];
+                    $mois=$Date[5].$Date[6];
+                    $jour=$Date[8].$Date[9];
+
+
+                    if($today['month']=='January')$M=1;
+                    if($today['month']=='February')$M=2;
+                    if($today['month']=='March') $M=3;
+                    if($today['month']=='April') $M=4;
+                    if($today['month']=='May')$M=5;
+                    if($today['month']=='June')$M=6;
+                    if($today['month']=='July') $M=7;
+                    if($today['month']=='August')$M=8;
+                    if($today['month']=='September')$M=9;
+                    if($today['month']=='October')$M=10;
+                    if($today['month']=='November')$M=11;
+                    if($today['month']=='December')$M=12;
+
+                     $DifA=$annee-$today['year'];
+                     $DifM=$mois-$M;
+                     $DifJ=$jour-$today['mday'];
+
+
+
+
+                     if($DifA>-1)
+                      {
+                      if($DifM>-1)
+                       {
+                       if($DifJ<-1)
+                       { $DifM1=$DifM-1;
+                         $DifJ1=31+$DifJ;
+                       }else { }
+  
+                   }}
+
+        if ($DifM==0&&$DifA==0&&$DifJ<=-1) 
+           {
+              $A=$data['ID_Item'];
+              echo $A."<br>";
+
+
+              $sql = "SELECT * FROM Items WHERE ID LIKE '%".$A."%'";
+              $result = mysqli_query($db_handle, $sql);
+
+
+
+               while ($data1 = mysqli_fetch_assoc($result))
+              {
+                 $Vendeur=$data1['ID_vendeur'];
+
+              }
+
+               $sql20 = "SELECT * FROM vente_enchere  WHERE ID_Item =\"$A\"";
+               $result20 = mysqli_query($db_handle, $sql20);
+              
+              while ($data2 = mysqli_fetch_assoc($result20))
+              {
+                 if($data2['Enchere_max']!="0")  //si quelqu'un a encherit ça va dans son panier
+                  {
+                  //$acheteur= $data2['ID_Encherisseur'];
+                 //if($data2['Enchere_max']==$data2['Enchere_min'])
+                  //{$Prixfinal=$data2['Prix_min'];}
+                 //else $Prixfinal=$data2['Prix_min']+1;
+
+                    $sql = "SELECT * FROM vente_immediate  WHERE ID_Item LIKE '%".$A."%'";
+                    $result = mysqli_query($db_handle, $sql);
+                    if(mysqli_num_rows($result) != 0) 
+                    {
+                      $sql = "DELETE FROM vente_immediate  WHERE ID_Item LIKE '%".$A."%'"; //si l'item est présent dedans 
+                      $result = mysqli_query($db_handle, $sql);
+                      }
+                   
+                      }else {
+                            $sql = "DELETE FROM vente_enchere  WHERE ID_Item LIKE '%".$A."%'"; //si l'item est présent dedans 
+                            $result = mysqli_query($db_handle, $sql);
+
+                            $sql = "UPDATE items  set Enchere=\"\"  WHERE ID LIKE '%".$A."%'"; //si l'item est présent dedans 
+                            $result = mysqli_query($db_handle, $sql);
+                          }
+
+              }
+              
+                  $sql=" UPDATE vente_enchere SET Fin=\"Oui\"WHERE ID_Item LIKE '%".$A."%'";
+                  $result = mysqli_query($db_handle, $sql);
+
+
+
+           }  
+          }
+         }
+
+        } //premiere étape
+       
+       $A= $_SESSION['ID_vendeur'];
+        if($db_found)
+        {
+              $sql = "SELECT * FROM vente_enchere  WHERE ID_Encherisseur =\"$A\" AND Fin =\"Oui\" " ;
+              $result = mysqli_query($db_handle, $sql);
+
+              if(mysqli_num_rows($result)!=0) 
+               {  
+
+                while ($data=mysqli_fetch_assoc($result))
+                  {
+
+                  
+                  $Prixfinal=$data['Enchere_min']+1;
+                  $I=$data['ID_Item'];
+
+                  $sql1 = "SELECT * FROM Items WHERE ID =\"$I\" ";
+                  $result1 = mysqli_query($db_handle, $sql1);
+                  while ($data1 = mysqli_fetch_assoc($result1))
+                 {
+                  $Vendeur=$data1['ID_vendeur'];
+                  $sql2 = "INSERT INTO commandes(ID_Item,ID_Vendeur,ID_Acheteur,Prix) VALUES ('$I','$Vendeur','$A','$Prixfinal')"; 
+                  $result2 = mysqli_query($db_handle, $sql2);
+
+                  $sql3 = "DELETE FROM vente_enchere WHERE ID_Item=\"$I\" "; 
+                  $result3 = mysqli_query($db_handle, $sql3);
+
+
+                  echo "<script> alert(\"Vous avez encherit sur des items ".$data['ID_Vente']." Vous allez passer à la commande :\") </script>"; 
+                  echo " <script> location.replace(\"commande1.php\"); </script>";
+
+                  }
+
+
+                  
+                
+                  }
+              }
+        }
+
+
+
+?>
 
 <div class="container-fluid">    
   <div class="row">

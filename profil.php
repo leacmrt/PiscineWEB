@@ -52,7 +52,7 @@ $db_found = mysqli_select_db($db_handle, $database);
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="PageAccueil.php"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
+        <li><a href="Categories.php" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
         <li><a href="Formulaire_Nouvelle_Vente.php" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
@@ -88,9 +88,9 @@ $db_found = mysqli_select_db($db_handle, $database);
                                      <?php  if($_SESSION['Photoprofil']=="")
                                   {?> <div style=" border:5px solid; border-color: #22a6b3;background-color:lightgrey; float: right; width: 120px; height: 160px;">
                                         <br><p>Voulez vous rajouter une photo de profil? </p>
-                                          <form action="Formulaire2.php" method="post" enctype="multipart/form-data" >
+                                          <form action="Formulaire3.php" method="post" enctype="multipart/form-data" >
                                             <input type="file" id="Photoprofil" name="Photoprofil" style="width: 110px">
-                                            <input type="submit" name="button3" value="Poster ">
+                                            <input type="submit" name="buttonphoto" value="Poster ">
                                           </form>
                                       </div>
                                      <?php  } else if($_SESSION['Photoprofil']!=""){ ?>
@@ -143,7 +143,9 @@ $db_found = mysqli_select_db($db_handle, $database);
                                 
 
                                  if (isset($_POST[$essai]))
-                                {      
+                                {  
+
+                                $_SESSION['ID']=$data['ID'];    
                                 $_SESSION['NomArticle']=$data['Nom'];
                                 $_SESSION['Description']=$data['Description'];
                                 $_SESSION['Categorie']=$data['Categorie'];
@@ -187,13 +189,153 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 
 
-                <?php  if( $_SESSION['Role']=="ADMIN") { ?> 
-                 <br><br><br><br><center>
+               <?php  if( $_SESSION['Role']=="ADMIN")
 
-                  En premiers temps, un administrateur est le chef vendeur. Il peut ajouter ou supprimer des items dans le site de marché. <br><br> 
+                 {  
+                   echo "<br><br>";
+                   echo" <center><h2> <a href=\"Formulaire_Nouvelle_Vente.php\">  Clickez pour vendre un objet </span> </a></h2>  <span class=\"glyphicon glyphicon-eur\" > </center>";
 
-                  En second temps, un administrateur peut ajouter ou supprimer des vendeurs (fournisseurs) avec leur email ECE, pseudo et nom sur une base de données.
-                   </center><?php    }  ?>
+                    if ($db_found) 
+                      {
+
+                                    
+                                    $sql = "SELECT * FROM items";
+                                    $sql .= " WHERE ID_vendeur LIKE '%".$_SESSION['ID_vendeur']."%' ";
+                                    $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
+                                    echo "<center> <h2 style=\"color  :#5b6bea ;text-decoration : underline; \"> Voici vos articles en vente </h2> </center> <br> <br> ";
+                                    echo " <div class=\"row\">";
+
+                          if(mysqli_num_rows($result) != 0) 
+                           {
+                               $compte=1;
+                              while ($data = mysqli_fetch_assoc($result))
+                              {
+                                $array[$compte]=$data['ID'];
+                                 
+                              
+                                $essai2= "button".$compte;
+            
+                                echo "<center> <div class=\"col-6 col-sm-3\" style=\"  border:1px solid; border-color: black; padding-bottom: 50px\">";
+                                echo "<strong><br> <span title=\"Cliquez pour modifier l'item ".$compte."\">";
+                                echo "<form action=\"\"method=\"post\"><input type=\"submit\" name=\"".$essai2;
+                                echo "\"value=\"".$compte." : ".$data['Nom']."\">";
+                                
+
+                                 if (isset($_POST[$essai2]))
+                                {      
+                                  $_SESSION['NomArticle']=$data['Nom'];
+                                  $_SESSION['Description']=$data['Description'];
+                                  $_SESSION['Categorie']=$data['Categorie'];
+                                  $_SESSION['Enchere']=$data['Enchere'];
+                                  $_SESSION['Immediat']=$data['Immediat'];
+                                  $_SESSION['Meilleure']=$data['Meilleure'];
+                                  $_SESSION['Photo1']=$data['Photo1'];
+                                  echo " <script> location.replace(\"article.php\"); </script>";
+                                 }
+
+                                $compte=$compte+1;
+                                echo "</form>  </strong> <span class=\"glyphicon glyphicon-info-sign\"> </span></span> <br/>";
+                                echo '<img src = "'.$data['Photo1'].'" width="150" height="150"></div>  </center> '; 
+
+                              }
+
+
+                              }
+                               echo "</div>";
+
+
+                                    $sql = "SELECT * FROM items";
+                                    $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
+                                    echo "<center> <h2 style=\"color  :#5b6bea ;text-decoration : underline; \"> Voici les articles à vendre sur le site </h2> </center> <br> <br> ";
+
+                                    echo " <div class=\"row\">"; 
+                                   if(mysqli_num_rows($result) != 0) 
+                                   {
+                                     $compte=1;
+                                     while ($data = mysqli_fetch_assoc($result))
+                                     {
+                                       $array[$compte]=$data['ID'];
+                                 
+                              
+                                       $essai= "button".$compte;
+                                 
+                                echo "<center> <div class=\"col-6 col-sm-3\" style=\"  border:1px solid; border-color: black; padding-bottom: 50px\">";
+                                echo "<strong><br> <span title=\"Cliquez pour modifier l'item ".$compte."\">";
+                                echo "<form action=\"\"method=\"post\"><input type=\"submit\" name=\"".$essai;
+                                echo "\"value=\"".$compte." : ".$data['Nom']."\">";
+                                
+
+                                 if (isset($_POST[$essai]))
+                                {      
+                                $_SESSION['NomArticle']=$data['Nom'];
+                                $_SESSION['Description']=$data['Description'];
+                                $_SESSION['Categorie']=$data['Categorie'];
+                                $_SESSION['Enchere']=$data['Enchere'];
+                                $_SESSION['Immediat']=$data['Immediat'];
+                                $_SESSION['Meilleure']=$data['Meilleure'];
+                                $_SESSION['Photo1']=$data['Photo1'];
+
+                                echo " <script> location.replace(\"article.php\"); </script>";
+
+                              }
+
+                                  $compte=$compte+1;
+                                  echo "</form>  </strong> <span class=\"glyphicon glyphicon-info-sign\"> </span></span> <br/>";
+                                  echo '<img src = "'.$data['Photo1'].'" width="150" height="150"></div>  </center>  '; 
+                                
+                                }  
+                               }
+
+                               echo "</div>";
+
+
+                                    $sql = "SELECT * FROM utilisateurs WHERE Role= \"Vendeur\" ";
+                                    $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
+                                    echo "<center> <h2 style=\"color  :#5b6bea ;text-decoration : underline; \"> Voici les fournisseurs actifs </h2> </center> <br> <br> ";
+
+                             echo " <div class=\"row\">";
+                              $compte=1; 
+                          if(mysqli_num_rows($result) != 0) 
+                           {
+                              
+                              while ($data = mysqli_fetch_assoc($result))
+                              {
+
+                                $array[$compte]=$data['ID'];
+                                $essai1= "button1".$compte;
+                                
+                                 
+                                echo "<center> <div class=\"col-6 col-sm-3\" style=\"  border:1px solid; border-color: black; padding-bottom: 50px;width: 240px; height: 220px;\">";
+                                echo "<br><form action=\"\"method=\"post\"><input type=\"submit\" Value= supprimer name=\"".$essai1."\">";
+                                echo "<br> Nom : ".$data['Nom']." <br> E-mail : ".$data['Mail'] ;
+                                if($data['Photoprofil']!="")
+                                  {   echo "<br><br> <center> ".$data['Photoprofil']." width=\"100\" height=\"100\"> </center>";
+                                  }
+
+           
+                                  echo " </div> </center> ";
+                                   if (isset($_POST[$essai1]))
+                                  { 
+                                    echo "<script> window.alert(\"Vous allez supprimer le vendeur n°".$array[$compte]." !\"); history.back(); </script>";
+  
+                                    $sql=" DELETE FROM utilisateurs WHERE ID = \"".$array[$compte]."\" ";
+                                    $result = mysqli_query($db_handle, $sql);
+
+
+                                    }
+ 
+                                   $compte=$compte+1; 
+
+
+                                  }
+                                }
+                                  echo "</div> <br>";
+                             }
+
+                                
+                           }  
+                                }  ?>
+        
   
         
       </div>
@@ -221,4 +363,4 @@ $db_found = mysqli_select_db($db_handle, $database);
   </footer>
   </body>
 </html>
-<?php } ?>
+

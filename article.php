@@ -136,9 +136,18 @@ $ModifMe1 = isset($_POST["ModifMe1"])? $_POST["ModifMe1"] : "";
                                 }
 
                               }
-
                               $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat*/
-                              header ('location: profil.php');
+
+                              $sql = "DELETE FROM vente_enchere  WHERE ID_Item LIKE '%".$_SESSION['ID']."%'";
+                              $result = mysqli_query($db_handle, $sql);
+
+                              $sql = "DELETE FROM vente_immediate  WHERE ID_Item LIKE '%".$_SESSION['ID']."%'";
+                              $result = mysqli_query($db_handle, $sql);
+                              $sql = "DELETE FROM vente_meilleur WHERE ID_Item LIKE '%".$_SESSION['ID']."%'";
+                              $result = mysqli_query($db_handle, $sql);
+
+
+                              echo " <script> location.replace(\"profil.php\"); </script>";
 
                       }
 
