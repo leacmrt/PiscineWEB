@@ -24,16 +24,16 @@ if ($Refuser) //Si l'offre est refusée
 
 if ($Accepter) //Si l'offre est acceptée
 {
-	echo $Offre['ID_Item'];
-	echo $Offre['ID_vendeur'];
-	echo $Offre['ID_Acheteur'];
-	echo $Offre['Montant'];
-
-
 
  	$sqlCommande = "INSERT INTO commandes (ID_Item,ID_Vendeur,ID_Acheteur,Prix) VALUES (".$Offre['ID_Item'].",".$Offre['ID_vendeur'].",".$Offre['ID_Acheteur'].",".$Offre['Montant'].")";
  	$Ajout = mysqli_query($db_handle,$sqlCommande);
 
- 	$sqlSuppression = "DELETE FROM offre WHERE ID_Offre = ".$ID_Offre."";
- 	$Suppression = mysqli_query($db_handle,$sqlSuppression);
+ 	$sqlSuppression1 = "DELETE FROM offre WHERE ID_Offre = ".$ID_Offre."";
+ 	$Suppression1 = mysqli_query($db_handle,$sqlSuppression1);
+
+ 	$sqlSuppression2 = "DELETE FROM vente_meilleur WHERE ID_Item = ".$Offre['ID_Item']."";
+ 	$Suppression2 = mysqli_query($db_handle,$sqlSuppression2);
+
+ 	$sqlSuppression3 = "DELETE FROM items WHERE ID = ".$Offre['ID_Item']."";
+ 	$sqlSuppression3 = mysqli_query($db_handle,$sqlSuppression3);
 }

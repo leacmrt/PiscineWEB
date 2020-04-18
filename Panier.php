@@ -1,3 +1,8 @@
+
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,10 +40,11 @@
         $ID_SUPP = NULL;
         $B_SUPP= isset($_POST["buttonSupp"])?$_POST["buttonSupp"] : "";
         $ID_SUPP= isset($_POST["ID_Supp"])?$_POST["ID_Supp"] : "";
+        $Mode_Supp= isset($_POST["Mode_Supp"])?$_POST["Mode_Supp"] : "";
 
         if ($B_SUPP)
         {
-          $Supression = $db_handle -> prepare("DELETE FROM panier WHERE ID_Item = ".$ID_SUPP."");
+          $Supression = $db_handle -> prepare("DELETE FROM panier WHERE ID_Item = \"".$ID_SUPP."\" AND Mode = \"".$Mode_Supp."\"");
           $Supression -> execute();
         }
 
@@ -48,13 +54,13 @@
 
 
 
-        $sql1 = "SELECT * FROM ((panier JOIN items ON panier.ID_Item = items.ID) JOIN vente_immediate ON panier.ID_Item = vente_immediate.ID_Item)";
+        $sql1 = "SELECT * FROM ((panier JOIN items ON panier.ID_Item = items.ID) JOIN vente_immediate ON panier.ID_Item = vente_immediate.ID_Item) WHERE (panier.ID_Acheteur = \"".$_SESSION['ID_vendeur']."\" AND  panier.Mode = 'immediat')";;
         $R_Im = mysqli_query($db_handle, $sql1);
 
-        $sql2 = "SELECT * FROM ((panier JOIN items ON panier.ID_Item = items.ID) JOIN vente_enchere ON panier.ID_Item = vente_enchere.ID_Item)";
+        $sql2 = "SELECT * FROM ((panier JOIN items ON panier.ID_Item = items.ID) JOIN vente_enchere ON panier.ID_Item = vente_enchere.ID_Item) WHERE (panier.ID_Acheteur = \"".$_SESSION['ID_vendeur']."\" AND  panier.Mode = 'enchere')";
         $R_En = mysqli_query($db_handle, $sql2);
 
-        $sql3 = "SELECT * FROM ((panier JOIN items ON panier.ID_Item = items.ID) JOIN vente_meilleur ON panier.ID_Item = vente_meilleur.ID_Item)";
+        $sql3 = "SELECT * FROM ((panier JOIN items ON panier.ID_Item = items.ID) JOIN vente_meilleur ON panier.ID_Item = vente_meilleur.ID_Item) WHERE (panier.ID_Acheteur = \"".$_SESSION['ID_vendeur']."\" AND  panier.Mode = 'meilleure')";
         $R_Me = mysqli_query($db_handle, $sql3);
       }
  
@@ -77,15 +83,16 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
-        <li><a href="PageAchat.html" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
+        <li><a href="PageAccueil.php"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
+        <li><a href="Catégories.html" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
+        <li><a href="PageAchat.php" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
+        <li><a href="Formulaire_Nouvelle_Vente.php" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="develop1.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
+        <li><a href="profil.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte : <?php echo $_SESSION['Mail']; ?></font></b></a></li>
         <li><a href="panier.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
+        <li><a href="deco.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-off"></span><b><font size = "+1"> Deconnexion</font></b></a></li>
       </ul>
     </div>
   </div>
@@ -118,25 +125,36 @@
         {
           echo '<div style="background-color:#22a6b3;width:1100px;">
                   <h1  style="color:#dcf0f1"><b><font size = "+1"><center> Achats immédiats </center></font></b></h1>'.'<div style="width:100px;padding-left:485px">'.
-                  '<a href="Achat_Panier.php"><b><font size = "+1"><center><input type="submit" name="button1" value="Tout acheter" style="background-color:#ffffff;color: #22a6b3;"> </center></font></b></a>'.'</div>'.
+                  '</div>'.
                 '</div>';
           while ($PanierIm = mysqli_fetch_assoc($R_Im)) 
           {
-            echo '<div style="border:solid;border-color:#22a6b3;width:1100px;height:200px;">'.'<p><b><font size = "+1">';
+
+              echo '<div style="border:solid;border-color:#22a6b3;width:1100px;height:200px;">'.'<p><b><font size = "+1">';
               echo '<div style="float:left;padding-left:10px">';
                 echo '<img src="'.$PanierIm['Photo1'].'" width="250" height="170">';
               echo '</div>';
-              echo '<div style="float:left;padding-left:30px;padding-top:50px">';
-                echo $PanierIm['Nom'].'<br><br>'.'Prix : '.$PanierIm['Prix'].' €'; 
+              echo '<div style=";padding-left:300px;padding-top:30px">';
+                echo $PanierIm['Nom'].'<br><br>'.'Prix : '.$PanierIm['Prix']; 
               echo '</div>'; 
 
 
               //Bouton supprimer ?>
-              <form action="SupprimerPanier.php" method="post">
-              <input type="hidden" name="ID_Item" value=<?php echo $PanierIm['ID_Item'] ?>> 
+
+              <form action="Fiche_item_immediat.php" method="post">
+              <input type="hidden" name="ID_Item" value=<?php echo $PanierIm['ID_Item'] ?> >
               <?php
-              echo '<div style="float:left;padding-left:500px;padding-top:130px">';
-                echo '<a href="#"><b><font size = "+1"><center><input type="submit" name="button1" value="Supprimer" style="background-color:#22a6b3;color: #ffffff;"> </center></font></b></a>'; 
+              echo '<div style="float:left;padding-top:25px;padding-left:40px;width:700px">';
+                echo '<a href="#"><b><font size = "+1"><input type="submit" name="button1" value="Voir cet article" style="background-color:#22a6b3;color: #ffffff;float:left"> </font></b></a>';
+              ?> </form>
+
+
+              <form action="SupprimerPanier.php" method="post">
+              <input type="hidden" name="ID_Item" value=<?php echo $PanierIm['ID_Item'] ?> > 
+              <input type="hidden" name="Mode" value='Immediat' > 
+              <?php
+                echo '<div style="padding-left:660px">
+                  <a href="#"><b><font size = "+1"><input type="submit" name="button1" value="Supprimer" style="background-color:#22a6b3;color: #ffffff;"></font></b></a></div>'; 
               echo '</div>';
             echo '</p></b></font>'.'</div>';
             ?> </form> <?php
@@ -160,16 +178,17 @@
               echo '</div>'; 
 
               //Boutons enchérir et supprimer ?>
-              <form action="Form_enchere.php" method="post">
+              <form action="Fiche_item_enchere.php" method="post">
               <input type="hidden" name="ID_Item" value=<?php echo $PanierEn['ID_Item'] ?> >
               <?php
               echo '<div style="float:left;padding-top:25px;padding-left:40px;width:700px">';
-                echo '<a href="#"><b><font size = "+1"><input type="submit" name="button1" value="Encherir" style="background-color:#22a6b3;color: #ffffff;float:left"> </font></b></a>';
+                echo '<a href="#"><b><font size = "+1"><input type="submit" name="button1" value="Voir cet article" style="background-color:#22a6b3;color: #ffffff;float:left"> </font></b></a>';
               ?> </form>
 
 
               <form action="SupprimerPanier.php" method="post">
               <input type="hidden" name="ID_Item" value=<?php echo $PanierEn['ID_Item'] ?> > 
+              <input type="hidden" name="Mode" value='Enchere' > 
               <?php
                 echo '<div style="padding-left:660px">
                   <a href="#"><b><font size = "+1"><input type="submit" name="button1" value="Supprimer" style="background-color:#22a6b3;color: #ffffff;"></font></b></a></div>'; 
@@ -179,10 +198,8 @@
           }
 
 
-
-
           echo '<div style="background-color:#22a6b3;width:1100px">
-                  <h1  style="color:#ecf0f1"><b><font size = "+1"><center> Meilleur offre </center></font></b></h1>
+                  <h1  style="color:#ecf0f1"><b><font size = "+1"><center> Meilleures offres </center></font></b></h1>
                 </div>';
           while ($PanierMe = mysqli_fetch_assoc($R_Me)) 
           {
@@ -190,27 +207,31 @@
               echo '<div style="float:left;padding-left:10px">';
                 echo '<img src="'.$PanierMe['Photo1'].'" width="250" height="170">';
               echo '</div>';
-              echo '<div style="padding-left:300px;padding-top:50px">';
+              echo '<div style=";padding-left:300px;padding-top:30px">';
                 echo $PanierMe['Nom']; 
-              echo '</div>';
+              echo '</div>'; 
 
-              //Boutons faire une offre et supprimer ?>
-              <form action="Form_meilleur.php" method="post">
+              //Boutons enchérir et supprimer ?>
+              <form action="Fiche_item_Meilleur.php" method="post">
               <input type="hidden" name="ID_Item" value=<?php echo $PanierMe['ID_Item'] ?> >
               <?php
-              echo '<div style="float:left;padding-top:55px;padding-left:40px;width:700px">';
-                echo '<a href="#"><b><font size = "+1"><input type="submit" name="button1" value="Faire une offre" style="background-color:#22a6b3;color: #ffffff;float:left"> </font></b></a>';
+              echo '<div style="float:left;padding-top:25px;padding-left:40px;width:700px">';
+                echo '<a href="#"><b><font size = "+1"><input type="submit" name="button1" value="Voir cet article" style="background-color:#22a6b3;color: #ffffff;float:left"> </font></b></a>';
               ?> </form>
+
 
               <form action="SupprimerPanier.php" method="post">
               <input type="hidden" name="ID_Item" value=<?php echo $PanierMe['ID_Item'] ?> > 
+              <input type="hidden" name="Mode" value='Meilleure' > 
               <?php
                 echo '<div style="padding-left:660px">
                   <a href="#"><b><font size = "+1"><input type="submit" name="button1" value="Supprimer" style="background-color:#22a6b3;color: #ffffff;"></font></b></a></div>'; 
-              echo '</div><br><br>';?>
-              </form> <?php
-              
+              echo '</div>';
+            echo '</p></b></font>'.'</div>';
+            ?> </form> <?php
           }
+
+
         } 
     ?>
   </div>

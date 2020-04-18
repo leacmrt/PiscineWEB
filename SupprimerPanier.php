@@ -15,6 +15,7 @@
 <?php
 
 		$ID= isset($_POST["ID_Item"])?$_POST["ID_Item"] : ""; 
+    $Mode= isset($_POST["Mode"])?$_POST["Mode"] : ""; 
 
       try    //Tentative de connexion à la bdd
       {
@@ -45,7 +46,8 @@
 
 
 	<form action="Panier.php" method="post">
-              <input type="hidden" name="ID_Supp" value=<?php echo $ID ?>> 
+              <input type="hidden" name="ID_Supp" value=<?php echo $ID ?>>
+              <input type="hidden" name="Mode_Supp" value=<?php echo $Mode ?>>  
               <?php
                 echo '<div style="padding-top:25px;padding-bottom: 15px"><div style="padding-left:100px"><a href="#"><b><font size = "+1"><input type="submit" name="buttonSupp" value="supprimer" style="background-color:#22a6b3;color: #ffffff;float:left"></font></b></a></div>';?>
     		</form>

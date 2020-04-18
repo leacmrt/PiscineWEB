@@ -7,7 +7,6 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 $Montant = isset($_POST["Montant"])? $_POST["Montant"] : ""; 
 $ID_Item = isset($_POST["ID_Item"])? $_POST["ID_Item"] : ""; 
-$Message = "";
 
 
 
@@ -31,7 +30,7 @@ $resultRecherche = mysqli_query($db_handle,$sqlRecherche);
         $sql4 = "INSERT INTO offre (ID_Item,ID_Acheteur,Valide,Numero,Montant) VALUES (".$ID_Item.",'4','Attente','1',".$Montant.")";
         $result4 = mysqli_query($db_handle,$sql4);
       }
-
+      header(("location:PageAccueil.php"))
 ?>
      
 

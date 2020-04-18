@@ -1,6 +1,4 @@
-
-
- <?php
+<?php
 session_start();
 ?>
 
@@ -35,18 +33,25 @@ session_start();
 
       if ($bdd_piscine)  //Si connexion réussie
       {
-        $B_ADD= NULL;
-        $ID_ADD = NULL;
-        $B_ADD= isset($_POST["button"])?$_POST["button"] : "";
-        $ID_ADD= isset($_POST["ID_Item"])?$_POST["ID_Item"] : "";
-        $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
 
-          $Ajout = $db_handle -> prepare("INSERT into panier VALUES (\"".$ID_ADD."\",\"".$_SESSION['ID_vendeur']."\",\"".$Mode."\")");
-          $Ajout -> execute();
+        $ID_Item= isset($_POST["ID_Item"])?$_POST["ID_Item"] : "";
+        $Prix= isset($_POST["Prix"])?$_POST["Prix"] : "";
 
-        $B_ADD= NULL;
-        $ID_ADD = NULL;
-        $Ajout = NULL;
+        $sqlVendeur = "SELECT ID_vendeur FROM items WHERE ID = ".$ID_Item."";
+        $R_Vendeur = mysqli_query($db_handle, $sqlVendeur);
+        $ID_Vendeur = mysqli_fetch_row($R_Vendeur)[0];
+
+        
+        echo $ID_Item.'---'.$ID_Vendeur.'---'.$_SESSION['ID_vendeur'].'---'.$Prix;
+
+        $sqlAjout = "INSERT INTO commandes (ID_Item,ID_Vendeur,ID_Acheteur,Prix) VALUES (\"".$ID_Item."\",\"".$ID_Vendeur."\",\"".$_SESSION['ID_vendeur']."\",\"".$Prix."\")";
+        $Ajout = mysqli_query($db_handle,$sqlAjout);
+
+        $sqlSuppression2 = "DELETE FROM vente_immediate WHERE ID_Item = ".$ID_Item."";
+        $Suppression2 = mysqli_query($db_handle,$sqlSuppression2);
+
+        $sqlSuppression3 = "DELETE FROM items WHERE ID = ".$ID_Item."";
+        $sqlSuppression3 = mysqli_query($db_handle,$sqlSuppression3);
       }
 
       ?>
@@ -57,7 +62,7 @@ session_start();
 
  <div class="form" style=" padding-left: 400px; padding-right: 400px;padding-top: 150px;color:#22a6b3">
     <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
-	<p><center><b><font size = "+1"> Article ajouté au panier </font></b></center></p>
+	<p><center><b><font size = "+1"> Vottre commande d'un montant de <?php echo $Prix ?> € est validé !</font></b></center></p>
 	
 
   <div style="padding-top:10px;padding-bottom: 40px"><div style="padding-left:320px"><a href="PageAchat.php"><b><font size = "+1"><input type="submit" name="retour" value="Retour" style="background-color:#22a6b3;color: #ffffff;float:left"></font></b></a>

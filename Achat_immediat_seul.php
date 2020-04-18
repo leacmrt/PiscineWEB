@@ -35,6 +35,7 @@
         $sql2 = "SELECT Prix FROM (items JOIN vente_immediate ON items.ID = vente_immediate.ID_Item) WHERE items.ID = ".$ID."";
         $R_Item = mysqli_query($db_handle, $sql);
         $R_Prix = mysqli_query($db_handle, $sql2);
+        $Prix = mysqli_fetch_row($R_Prix)[0];
       }
       ?>
       
@@ -84,17 +85,18 @@
     <div style="padding-left:20px; width: 500px; float: left;">
       <p style=" width: 200px;color: #ffffff"><font size = "+1">
 
-        <?php           
-          while ($Prix= mysqli_fetch_assoc($R_Prix)) 
-          {
-            echo $Prix['Prix'].' €';
-          }
-        ?>
+
+            <?php echo $Prix.' €'; ?>
+
 
       <!Bouton finalisation>
       </font></p>
     </div>
-      <div class="button" style="padding-left: 960px"> 
+      <div class="button" style="padding-left: 960px">
+      <form class="form-horizontal" action="Validation_Achat_immediat.php" method="post">
+        <input type="hidden" name="ID_Item" value= <?php echo $ID ?>>
+        <input type="hidden" name="Prix" value= <?php echo $Prix ?>>
+
           <a href="#" style=" color:#ffffff;"><b><font size = "+1"><center><input type="submit" name="button1" value="Finaliser l'achat" style="background-color:#ffffff;color: #22a6b3;"> </center></font></b></a>
     </div>
   </div>
