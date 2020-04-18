@@ -61,7 +61,7 @@ try    //Tentative de connexion à la bdd
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="PageAccueil.php"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
-        <li><a href="Catégories.html" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
+        <li><a href="Catégories.php" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
         <li><a href="PageAchat.php" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
         <li><a href="Formulaire_Nouvelle_Vente.php" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
@@ -122,7 +122,7 @@ while ($Item = mysqli_fetch_assoc($R_Item))
           <ul> Prix : <?php echo $Item['Prix'] ?> </ul>
 
           <ul>
-          <form action="commande1.php" method="post"> 
+          <form action="commande2.php" method="post"> 
                 <input type="hidden" name="ID_Item" value=<?php echo $Item['ID_Item'] ?> >
                 <input type="submit" name="button" value="Acheter" style="background-color: #ffffff">
               </form>

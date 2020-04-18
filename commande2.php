@@ -1,5 +1,4 @@
-
- <?php
+<?php
 session_start();
 ?>
 
@@ -94,7 +93,7 @@ try    //Tentative de connexion à la bdd
 
 
 
-          echo '<form action="Montant_Meilleur.php" method="post">
+          echo '<form action="Achat_immediat_seul.php" method="post">
             <input type="hidden" name="ID_Item" value='.$ID_Item.'> 
 
           <a href="#" style=" color:#ffffff;"><b><font size = "+1"><input type="submit" name="button1" value="Continuer" style="background-color:#22a6b3;"></font></b></a>'.'   '.'<a href="Formulaire_livraison.php" style=" color:#ffffff;"><b><font size = "+1"><input type="submit" name="button2" value="Modifier" style="background-color:#22a6b3;"></font></b></a></form>';

@@ -41,8 +41,7 @@ session_start();
         $R_Vendeur = mysqli_query($db_handle, $sqlVendeur);
         $ID_Vendeur = mysqli_fetch_row($R_Vendeur)[0];
 
-        
-        echo $ID_Item.'---'.$ID_Vendeur.'---'.$_SESSION['ID_vendeur'].'---'.$Prix;
+
 
         $sqlAjout = "INSERT INTO commandes (ID_Item,ID_Vendeur,ID_Acheteur,Prix) VALUES (\"".$ID_Item."\",\"".$ID_Vendeur."\",\"".$_SESSION['ID_vendeur']."\",\"".$Prix."\")";
         $Ajout = mysqli_query($db_handle,$sqlAjout);

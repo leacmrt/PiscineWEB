@@ -1,38 +1,39 @@
- <?php
+<?php
 session_start();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Meilleur offre</title>
+  <title>historique</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
-
-<?php
-
-//partie SQL
-$database = "testpiscine";//connectez-vous dans votre BDD//Rappel: votre serveur = localhost et votre login = root et votre password = <rien>
-$db_handle = mysqli_connect('localhost', 'root', '');
-$db_found = mysqli_select_db($db_handle, $database);
-
-$ID_Offre= isset($_POST["ID_Offre"])?$_POST["ID_Offre"] : "";
-
-$sqlMontant = "SELECT Montant FROM offre WHERE ID_Offre = ".$ID_Offre."";
-$resultMontant = mysqli_query($db_handle, $sqlMontant);
-$Montant = mysqli_fetch_row($resultMontant)[0];
-
-?>
-
-
 </head>
+<body>
 
+
+
+
+<! Partir php et sql>
+    <?php
+
+
+        $bdd = "testpiscine";
+        $db_handle = mysqli_connect('localhost', 'root', '' );
+        $bdd_piscine = mysqli_select_db($db_handle, $bdd);
+
+        $sql1 = "SELECT * FROM commandes WHERE commandes.ID_Acheteur = ".$_SESSION['ID_vendeur']."
+                UNION SELECT * FROM commandes WHERE commandes.ID_Vendeur = ".$_SESSION['ID_vendeur'].""; 
+        $R_Commandes = mysqli_query($db_handle, $sql1);
+      ?>
+
+
+
+<!Barre de navigation>
 <nav class="navbar navbar-inverse" style="background-color:#22a6b3">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -60,17 +61,50 @@ $Montant = mysqli_fetch_row($resultMontant)[0];
   </div>
 </nav>
 
-    
-    <div style="padding-top: 100px; padding-bottom: 100px">
-    <center><div style=" border: 5px solid; border-color: #22a6b3; height: 280px; width: 600px ">
-      <b><div style="padding-left: 50px; padding-right: 50px; padding-top: 50px; color: #22a6b3"><font size = "+1">Vous avez recu une offre de:<br>
+<! Logo et grand titre>
+  <div class="container text-center">
+  <div style="background-color:#ffffff">
+      <img src="logo2.png" width="500" height="200">
+  </div>
+  </div>
+ <div class="container-fluid text-center">
+  <div style="background-color:#22a6b3">
+      <h1  style="color:#ecf0f1"><b><font size = "+1"> Historique des commandes </font></b></h1>
+  </div>
+  </div>
 
-        <form class="form-horizontal" action="Proposition_Me_Vendeur.php" method="post">
-        <input type="hidden" name="ID_Offre" value= <?php echo $ID_Offre ?>>
-        <h1><center><b> <?php echo $Montant ?> €</b></center></h1><br><br>
 
+
+<!Affichage des items qui sont dans le panier>
+
+  <div class="container" style="color:#22a6b3 ">
+    <?php 
         
-        <center><input type="submit" name="Accepter" value="Accepter" style="background-color:#22a6b3; color: #ffffff">
-        <input type="submit" name="Refuser" value="Refuser" style="background-color:#22a6b3; color: #ffffff"></center>
-      </font></b>
-        </form>
+
+          while ($Commandes = mysqli_fetch_assoc($R_Commandes)) 
+          {
+              echo '<center><div style="border:solid;border-color:#22a6b3;width:800px;height:70px;">'.'<p><b><font size = "+1">'.'<div style="padding-top: 10px">';
+                echo 'Commande numéro : '.$Commandes['ID_Commande'].'&nbsp&nbsp&nbsp&nbsp&nbsp';
+                echo '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+                echo 'Montant: '.$Commandes['Prix'].' €'; 
+              echo '</div></div></center>'; 
+
+          }
+    ?>
+  </div>
+
+
+
+
+
+
+<footer class="container-fluid text-center" style="bottom: 30px;">
+  <p>©EBAY-ECE 2020</p>  
+  <form class="form-inline">Rejoignez notre newsletter:
+    <input type="email" class="form-control" size="50" placeholder="Adresse E-mail">
+    <button type="button" class="btn btn-danger">Signez</button>
+  </form>
+</footer> 
+
+</body>
+</html> 

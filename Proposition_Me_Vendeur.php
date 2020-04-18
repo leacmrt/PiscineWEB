@@ -44,3 +44,5 @@ if ($Accepter) //Si l'offre est acceptée
  	$sqlSuppression3 = "DELETE FROM items WHERE ID = ".$Offre['ID_Item']."";
  	$sqlSuppression3 = mysqli_query($db_handle,$sqlSuppression3);
 }
+
+	header("location:PageAccueil.php");
