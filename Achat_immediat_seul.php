@@ -102,7 +102,7 @@
   </div>
 
 
-  <!Affichage des items qui sont dans le panier>
+  <!Affichage de item>
   <div class="container" style="color:#22a6b3 ">
     <?php 
       while ($Item = mysqli_fetch_assoc($R_Item)) 
@@ -114,8 +114,7 @@
               echo '<div style="float:left;padding-left:30px;padding-top:50px">';
                 echo $Item['Nom'].'<br><br>'.'Prix : '.$Item['Prix'].' €'; 
               echo '</div>';
-              echo '<div style="float:left;padding-left:500px;padding-top:130px">';
-                echo '<a href="#"><b><font size = "+1"><center><input type="submit" name="button1" value="Supprimer" style="background-color:#22a6b3;color: #ffffff;"> </center></font></b></a>'; 
+              echo '<div style="float:left;padding-left:500px;padding-top:130px">'; 
               echo '</div>';
             echo '</p></b></font>'.'</div>';
           }
