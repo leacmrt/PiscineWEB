@@ -213,7 +213,12 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 
                   echo "<script> alert(\"Vous avez encherit sur des items ".$data['ID_Vente']." Vous allez passer à la commande :\") </script>"; 
-                  echo " <script> location.replace(\"commande1.php\"); </script>";
+                  $_SESSION['ModeEnch']="1";
+                  $_SESSION['Prixfin']=$Prixfinal;
+                  $_SESSION['IDENCH']=$I;
+                  
+                  echo " <script> location.replace(\"commande.php\"); </script>";
+
 
                   }
 
