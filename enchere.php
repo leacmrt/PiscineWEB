@@ -1,7 +1,9 @@
 
- <?php
+<?php
 session_start();
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +39,7 @@ session_start();
 
       if ($bdd_piscine)  //Si connexion réussie
       {
-        $sql = "SELECT * FROM (items  JOIN vente_enchere ON items.ID = vente_enchere.ID_Item)";
+        $sql = "SELECT * FROM (items  JOIN vente_enchere ON items.ID = vente_enchere.ID_Item) WHERE vente_enchere.Fin =\"Non\" " ;
         $R_En = mysqli_query($db_handle, $sql);
       }
     ?>
@@ -46,6 +48,7 @@ session_start();
 
 <body style="background-color:#c7ecee">
 
+
 <nav class="navbar navbar-inverse" style="background-color:#22a6b3">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -53,7 +56,7 @@ session_start();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
-        </button>
+       </button>
         <a class="navbar-brand" href="#"><img src="logo4.png" width="30" height="30"></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -102,7 +105,7 @@ session_start();
                   echo '<img src="'.$Stock_En['Photo1'].'" width="200" height="170" >';
                 echo '</div>';
                 echo '<div style=";padding-left:300px;padding-top:30px">';
-                  echo $Stock_En['Nom'].'<br><br>'.'Date limite : '.$Stock_En['Date_lim'].'<br>'.'Enchère maximale: '.$Stock_En['Enchere_max'].' €'.'<br>'.'<input type="submit" name="button" value="Clickez pour en savoir plus !">'; 
+                  echo $Stock_En['Nom'].'<br><br>'.'Date limite : '.$Stock_En['Date_lim'].'<br>'.'Prix minimal: '.$Stock_En['Enchere_min'].' €'.'<br>'.'<input type="submit" name="button" value="Clickez pour en savoir plus !">'; 
                 echo '</div></div>';
               ?></form> 
               <?php
@@ -125,6 +128,5 @@ session_start();
 </body>
 
   <!-- Toutes les informations ainsi que les images de la sculpture proviennent du site : https://www.artsper.com/fr/oeuvres-d-art-contemporain/sculpture/728886/alba -->
-
-
+  
 </html>
