@@ -229,11 +229,13 @@ try    //Tentative de connexion à la bdd
           <a href="#" style=" color:#ffffff;"><b><font size = "+1"><input type="submit" name="button1" value="Continuer" style="background-color:#22a6b3;"></font></b></a>'.'   '.'<a href="Formulaire_livraison.php" style=" color:#ffffff;"><b><font size = "+1"></form>';
           }
 
-          if ($Mode == 'Enchere')
-          {
-          echo '<form action="" method="post">
-                <input type="hidden" name="ID_Item" value='.$ID_Item.'> 
-          <a href="#" style=" color:#ffffff;"><b><font size = "+1"><input type="submit" name="button1" value="Continuer" style="background-color:#22a6b3;"></font></b></a>'.'   '.'<a href="Formulaire_livraison.php" style=" color:#ffffff;"><b><font size = "+1"></form>';
+          //if ($Mode == 'Enchere')
+          
+          if($_SESSION['ModeEnch']==1)
+          {   echo "la ".$_SESSION['IDENCH'];
+            echo '<form action="commande4.php" method="post">
+                <input type="hidden" name="ID_Item" value='.$_SESSION['IDENCH'].'> 
+          <a href="#" style=" color:#ffffff;"><b><font size = "+1"><input type="submit" name="buttonench" value="Continuer" style="background-color:#22a6b3;"></font></b></a>'.'   '.'<a href="Formulaire_livraison.php" style=" color:#ffffff;"><b><font size = "+1"></form>';
           }
           ?>
 
