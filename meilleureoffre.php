@@ -83,8 +83,8 @@ session_start();
       </div>
       <div style="float:left;">
              
-        <p style="padding-left:200px">• Bienvenue dans la section enchère ! <br></p>
-        <p style="padding-left:200px">• Vous trouvez ici tous les articles en enchère ! <br></p>
+        <p style="padding-left:200px">• Bienvenue dans la section meilleure offre ! <br></p>
+        <p style="padding-left:200px">• Vous trouvez ici tous les articles en vente de ce type ! <br></p>
   
       </div>
     </div>

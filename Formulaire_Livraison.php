@@ -1,3 +1,8 @@
+ <?php
+session_start();
+?>
+
+
 <?php
 
 $database = "testpiscine";//connectez-vous dans votre BDD//Rappel: votre serveur = localhost et votre login = root et votre password = <rien>
@@ -14,6 +19,8 @@ $CarteNom = isset($_POST["CarteNom"])? $_POST["CarteNom"] : "";
 $CarteNum = isset($_POST["CarteNum"])? $_POST["CarteNum"] : ""; 
 $CVC= isset($_POST["CVC"])? $_POST["CVC"] : ""; 
 $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : ""; 
+
+
 
 
 ?>
@@ -175,9 +182,12 @@ $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : "";
                           else
                           {
                                $sql= "INSERT INTO donnees(Adresse1, Adresse2, Ville, CodeP, Pays, CarteNom,CarteNum,CVC,Expiration,ID_Vendeur)
-                               VALUES('$Adresse1', '$Adresse2', '$Ville', '$CodeP','$Pays','$CarteNom','$CarteNum', '$CVC','$Expiration','4')";
+                               VALUES('$Adresse1', '$Adresse2', '$Ville', '$CodeP','$Pays','$CarteNom','$CarteNum', '$CVC','$Expiration',\"".$_SESSION['ID_vendeur']."\")";
                               $result = mysqli_query($db_handle, $sql);
-                              echo "<script> window.alert(\"Vos données sont bien enregistrées\"); history.back(); </script>";
+                              echo "<script> window.alert(\"Vos données sont bien enregistrées\"); 
+                              ; </script>";
+
+                              header("location: PageAccueil.php");
 
 
                           }

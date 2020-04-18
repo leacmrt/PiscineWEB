@@ -47,8 +47,14 @@ session_start();
         $sqlAjout = "INSERT INTO commandes (ID_Item,ID_Vendeur,ID_Acheteur,Prix) VALUES (\"".$ID_Item."\",\"".$ID_Vendeur."\",\"".$_SESSION['ID_vendeur']."\",\"".$Prix."\")";
         $Ajout = mysqli_query($db_handle,$sqlAjout);
 
-        $sqlSuppression2 = "DELETE FROM vente_immediate WHERE ID_Item = ".$ID_Item."";
-        $Suppression2 = mysqli_query($db_handle,$sqlSuppression2);
+        $sqlSuppressionIm = "DELETE FROM vente_immediate WHERE ID_Item = ".$ID_Item."";
+        $SuppressionIm = mysqli_query($db_handle,$sqlSuppressionIm);
+
+        $sqlSuppressionEn = "DELETE FROM vente_enchere WHERE ID_Item = ".$ID_Item."";
+        $SuppressionEn = mysqli_query($db_handle,$sqlSuppressionEn);
+
+        $sqlSuppressionMe = "DELETE FROM vente_meilleur WHERE ID_Item = ".$ID_Item."";
+        $SuppressionMe = mysqli_query($db_handle,$sqlSuppressionMe);
 
         $sqlSuppression3 = "DELETE FROM items WHERE ID = ".$ID_Item."";
         $sqlSuppression3 = mysqli_query($db_handle,$sqlSuppression3);

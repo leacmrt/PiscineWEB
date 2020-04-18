@@ -1,3 +1,10 @@
+
+ <?php
+session_start();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,15 +59,16 @@ try    //Tentative de connexion à la bdd
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="PageAccueil.html"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
-        <li><a href="PageAchat.html" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
+        <li><a href="PageAccueil.php"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
+        <li><a href="Catégories.html" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
+        <li><a href="PageAchat.php" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
+        <li><a href="Formulaire_Nouvelle_Vente.php" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="develop1.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
+        <li><a href="profil.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte : <?php echo $_SESSION['Mail']; ?></font></b></a></li>
         <li><a href="panier.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
+        <li><a href="deco.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-off"></span><b><font size = "+1"> Deconnexion</font></b></a></li>
       </ul>
     </div>
   </div>
@@ -73,7 +81,7 @@ try    //Tentative de connexion à la bdd
     <center><div style=" border: 5px solid; border-color: #22a6b3; height: 280px; width: 600px ">
 
       <?php 
-      $sql = "SELECT * FROM donnees WHERE ID_Vendeur = 4";
+      $sql = "SELECT * FROM donnees WHERE ID_Vendeur = \"".$_SESSION['ID_vendeur']."\"";
       $result = mysqli_query($db_handle,$sql);
 
       if ($donnee = mysqli_fetch_assoc($result))
@@ -93,8 +101,11 @@ try    //Tentative de connexion à la bdd
       }
       else
       {
-        echo '<h2><center> Vous ne possèdez pas de données </center></h2><br>';
-        echo '<a href="Formulaire_livraison.php" style=" color:#ffffff;"><b><font size = "+1"><center><input type="submit" name="button1" value="Nouvelles données" style="background-color:#22a6b3;"> </center></font></b></a>';
+        echo '<h2><center> Vous ne possèdez pas de données </center></h2><br>';?>
+        <form class="form-horizontal" action="Formulaire_livraison.php" method="post">
+        <input type="hidden" name="ID_Item" value= <?php echo $ID_Item ?>>
+        <input type="submit" value="Nouvelles données"></form> <?php
+        echo '';
       }
 
 

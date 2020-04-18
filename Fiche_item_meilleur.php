@@ -149,7 +149,7 @@ while ($Item = mysqli_fetch_assoc($R_Item))
 
               if ($Echange['Valide'] == 'Attente')
               {
-                echo "Vottre offre est en attente de validation <br><br>";
+                echo "Votre offre est en attente de validation <br><br>";
               }
 
             }

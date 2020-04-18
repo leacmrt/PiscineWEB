@@ -31,8 +31,15 @@ if ($Accepter) //Si l'offre est acceptée
  	$sqlSuppression1 = "DELETE FROM offre WHERE ID_Offre = ".$ID_Offre."";
  	$Suppression1 = mysqli_query($db_handle,$sqlSuppression1);
 
- 	$sqlSuppression2 = "DELETE FROM vente_meilleur WHERE ID_Item = ".$Offre['ID_Item']."";
- 	$Suppression2 = mysqli_query($db_handle,$sqlSuppression2);
+ 	    $sqlSuppressionIm = "DELETE FROM vente_immediate WHERE ID_Item = ".$Offre['ID_Item']."";
+        $SuppressionIm = mysqli_query($db_handle,$sqlSuppressionIm);
+
+        $sqlSuppressionEn = "DELETE FROM vente_enchere WHERE ID_Item = ".$Offre['ID_Item']."";
+        $SuppressionEn = mysqli_query($db_handle,$sqlSuppressionEn);
+
+        $sqlSuppressionMe = "DELETE FROM vente_meilleur WHERE ID_Item = ".$Offre['ID_Item']."";
+        $SuppressionMe = mysqli_query($db_handle,$sqlSuppressionMe);
+
 
  	$sqlSuppression3 = "DELETE FROM items WHERE ID = ".$Offre['ID_Item']."";
  	$sqlSuppression3 = mysqli_query($db_handle,$sqlSuppression3);

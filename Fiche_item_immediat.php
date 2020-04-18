@@ -122,7 +122,7 @@ while ($Item = mysqli_fetch_assoc($R_Item))
           <ul> Prix : <?php echo $Item['Prix'] ?> </ul>
 
           <ul>
-          <form action="Achat_immediat_seul.php" method="post"> 
+          <form action="commande1.php" method="post"> 
                 <input type="hidden" name="ID_Item" value=<?php echo $Item['ID_Item'] ?> >
                 <input type="submit" name="button" value="Acheter" style="background-color: #ffffff">
               </form>
