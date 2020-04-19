@@ -222,7 +222,8 @@ $db_found = mysqli_select_db($db_handle, $database);
                                 
 
                                  if (isset($_POST[$essai2]))
-                                {      
+                                { 
+                                  $_SESSION['ID']=$data['ID'];     
                                   $_SESSION['NomArticle']=$data['Nom'];
                                   $_SESSION['Description']=$data['Description'];
                                   $_SESSION['Categorie']=$data['Categorie'];

@@ -138,13 +138,19 @@ $ModifMe1 = isset($_POST["ModifMe1"])? $_POST["ModifMe1"] : "";
                               }
                               $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat*/
 
-                              $sql = "DELETE FROM vente_enchere  WHERE ID_Item LIKE '%".$_SESSION['ID']."%'";
-                              $result = mysqli_query($db_handle, $sql);
+                              $sql1 = "DELETE FROM vente_enchere  WHERE ID_Item =".$_SESSION['ID'];  //on supprime l'item de chaques tables où il pourrait être
+                              $result1 = mysqli_query($db_handle, $sql1);
 
-                              $sql = "DELETE FROM vente_immediate  WHERE ID_Item LIKE '%".$_SESSION['ID']."%'";
-                              $result = mysqli_query($db_handle, $sql);
-                              $sql = "DELETE FROM vente_meilleur WHERE ID_Item LIKE '%".$_SESSION['ID']."%'";
-                              $result = mysqli_query($db_handle, $sql);
+                              $sql2 = "DELETE FROM vente_immediate  WHERE ID_Item =".$_SESSION['ID'];
+                              $result2 = mysqli_query($db_handle, $sql2);
+                              $sql3 = "DELETE FROM vente_meilleur WHERE ID_Item =".$_SESSION['ID'];
+                              $result3 = mysqli_query($db_handle, $sql3);
+
+                              $sql4 = "DELETE FROM panier WHERE ID_Item =".$_SESSION['ID'];
+                              $result4 = mysqli_query($db_handle, $sql4);
+
+                              $sql4 = "DELETE FROM offre WHERE ID_Item =".$_SESSION['ID'];
+                              $result4 = mysqli_query($db_handle, $sql4);
 
 
                               echo " <script> location.replace(\"profil.php\"); </script>";
@@ -155,9 +161,7 @@ $ModifMe1 = isset($_POST["ModifMe1"])? $_POST["ModifMe1"] : "";
                        if (isset($_POST['button1'])) 
                         {   
 
-                             if ($db_found) 
-                             {
-                               
+                             
                                if($ModifD)//pour modifier la description
                                { 
                                
@@ -185,8 +189,13 @@ $ModifMe1 = isset($_POST["ModifMe1"])? $_POST["ModifMe1"] : "";
 
 
                               if($ModifM)//pour modifier les ventes
-                               { 
-                               
+                               {   
+
+
+                                if(($ModifM11!=""&&$ModifIm1!="")||($ModifM13!=""&&$ModifMe1!="")||($ModifM12!=""&&$ModifEn1!=""&&$ModifEn2!=""&&$_SESSION["Enchere"]=="")||($ModifM12!=""&&$_SESSION["Enchere"]!=""))
+
+
+                               {
                                   if($ModifM11!="") //Immédiat
                                     { 
 
@@ -232,6 +241,9 @@ $ModifMe1 = isset($_POST["ModifMe1"])? $_POST["ModifMe1"] : "";
                                     {  
                                       if ($_SESSION['Enchere']!="")
                                       {
+
+                                        if($ModifM13=="")
+                                         {
                                         if ($ModifEn1!="")
                                           {
                                             $sql2=" UPDATE vente_enchere SET Prix_min =\"$ModifEn1\" WHERE ID_Item =\"".$_SESSION['ID']."\" ";
@@ -243,20 +255,27 @@ $ModifMe1 = isset($_POST["ModifMe1"])? $_POST["ModifMe1"] : "";
                                             $sql3=" UPDATE vente_enchere SET Date_lim =\"$ModifEn2\" WHERE ID_Item =\"".$_SESSION['ID']."\" ";
                                             $result3 = mysqli_query($db_handle, $sql3);
                                           }
+                                          }else echo "<script> alert(\"Un objet ne peut pas être mis en vente en enchère et en meilleure offre!\"); </script>";
                                       }
                                       else
                                       {
+
+                                         if($ModifM13=="")
+                                         {
                                         $sql=" UPDATE items SET Enchere =\"$ModifM12\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
                                         $result = mysqli_query($db_handle, $sql);
                                         $_SESSION['Enchere']=$ModifM12;
 
-                                        $sql2=" INSERT INTO vente_enchere (ID_Item,Prix_min,Date_lim) VALUES (\"".$_SESSION['ID']."\",\"$ModifEn1\",\"$ModifEn2\")";
+                                        $sql2= "INSERT INTO vente_enchere (ID_Item,Date_lim,Fin,Prix_min,Enchere_max,Enchere_min,ID_Encherisseur) VALUES (\"".$_SESSION['ID']."\",\"$ModifEn2\",'Non',\"$ModifEn1\",'0','0','0')";
                                         $result2 = mysqli_query($db_handle, $sql2);
+                                         }else echo "<script> alert(\"Un objet ne peut pas être mis en vente en enchère et en meilleure offre!\"); </script>";
                                       }
                                     }
 
                                     else
                                     {
+
+
                                       if ($_SESSION['Enchere']!="")
                                       {
 
@@ -275,28 +294,36 @@ $ModifMe1 = isset($_POST["ModifMe1"])? $_POST["ModifMe1"] : "";
                                   { 
                                     if ($_SESSION['Meilleure']!="")
                                       {
+                                        if($ModifM12=="")
+                                        {
+
                                         if ($ModifMe1!="")
                                           {
                                             $sql2=" UPDATE vente_meilleur SET Prix_min =\"$ModifMe1\" WHERE ID_Item =\"".$_SESSION['ID']."\" ";
                                             $result2 = mysqli_query($db_handle, $sql2);
                                           }
+                                        }else echo "<script> alert(\"Un objet ne peut pas être mis en vente en enchère et en meilleure offre!\"); </script>";
                                       }
+
+
                                       else
                                       {
+                                        if($ModifM12=="")
+                                        {
                                         $sql=" UPDATE items SET Meilleure =\"$ModifM13\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
                                         $result = mysqli_query($db_handle, $sql);
                                         $_SESSION['Meilleure']=$ModifM13;
 
                                         $sql2=" INSERT INTO vente_meilleur (ID_Item,Prix_min) VALUES (\"".$_SESSION['ID']."\",\"$ModifMe1\")";
                                         $result2 = mysqli_query($db_handle, $sql2);
-                                      }
+                                      }}
                                     }
 
                                     else
                                     {
                                       if ($_SESSION['Meilleure']!="")
                                       {
-
+                                        
                                         $sql=" UPDATE items SET Meilleure =\"$ModifM13\" WHERE Nom =\"".$_SESSION['NomArticle']."\" ";
                                         $result = mysqli_query($db_handle, $sql);
                                         $_SESSION['Meilleure']=$ModifM13;
@@ -306,9 +333,14 @@ $ModifMe1 = isset($_POST["ModifMe1"])? $_POST["ModifMe1"] : "";
                                         $result2 = mysqli_query($db_handle, $sql2);
                                       }
                                     }
-                                }
+                                } else echo "<script> alert(\"Pour modifier un mode de vente, veuillez remplir tout les champs relatifs à ce mode!\"); </script>";
+
                               }
-                        }
+                              }
+                           
+                          
+                            
+                        
 
                         ?> 
            

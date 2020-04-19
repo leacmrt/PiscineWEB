@@ -9,7 +9,7 @@ $Telephone= isset($_POST["Telephone"])? $_POST["Telephone"] : "";
 $Role = isset($_POST["Role"])? $_POST["Role"] : "";
 $Mdp1= isset($_POST["Mdp1"])? $_POST["Mdp1"] : "";
 $Mdp2= isset($_POST["Mdp2"])? $_POST["Mdp2"] : "";
-$$Photoprofil=" ";
+$Photoprofil=" ";
 
  
 $Mail1= isset($_POST["Mail1"])? $_POST["Mail1"] : ""; //partie connexion 
@@ -41,7 +41,7 @@ if (isset($_POST['button1'])) //inscription
 
 			if(mysqli_num_rows($result) == 0) 
 			{
-			  echo "Le mail n'est pas déjà utilisé . <br> ";
+			  //echo "Le mail n'est pas déjà utilisé . <br> ";//test de connextion
               $sql= "INSERT INTO utilisateurs(Nom, Mail, Telephone, Role, Mdp, Photoprofil)
                      VALUES('$Nom', '$Mail', '$Telephone', '$Role','$Mdp1','$Photoprofil')";
                $result = mysqli_query($db_handle, $sql);
