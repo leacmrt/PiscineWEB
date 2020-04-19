@@ -79,7 +79,7 @@ $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
     <div class="text-center border border-light p-5">
        <h3> Vos informations de payment </h3>
           <form class="form-horizontal" action="commande.php" method="post">
-          <input type="hidden" name="ID_Item" value= <?php echo $ID_Item ?>>
+          <input type="hidden" name="ID_Item" value=<?php echo $ID_Item ?>>
           <input type="hidden" name="Mode" value=<?php echo $Mode ?>>
              
       <?php 
@@ -91,48 +91,48 @@ $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
 
               <div class='col-xs-12'>
                 <label class='control-label'>Adresse </label>
-                <input class='form-control' name="Adresse1" size='4' type='text' required placeholder='Ligne 1' value=" <?php echo $Donnee['Adresse1'] ?>">
-                <input class='form-control' name="Adresse2"size='4' type='text' required placeholder='Ligne 2' value=" <?php echo $Donnee['Adresse2'] ?>">
+                <input class='form-control' name="Adresse1" size='4' type='text' required placeholder='Ligne 1' value="<?php echo $Donnee['Adresse1'] ?>">
+                <input class='form-control' name="Adresse2"size='4' type='text' required placeholder='Ligne 2' value="<?php echo $Donnee['Adresse2'] ?>">
               </div><br><br><br><br>
               
 
               <div class='form-row'>
               <div class='col-xs-4'>
                 <label class='control-label'>Ville</label>
-                <input  class='form-control' name='Ville' required placeholder=' size='4' type='text' value=" <?php echo $Donnee['Ville'] ?>">
+                <input  class='form-control' name='Ville' required placeholder=' size='4' type='text' value="<?php echo $Donnee['Ville'] ?>">
               </div>
 
               <div class='col-xs-4'>
                 <label class='control-label'>Code Postal</label>
-                <input  class='form-control' name='CodeP' required placeholder='' size='4' type='text' pattern="[0-9]{5}" value=" <?php echo $Donnee['CodeP'] ?>">
+                <input  class='form-control' name='CodeP' required placeholder='' size='4' type='text' pattern="[0-9]{5}" value="<?php echo $Donnee['CodeP'] ?>">
               </div>
 
               <div class='col-xs-4'>
                 <label class='control-label'>Pays</label>
-                <input class='form-control' name='Pays' required placeholder='' size='2' type='text' value=" <?php echo $Donnee['Pays'] ?>">
+                <input class='form-control' name='Pays' required placeholder='' size='2' type='text' value="<?php echo $Donnee['Pays'] ?>">
               </div>
               <br><br><br><br><br>
             </div>
 
               <div class='col-xs-12'>
                 <label class='control-label'>Nom sur la carte </label>
-                <input class='form-control' name='CarteNom' required size='4' type='text' value=" <?php echo $Donnee['CarteNom'] ?>">
+                <input class='form-control' name='CarteNom' required size='4' type='text' value="<?php echo $Donnee['CarteNom'] ?>">
               </div><br><br><br>
             </div>
             <div class='form-row'>
               <div class='col-xs-12 '>
                 <label class='control-label'>Numéro de carte</label>
-                <input class='form-control' name='CarteNum' pattern="[0-9]{16}" required size='20' type='text' value=" <?php echo $Donnee['CarteNum'] ?>"> 
+                <input class='form-control' name='CarteNum' pattern="[0-9]{16}" required size='20' type='text' value="<?php echo $Donnee['CarteNum'] ?>"> 
               </div><br><br><br>
             </div>
             <div class='form-row'>
               <div class='col-xs-4'>
                 <label class='control-label'>CVC</label>
-                <input  class='form-control' name='CVC' required placeholder='ex. 311' pattern="[0-9]{3}" size='4' type='text' value=" <?php echo $Donnee['CVC'] ?>">
+                <input  class='form-control' name='CVC' required placeholder='ex. 311' pattern="[0-9]{3}" size='4' type='text' value="<?php echo $Donnee['CVC'] ?>">
               </div>
               <div class='col-xs-8'>
                 <label class='control-label'>Expiration</label>
-                <input class='form-control' name='Expiration' required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder='JJ-MM-AAAA' size='2' type='text' value=" <?php echo $Donnee['Expiration'] ?>">
+                <input class='form-control' name='Expiration' required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder='JJ-MM-AAAA' size='2' type='text' value="<?php echo $Donnee['Expiration'] ?>">
               </div>
               <br><br><br><br><br>
             </div>
