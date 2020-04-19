@@ -112,7 +112,7 @@ $ModifMe1 = isset($_POST["ModifMe1"])? $_POST["ModifMe1"] : "";
           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
           <input type="text" id ="ModifMe1" name="ModifMe1" placeholder="Prix min"> </center><br>
 
-          <center> <input type="text" id ="ModifEn2" name="ModifEn2" placeholder="Date lim"> </center>
+          <center> <input type="text" id ="ModifEn2" name="ModifEn2" placeholder="Date lim AAAA-MM-JJ" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" min="2020-04-01"> </center>
 
           
           <br>
