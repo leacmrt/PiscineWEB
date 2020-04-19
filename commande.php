@@ -29,6 +29,7 @@ $db_handle = mysqli_connect('localhost', 'root', '' );
 $bdd_piscine = mysqli_select_db($db_handle, $bdd);
 
 $ID_Item= isset($_POST["ID_Item"])?$_POST["ID_Item"] : "";
+echo $ID_Item;
 $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
 
 $Button1= isset($_POST["button1"])?$_POST["button1"] : "";
@@ -240,7 +241,7 @@ try    //Tentative de connexion à la bdd
 
             <form action="Modif_livraison.php" method="post">
             <input type="hidden" name="Mode" value=<?php echo $Mode ?>>
-            <input type="hidden" name="ID_Item" value='.$ID_Item.'>
+            <input type="hidden" name="ID_Item" value=<?php echo $ID_Item ?>>
           <input type="submit" name="button2" value="Modifier" style="background-color:#22a6b3;"></font></b></a></form>
 
       <?php
