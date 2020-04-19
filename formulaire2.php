@@ -83,7 +83,7 @@ if(($Nom != "")&&($Description != "")&&($Categorie != ""))
   }
   else
   {
-        if(($TypeEm != "")&&($TypeMe != ""))
+        if(($TypeEn != "")&&($TypeMe != ""))
     {
     ?>
       <div class="form" style=" padding-left: 400px; padding-right: 400px;padding-top: 200px;color:#22a6b3">
