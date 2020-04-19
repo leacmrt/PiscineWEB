@@ -104,12 +104,12 @@ $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
               <div class='form-row'>
               <div class='col-xs-4'>
                 <label class='control-label'>Ville</label>
-                <input  class='form-control' name='Ville' placeholder=' size='4' type='text'>
+                <input  class='form-control' name='Ville' placeholder=' ' size='4' type='text'>
               </div>
 
               <div class='col-xs-4'>
                 <label class='control-label'>Code Postal</label>
-                <input  class='form-control' name='CodeP' placeholder='' size='4' type='text'>
+                <input  class='form-control' name='CodeP' placeholder='' size='4'  placeholder='ex 70015' required pattern="[0-9]{5}" type='text'>
               </div>
 
               <div class='col-xs-4'>
@@ -133,11 +133,11 @@ $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
             <div class='form-row'>
               <div class='col-xs-4'>
                 <label class='control-label'>CVC</label>
-                <input  class='form-control' name='CVC' placeholder='ex. 311' size='4' type='text'>
+                <input  class='form-control' name='CVC' placeholder='ex. 311'  required pattern="[0-9]{3}" size='4' type='text'>
               </div>
               <div class='col-xs-8'>
                 <label class='control-label'>Expiration</label>
-                <input class='form-control' name='Expiration' placeholder='JJ-MM-AAAA' size='2' type='text'>
+                <input class='form-control' name='Expiration' placeholder='AAAA-MM-JJ' required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" size='2' type='text'>
               </div>
               <br><br><br><br><br>
             </div>
