@@ -16,10 +16,7 @@ $Photoprofil= isset($_FILES["Photoprofil"]['name'])? $_FILES["Photoprofil"]['nam
 
 $Categorie= isset($_POST["Categorie"])? $_POST["Categorie"] : "";
 $ID_Vendeur= $_SESSION['ID_vendeur'];
-
-
- if (isset($_SESSION['Mail']) && isset($_SESSION['Mdp']))  
-{  ?>
+?>
  
 <!DOCTYPE html>
 <html lang="en">
@@ -47,143 +44,187 @@ $ID_Vendeur= $_SESSION['ID_vendeur'];
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
+        <li><a href="PageAccueil.php"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
+        <li><a href="Catégories.php" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
+        <li><a href="PageAchat.php" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
+        <li><a href="Formulaire_Nouvelle_Vente.php" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
         <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="profil.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte:  <?php echo $_SESSION['Mail']; ?> </font></b></a></li>
-        <li><a href="panier.html" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
+        <li><a href="panier.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
         <li><a href="deco.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-off"></span><b><font size = "+1"> Deconnexion</font></b></a></li>
       </ul>
     </div>
   </div>
 </nav>
   
-  
+  <?php 
 
-<?php 
 
-  $TypeEn = isset($_POST['TypeEn']);
-  $TypeMe = isset($_POST['TypeMe']);
-  $TypeIm = isset($_POST['TypeIm']);
-
-  
-
-?>
-
-<form class="form-horizontal" action="Formulaire3.php" method="post" enctype="multipart/form-data" >
-
-  <input type="hidden" name="ID" value=<?php echo $ID ?> >
-  <input type="hidden" name="Nom" value=<?php echo $Nom ?> >
-  <input type="hidden" name="Description" value=<?php echo $Description ?> >
-
-  <input type="hidden" name="Photo1" value=<?php echo $Photo1 ?> >
-  <input type="hidden" name="Photo2" value=<?php echo $Photo2 ?> >
-  <input type="hidden" name="Photo3" value=<?php echo $Photo3 ?> >
-  <input type="hidden" name="Video" value=<?php echo $Video ?> >
-  <input type="hidden" name="Immediat" value=<?php echo $TypeIm ?> >
-  <input type="hidden" name="Enchere" value=<?php echo $TypeEn ?> >
-  <input type="hidden" name="Offre" value=<?php echo $TypeMe ?> >
-  <input type="hidden" name="Photoprofil" value=<?php echo $Photoprofil ?> >
-  <input type="hidden" name="Categorie" value=<?php echo $Categorie ?> >
-
-  <input type="hidden" name="TypeIm" value=<?php echo $TypeIm ?> >
-  <input type="hidden" name="TypeMe" value=<?php echo $TypeMe ?> >
-  <input type="hidden" name="TypeEn" value=<?php echo $TypeEn ?> >
+$TypeEn=isset($_POST["TypeEn"])? $_POST["TypeEn"] : "";
+$TypeMe=isset($_POST["TypeMe"])? $_POST["TypeMe"] : "";
+$TypeIm=isset($_POST["TypeIm"])? $_POST["TypeIm"] : "";
 
 
 
-
- <?php 
- if ($TypeIm)
+if(($Nom != "")&&($Description != "")&&($Categorie != ""))
+{
+  if(($TypeEn == "")&&($TypeMe == "")&&($TypeIm == ""))
   {
-?>
-  
-  <div class="form" style=" padding-left: 100px; padding-right: 100px">
-    <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
-    
-      
-        <h3 style="color:#22a6b3"><b><font size = "+1"><center>Vente immédiate :</center></font></b></h3>
-          <div class="form-group" style="padding-left: 100px">
-            <div style="float: left;width: 200px;">
-              <h4 style="color:#22a6b3"><b><font size = "+1"><br>Prix :</font></b><br></h4>
-            </div>
-            <div style="float: left; padding-left: 50px; padding-top: 22px">
-              <input name="Prix" id="Prix" class="form-control" placeholder="Prix?" type="text" size="130">
-            </div>
-          </div>
-    </div>
-  </div><br>
-  <?php
-  } 
-
-  if ($TypeEn)
+  ?>  <div class="form" style=" padding-left: 400px; padding-right: 400px;padding-top: 200px;color:#22a6b3">
+        <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3; height: 170px">
+          <p><center><b><font size = "+1"><br> Veuillez remplir les champs obligatoires (*). </font></b></center></p>
+            <center><form action="Formulaire_Nouvelle_Vente.php" method="post">
+              <div style="padding-top:25px;padding-bottom: 15px"><div style="padding-left:320px"><a href="#"><b><font size = "+1"><input type="submit" name="button" value="Retour" style="background-color:#22a6b3;color: #ffffff;float:left"></font></b></a></div>
+            </form></center>
+        </div>
+      </div> <?php
+  }
+  else
   {
-  ?>
-  <div class="form" style=" padding-left: 100px; padding-right: 100px;padding-top: 10px">
-    <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
-        <h3 style="color:#22a6b3"><b><font size = "+1"><center>Enchères :</center></font></b></h3>
-          <div class="form-group" style="padding-left: 100px">
-            <div style="float: left;width: 200px;">
-              <h4 style="color:#22a6b3"><b><font size = "+1"><br>Prix minimal:</font></b><br></h4>
-            </div>
-            <div style="float: left; padding-left: 50px; padding-top: 22px">
-              <input name="Prix_min_En" id="Prix_min_En" class="form-control" placeholder="Prix?" type="text" size="130">
-            </div>
-          </div>
-
-          <div class="form-group" style="padding-left: 100px">
-            <div style="float: left;width: 200px;">
-              <h4 style="color:#22a6b3"><b><font size = "+1"><br>Date limite :</font></b><br><br></h4>
-            </div>
-            <div style="float: left; padding-left: 50px; padding-top: 22px">
-              <input name="Date_lim_En" id="Date_lim_En" class="form-control" placeholder="Date limite?" type="text" size="130">
-            </div>
-          </div>  
-    </div>
-  </div><br>
-  <?php
-  } 
-
-  if ($TypeMe)
-  { 
-  ?>
-  <div class="form" style=" padding-left: 100px; padding-right: 100px;padding-top: 10px">
-    <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
-        <h3 style="color:#22a6b3"><b><font size = "+1"><center>Meilleur prix :</center></font></b></h3>
-          <div class="form-group" style="padding-left: 100px">
-            <div style="float: left;width: 200px;">
-              <h4 style="color:#22a6b3"><b><font size = "+1"><br>Prix minimal:</font></b><br></h4>
-            </div>
-            <div style="float: left; padding-left: 50px; padding-top: 22px">
-              <input name="Prix_min_Me" id="Prix_min_Me" class="form-control" placeholder="Prix?" type="text" size="130">
-            </div>
-          </div>
-        
-    </div>
-  </div><br>
-    
-  <?php
-  }  
-  ?> 
+        if(($TypeEm != "")&&($TypeMe != ""))
+    {
+    ?>
+      <div class="form" style=" padding-left: 400px; padding-right: 400px;padding-top: 200px;color:#22a6b3">
+        <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3; height: 170px">
+          <p><center><b><font size = "+1"><br> Un item ne peut pas être à la fois en enchère et en meilleure offre. </font></b></center></p>
   
-  <a href="#" style=" color:#ffffff"><b><font size = "+1"><center> <input type="submit" name="button2" value=" Finaliser " style="background-color: #22a6b3"> </center></font></b></a>
-   </form>
+            <center><form action="Formulaire_Nouvelle_Vente.php" method="post">
+              <div style="padding-top:25px;padding-bottom: 15px"><div style="padding-left:320px"><a href="#"><b><font size = "+1"><input type="submit" name="button" value="Retour" style="background-color:#22a6b3;color: #ffffff;float:left"></font></b></a></div>
+            </form></center>
+        </div>
+      </div><?php
+    }
+    else
+    {
+    ?>
+            <form class="form-horizontal" action="Formulaire2.2.php" method="post" enctype="multipart/form-data" >
 
+              <input type="hidden" name="ID" value=<?php echo $ID ?> >
+              <input type="hidden" name="Nom" value=<?php echo $Nom ?> >
+              <input type="hidden" name="Description" value=<?php echo $Description ?> >
+
+              <input type="hidden" name="Photo1" value=<?php echo $Photo1 ?> >
+              <input type="hidden" name="Photo2" value=<?php echo $Photo2 ?> >
+              <input type="hidden" name="Photo3" value=<?php echo $Photo3 ?> >
+              <input type="hidden" name="Video" value=<?php echo $Video ?> >
+              <input type="hidden" name="Immediat" value=<?php echo $TypeIm ?> >
+              <input type="hidden" name="Enchere" value=<?php echo $TypeEn ?> >
+              <input type="hidden" name="Offre" value=<?php echo $TypeMe ?> >
+              <input type="hidden" name="Photoprofil" value=<?php echo $Photoprofil ?> >
+              <input type="hidden" name="Categorie" value=<?php echo $Categorie ?> >
+
+              <input type="hidden" name="TypeIm" value=<?php echo $TypeIm ?> >
+              <input type="hidden" name="TypeMe" value=<?php echo $TypeMe ?> >
+              <input type="hidden" name="TypeEn" value=<?php echo $TypeEn ?> >
+
+
+
+
+             <?php 
+             if ($TypeIm)
+              {
+            ?>
+              
+              <div class="form" style=" padding-left: 100px; padding-right: 100px">
+                <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
+                
+                  
+                    <h3 style="color:#22a6b3"><b><font size = "+1"><center>Vente immédiate :</center></font></b></h3>
+                      <div class="form-group" style="padding-left: 100px">
+                        <div style="float: left;width: 200px;">
+                          <h4 style="color:#22a6b3"><b><font size = "+1"><br>* Prix :</font></b><br></h4>
+                        </div>
+                        <div style="float: left; padding-left: 50px; padding-top: 22px">
+                          <input name="Prix" id="Prix" class="form-control" placeholder="Prix? (Nombre entier)" type="number" size="130">
+                        </div>
+                      </div>
+                </div>
+              </div><br>
+              <?php
+              } 
+
+              if ($TypeEn)
+              {
+              ?>
+              <div class="form" style=" padding-left: 100px; padding-right: 100px;padding-top: 10px">
+                <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
+                    <h3 style="color:#22a6b3"><b><font size = "+1"><center>Enchères :</center></font></b></h3>
+                      <div class="form-group" style="padding-left: 100px">
+                        <div style="float: left;width: 200px;">
+                          <h4 style="color:#22a6b3"><b><font size = "+1"><br>* Prix minimal:</font></b><br></h4>
+                        </div>
+                        <div style="float: left; padding-left: 50px; padding-top: 22px">
+                          <input name="Prix_min_En" id="Prix_min_En" class="form-control" placeholder="Prix? (Nombre entier)" type="number" size="130">
+                        </div>
+                      </div>
+
+                      <div class="form-group" style="padding-left: 100px">
+                        <div style="float: left;width: 200px;">
+                          <h4 style="color:#22a6b3"><b><font size = "+1"><br>* Date limite :</font></b><br><br></h4>
+                        </div>
+                        <div style="float: left; padding-left: 50px; padding-top: 22px">
+                          <input name="Date_lim_En" id="Date_lim_En" class="form-control" placeholder="Date limite? (Format AAAA-MM-JJ)" type="text" size="130" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                        </div>
+                      </div>  
+                </div>
+              </div><br>
+              <?php
+              } 
+
+              if ($TypeMe)
+              { 
+              ?>
+              <div class="form" style=" padding-left: 100px; padding-right: 100px;padding-top: 10px">
+                <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
+                    <h3 style="color:#22a6b3"><b><font size = "+1"><center>Meilleur prix :</center></font></b></h3>
+                      <div class="form-group" style="padding-left: 100px">
+                        <div style="float: left;width: 200px;">
+                          <h4 style="color:#22a6b3"><b><font size = "+1"><br>* Prix minimal:</font></b><br></h4>
+                        </div>
+                        <div style="float: left; padding-left: 50px; padding-top: 22px">
+                          <input name="Prix_min_Me" id="Prix_min_Me" class="form-control" placeholder="Prix? (Nombre entier)" type="text" size="130">
+                        </div>
+                      </div>
+                    
+                </div>
+              </div><br>
+                
+              <?php
+              }  
+              ?> 
+              
+              <a href="#" style=" color:#ffffff"><b><font size = "+1"><center> <input type="submit" name="button2" value=" Finaliser " style="background-color: #22a6b3"> </center></font></b></a>
+               </form>
+
+
+
+
+              </div>
+              </div>
 
 <?php
+    }
+  }
+}
+else 
+{
+?>
+
+<div class="form" style=" padding-left: 400px; padding-right: 400px;padding-top: 200px;color:#22a6b3">
+        <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3; height: 170px">
+          <p><center><b><font size = "+1"><br> Veuillez remplir les champs obligatoires (*). </font></b></center></p>
+            <center><form action="Formulaire_Nouvelle_Vente.php" method="post">
+              <div style="padding-top:25px;padding-bottom: 15px"><div style="padding-left:320px"><a href="#"><b><font size = "+1"><input type="submit" name="button" value="Retour" style="background-color:#22a6b3;color: #ffffff;float:left"></font></b></a></div>
+            </form></center>
+        </div>
+      </div>
+<?php
+}
+?>
 
 
-
-  ?>
-
-
-  </div>
-  </div>
   </body>
 
 </html>
-<?php } ?>

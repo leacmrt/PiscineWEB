@@ -38,44 +38,43 @@ $database = "testpiscine";//connectez-vous dans votre BDD//Rappel: votre serveur
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
-if (isset($_POST['button2']))
-	{
+
 
        //partie sql
                 
-				if ($db_found) 
-         	{
+        if ($db_found) 
+          {
 
              $sql = "SELECT * FROM items";
-				if ($Nom != "") {//on cherche le livre avec les paramètres titre et auteur
-			 $sql .= " WHERE Nom LIKE '%$Nom%'";
-				if ($Description != "") {
-			 $sql .= " AND Description LIKE '%$Description%'";}
-			}
-			 $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
+        if ($Nom != "") {//on cherche le livre avec les paramètres titre et auteur
+       $sql .= " WHERE Nom LIKE '%$Nom%'";
+        if ($Description != "") {
+       $sql .= " AND Description LIKE '%$Description%'";}
+      }
+       $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
 
-			if(mysqli_num_rows($result) != 0) 
-			{
-			  
-			   while ($data = mysqli_fetch_assoc($result))
-			   {
-			   $_SESSION['NomArticle'] = $data['Nom'];
+      if(mysqli_num_rows($result) != 0) 
+      {
+        
+         while ($data = mysqli_fetch_assoc($result))
+         {
+         $_SESSION['NomArticle'] = $data['Nom'];
          $_SESSION['ID'] = $data['ID'];
-		      $_SESSION['Photo1'] = $data['Photo1'] ;
+          $_SESSION['Photo1'] = $data['Photo1'] ;
           $_SESSION['Photo2'] = $data['Photo2'] ;
           $_SESSION['Photo3'] = $data['Photo3'] ;
           $_SESSION['Vidéo'] = $data['Vidéo'] ;
-		      $_SESSION['Description'] = $data['Description'];
-		      $_SESSION['Enchere'] = $data['Enchere'];
-		      $_SESSION['Meilleure'] = $data['Meilleure'];
-		      $_SESSION['Immediat'] = $data['Immediat'];
-		      $_SESSION['Categorie']=$data['Categorie'];
+          $_SESSION['Description'] = $data['Description'];
+          $_SESSION['Enchere'] = $data['Enchere'];
+          $_SESSION['Meilleure'] = $data['Meilleure'];
+          $_SESSION['Immediat'] = $data['Immediat'];
+          $_SESSION['Categorie']=$data['Categorie'];
 
-		      header ('location: article.php');}
+          header ('location: article.php');}
 
               
              } else { 
-             	       
+                     
                   
                       if ($TypeIm)
                       {
@@ -143,12 +142,12 @@ if (isset($_POST['button2']))
 
 
 
-     		    }else echo "<script> window.alert(\"Base de donnée introuvable \"); history.back(); </script>";
+            }else echo "<script> window.alert(\"Base de donnée introuvable \"); history.back(); </script>";
 
 
 
 
-	}
+
 
   ?>
 
@@ -158,25 +157,25 @@ if (isset($_POST['button2']))
 <?php      
 
 if (isset($_POST['buttonphoto']))
-	{ 
+  { 
       if ($db_found) 
       {
 
 
 
-      	if($Photoprofil)
-     		{ 
+        if($Photoprofil)
+        { 
 
 
-           			 echo "coucou";
-            	     $sql ='UPDATE utilisateurs SET Photoprofil="'.$Photoprofil.'" WHERE ID ="'.$ID_vendeur.'"';
+                 echo "coucou";
+                   $sql ='UPDATE utilisateurs SET Photoprofil="'.$Photoprofil.'" WHERE ID ="'.$ID_vendeur.'"';
 
-            		$result = mysqli_query($db_handle, $sql);
-            		$_SESSION['Photoprofil']=$Photoprofil;
-            		echo " <script> location.replace(\"profil.php\"); </script>";
+                $result = mysqli_query($db_handle, $sql);
+                $_SESSION['Photoprofil']=$Photoprofil;
+                echo " <script> location.replace(\"profil.php\"); </script>";
 
 
-      		}
+          }
        }
 
 
