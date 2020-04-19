@@ -123,11 +123,13 @@ $db_found = mysqli_select_db($db_handle, $database);
                        if($DifJ<-1)
                        { $DifM1=$DifM-1;
                          $DifJ1=31+$DifJ;
-                       }else { }
+                       }else {  $DifM1=$DifM;
+                         $DifJ1=$DifJ;  }
+                        echo "<br> Il vous reste ".$DifA ."années ,".$DifM1." mois, ".$DifJ1."pour encherir"; 
   
                    }}
 
-        if ($DifM==0&&$DifA==0&&$DifJ<=-1) 
+        if (($DifM==0&&$DifA==0&&$DifJ<=-1)||($DifA<0)||($DifA==0&&$DifM<0)) 
            {
               $A=$data['ID_Item'];
               echo $A."<br>";
