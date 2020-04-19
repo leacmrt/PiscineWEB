@@ -54,7 +54,7 @@ $ID_Item= isset($_POST["ID_Item"])?$_POST["ID_Item"] : "";
     <center><div style=" border: 5px solid; border-color: #22a6b3; height: 280px; width: 600px ">
       <b><div style="padding-left: 50px; padding-right: 50px; padding-top: 50px; color: #22a6b3"><font size = "+1">Quel montant voulez vous proposer ? <br><br>
 
-        <form class="form-horizontal" action="Proposition_Me_Acheteur.php" method="post">
+        <form class="form-horizontal" action="Valide_Meilleur.php" method="post">
         <input type="hidden" name="ID_Item" value= <?php echo $ID_Item ?>>
         <input name="Montant" class="form-control" placeholder="Montant" type="text" size="2"><br><br>
 

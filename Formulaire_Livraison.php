@@ -163,8 +163,3 @@ $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
 
 </body>
 </html>
-
-
-
-
-  

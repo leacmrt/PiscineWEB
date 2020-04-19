@@ -13,6 +13,8 @@ $ID_Item = isset($_POST["ID_Item"])? $_POST["ID_Item"] : "";
 $sqlRecherche = "SELECT * FROM offre WHERE ((ID_Acheteur = 4) AND (ID_Item = ".$ID_Item."))";
 $resultRecherche = mysqli_query($db_handle,$sqlRecherche);
 
+
+
       if ($Echange = mysqli_fetch_assoc($resultRecherche))
       {
         $Num = $Echange['Numero'] + 1;
@@ -30,7 +32,9 @@ $resultRecherche = mysqli_query($db_handle,$sqlRecherche);
         $sql4 = "INSERT INTO offre (ID_Item,ID_Acheteur,Valide,Numero,Montant) VALUES (".$ID_Item.",'4','Attente','1',".$Montant.")";
         $result4 = mysqli_query($db_handle,$sql4);
       }
-      header(("location:PageAccueil.php"))
+      echo "<script> alert(\"Votre offre a bien été prise en compte.\") </script>";
+      header(("location:PageAccueil.php"));
+
 ?>
      
 
