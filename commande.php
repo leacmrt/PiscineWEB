@@ -1,4 +1,3 @@
-
  <?php
 session_start();
 ?>
@@ -31,7 +30,6 @@ $bdd_piscine = mysqli_select_db($db_handle, $bdd);
 
 $ID_Item= isset($_POST["ID_Item"])?$_POST["ID_Item"] : "";
 $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
-echo $Mode ;
 
 $Button1= isset($_POST["button1"])?$_POST["button1"] : "";
 $Button2= isset($_POST["button2"])?$_POST["button2"] : "";
@@ -44,7 +42,6 @@ $CarteNom= isset($_POST["CarteNom"])?$_POST["CarteNom"] : "";
 $CarteNum= isset($_POST["CarteNum"])?$_POST["CarteNum"] : "";
 $CVC= isset($_POST["CVC"])?$_POST["CVC"] : "";
 $Expiration= isset($_POST["Expiration"])?$_POST["Expiration"] : "";
-
 
 
 
@@ -232,7 +229,7 @@ try    //Tentative de connexion à la bdd
           //if ($Mode == 'Enchere')
           
           if($_SESSION['ModeEnch']==1)
-          {   echo "la ".$_SESSION['IDENCH'];
+          { 
             echo '<form action="commande4.php" method="post">
                 <input type="hidden" name="ID_Item" value='.$_SESSION['IDENCH'].'> 
           <a href="#" style=" color:#ffffff;"><b><font size = "+1"><input type="submit" name="buttonench" value="Continuer" style="background-color:#22a6b3;"></font></b></a>'.'   '.'<a href="Formulaire_livraison.php" style=" color:#ffffff;"><b><font size = "+1"></form>';
@@ -242,7 +239,7 @@ try    //Tentative de connexion à la bdd
 
 
             <form action="Modif_livraison.php" method="post">
-            <input type="hidden" name="Mode" value='.$Mode.'>
+            <input type="hidden" name="Mode" value=<?php echo $Mode ?>>
             <input type="hidden" name="ID_Item" value='.$ID_Item.'>
           <input type="submit" name="button2" value="Modifier" style="background-color:#22a6b3;"></font></b></a></form>
 
