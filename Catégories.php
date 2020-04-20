@@ -23,7 +23,7 @@ session_start();
 <body>
 
 
-<<! Barre de navigation>
+<! Barre de navigation>
 <nav class="navbar navbar-inverse" style="background-color:#22a6b3">
   <div class="container-fluid">
     <div class="navbar-header">
