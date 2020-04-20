@@ -116,7 +116,7 @@ while ($Item = mysqli_fetch_assoc($R_Item))
 
         <div> 
           <a href="<?php echo $Item['Video'] ?>" target="_blank" >
-          <img src="<?php echo $Item['Video'] ?>" alt="Vidéo" height="70" width="70" style="border:solid;border-color:#22a6b3"/></a> 
+          <video controls src="<?php echo $Item['Video'] ?>" alt="Vidéo" height="70" width="70" style="border:solid;border-color:#22a6b3"/></a> 
         </div> <br>
       </div>
 
