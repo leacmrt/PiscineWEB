@@ -15,12 +15,17 @@ $TypeEn=isset($_POST["TypeEn"])? $_POST["TypeEn"] : "";
 $TypeMe=isset($_POST["TypeMe"])? $_POST["TypeMe"] : "";
 //$Photoprofil= isset($_FILES["Photoprofil"]['name'])? $_FILES["Photoprofil"]['name'] : "";
 $Categorie= isset($_POST["Categorie"])? $_POST["Categorie"] : "";
+$tmp_file = $_FILES['Photoprofil']['tmp_name'];
 
-
- $Photoprofil =isset($_FILES['Photoprofil']['name'])?$_FILES["Photoprofil"]['name'] : "";;
- $PhotoFond = isset($_FILES['PhotoFond']['name'])?$_FILES["PhotoFond"]['name'] : "";;   
-
-  
+if( !is_uploaded_file($tmp_file) )
+    {
+        echo("Le fichier est introuvable");
+    }
+ $Photoprofil = $_FILES['Photoprofil']['name'];
+    if( !move_uploaded_file($tmp_file, $Photoprofil) )
+    {
+        echo("Impossible de copier le fichier dans la base de donnée");
+    }
 
 
 
@@ -172,13 +177,7 @@ if (isset($_POST['buttonphoto']))
       if ($db_found) 
       {
 
-         $tmp_file = $_FILES['Photoprofil']['tmp_name'];
-         if( !is_uploaded_file($tmp_file) )
-        {echo("Le fichier est introuvable");}
-        
-        $Photoprofil = $_FILES['Photoprofil']['name'];
-        if( !move_uploaded_file($tmp_file, $Photoprofil) )
-        {echo("Impossible de copier le fichier dans la base de donnée");}
+
 
         if($Photoprofil)
         { 
@@ -189,42 +188,6 @@ if (isset($_POST['buttonphoto']))
 
                 $result = mysqli_query($db_handle, $sql);
                 $_SESSION['Photoprofil']=$Photoprofil;
-                echo " <script> location.replace(\"profil.php\"); </script>";
-
-
-          }
-       }
-
-
-     }
-
-
-if (isset($_POST['buttonphotoFond']))
-  { 
-      if ($db_found) 
-      {
-
-        $tmp_file1 = $_FILES['PhotoFond']['tmp_name'];
-
-if( !is_uploaded_file($tmp_file1) )
-    {
-        echo("Le fichier est introuvable");
-    }
- $PhotoFond = $_FILES['PhotoFond']['name'];
-    if( !move_uploaded_file($tmp_file1, $PhotoFond) )
-    {
-        echo("Impossible de copier le fichier dans la base de donnée");
-    }
-
-        if($PhotoFond)
-        { 
-
-
-
-                   $sql ='UPDATE utilisateurs SET PhotoFond="'.$PhotoFond.'" WHERE ID ="'.$ID_vendeur.'"';
-
-                $result = mysqli_query($db_handle, $sql);
-                $_SESSION['PhotoFond']=$PhotoFond;
                 echo " <script> location.replace(\"profil.php\"); </script>";
 
 

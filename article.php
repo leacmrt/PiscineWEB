@@ -106,11 +106,11 @@ $ModifMe1 = isset($_POST["ModifMe1"])? $_POST["ModifMe1"] : "";
           <input type="checkbox" name="ModifM13" value="Meilleure"> Meilleure offre </center><br>
 
           <center>
-           <input type="number" id ="ModifIm1" name="ModifIm1" placeholder="Prix">
+           <input type="text" id ="ModifIm1" name="ModifIm1" placeholder="Prix">
           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-           <input type="numer" id ="ModifEn1" name="ModifEn1" placeholder="Prix min">
+           <input type="text" id ="ModifEn1" name="ModifEn1" placeholder="Prix min">
           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="number" id ="ModifMe1" name="ModifMe1" placeholder="Prix min"> </center><br>
+          <input type="text" id ="ModifMe1" name="ModifMe1" placeholder="Prix min"> </center><br>
 
           <center> <input type="text" id ="ModifEn2" name="ModifEn2" placeholder="Date lim AAAA-MM-JJ" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" min="2020-04-01"> </center>
 
