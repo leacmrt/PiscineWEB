@@ -29,11 +29,11 @@ $db_handle = mysqli_connect('localhost', 'root', '' );
 $bdd_piscine = mysqli_select_db($db_handle, $bdd);
 
 $ID_Item= isset($_POST["ID_Item"])?$_POST["ID_Item"] : "";
-echo $ID_Item;
 $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
 
-$Button1= isset($_POST["button1"])?$_POST["button1"] : "";
-$Button2= isset($_POST["button2"])?$_POST["button2"] : "";
+$button1= isset($_POST["button1"])?$_POST["button1"] : "";
+echo $button1;
+$button2= isset($_POST["button2"])?$_POST["button2"] : "";
 $Adresse1= isset($_POST["Adresse1"])?$_POST["Adresse1"] : "";
 $Adresse2= isset($_POST["Adresse2"])?$_POST["Adresse2"] : "";
 $Ville= isset($_POST["Ville"])?$_POST["Ville"] : "";
@@ -46,7 +46,8 @@ $Expiration= isset($_POST["Expiration"])?$_POST["Expiration"] : "";
 
 
 
-
+echo $ID_Item;
+echo $Mode;
 
 
 
@@ -55,11 +56,13 @@ $Expiration= isset($_POST["Expiration"])?$_POST["Expiration"] : "";
 
 
 
-     if ($Button1)//si le formulaire s'envoie
+     if ($button1)//si le formulaire s'envoie
        {
+        echo 'button1';
            
             if($Adresse1!=""&&$Ville!=""&&$CodeP!=""&&$Pays!=""&&$CarteNom!=""&&$CarteNum!=""&&$CVC!=""&&$Expiration!="")//si tout les champs sont remplis (sauf adresse 2 on s'en fou) 
               { 
+                echo 'cahmps';
 
                           $sql = "SELECT * FROM donnees";
                            if ($CarteNum != "") {//on cherche le livre avec les paramètres titre et auteur
@@ -72,6 +75,8 @@ $Expiration= isset($_POST["Expiration"])?$_POST["Expiration"] : "";
                           {echo "<script> window.alert(\"Le compte existe . <br>\")";}
                           else
                           {
+                                    echo 'sql';
+
                                $sql= "INSERT INTO donnees(Adresse1, Adresse2, Ville, CodeP, Pays, CarteNom,CarteNum,CVC,Expiration,ID_Vendeur)
                                VALUES('$Adresse1', '$Adresse2', '$Ville', '$CodeP','$Pays','$CarteNom','$CarteNum', '$CVC','$Expiration',\"".$_SESSION['ID_vendeur']."\")";
                               $result = mysqli_query($db_handle, $sql);
@@ -86,7 +91,7 @@ $Expiration= isset($_POST["Expiration"])?$_POST["Expiration"] : "";
 
 //     Récupération des données de Modif_Livraison.php 
 
-       if ($Button2)//si le formulaire s'envoie
+       if ($button2)//si le formulaire s'envoie
        {
            
             if($Adresse1!=""&&$Ville!=""&&$CodeP!=""&&$Pays!=""&&$CarteNom!=""&&$CarteNum!=""&&$CVC!=""&&$Expiration!="")//si tout les champs sont remplis (sauf adresse 2 on s'en fou) 
@@ -128,26 +133,6 @@ $Button2= NULL;
 
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -272,5 +257,7 @@ try    //Tentative de connexion à la bdd
     </form>
   </footer>
 
+
+<!-- Toutes les informations ainsi que les images de la pièce de monnaie proviennent du site : http://www.sympatico.ca/actualites/decouvertes/histoire/monnaie-royale-canadienne-1.1508001 -->
 
 </html>

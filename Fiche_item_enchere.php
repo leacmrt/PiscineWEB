@@ -184,7 +184,7 @@ $jour=$Date[8].$Date[9];
                 $_SESSION['Prix_min']=$Item['Enchere_min'];
                 $_SESSION['NomENCH']=$Item['Nom'];
                 $_SESSION['datelm']=$Item['Date_lim']; 
-       echo ".   <br>  Il vous reste :".$DifA." années ,".$DifM1."mois  , ".$DifJ1." jours pour enchérir sur cet article <br>";
+       echo ".   <br>  Il vous reste :".$DifA." années ,".$DifM."mois  , ".$DifJ." jours pour enchérir sur cet article <br>";
          
 
 

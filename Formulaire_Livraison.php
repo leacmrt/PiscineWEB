@@ -23,7 +23,8 @@ $Expiration= isset($_POST["Expiration"])? $_POST["Expiration"] : "";
 
 $ID_Item= isset($_POST["ID_Item"])?$_POST["ID_Item"] : "";
 $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
-
+echo $ID_Item;
+echo $Mode;
 
 
 ?>

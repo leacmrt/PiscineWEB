@@ -15,7 +15,8 @@ $db_found = mysqli_select_db($db_handle, $database);
 
   $ID_Item= isset($_POST["ID_Item"])?$_POST["ID_Item"] : "";
 $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
-
+echo $ID_Item;
+echo $Mode;
 
 
 ?>
@@ -92,7 +93,7 @@ $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
               <div class='col-xs-12'>
                 <label class='control-label'>Adresse </label>
                 <input class='form-control' name="Adresse1" size='4' type='text' required placeholder='Ligne 1' value="<?php echo $Donnee['Adresse1'] ?>">
-                <input class='form-control' name="Adresse2"size='4' type='text' required placeholder='Ligne 2' value="<?php echo $Donnee['Adresse2'] ?>">
+                <input class='form-control' name="Adresse2"size='4' type='text'  placeholder='Ligne 2' value="<?php echo $Donnee['Adresse2'] ?>">
               </div><br><br><br><br>
               
 

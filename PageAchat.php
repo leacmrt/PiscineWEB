@@ -93,7 +93,7 @@ session_start();
     </div>
     <div class="col-sm-4"> 
       <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#22a6b3"><centre> Meilleur prix </centre></div> <a href="meilleureoffre.php">
+        <div class="panel-heading" style="background-color:#22a6b3"><centre> Meilleur offre </centre></div> <a href="meilleureoffre.php">
         <div class="panel-body"><img src="meilleur.png" class="img-responsive" style="width:100%" alt="Image"></div>
         <div class="panel-footer">Clickez ici pour voir les offres en meilleur prix !</div> </a>
       </div>

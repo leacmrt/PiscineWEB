@@ -42,7 +42,6 @@ if (isset($_POST['button1'])) //inscription
 
 			if(mysqli_num_rows($result) == 0) 
 			{
-			  echo "Le mail n'est pas déjà utilisé . <br> ";
               $sql= "INSERT INTO utilisateurs(Nom, Mail, Telephone, Role, Mdp, Photoprofil,PhotoFond)
                      VALUES('$Nom', '$Mail', '$Telephone', '$Role','$Mdp1','$Photoprofil','$PhotoFond')";
                $result = mysqli_query($db_handle, $sql);

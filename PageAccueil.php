@@ -240,7 +240,7 @@ $db_found = mysqli_select_db($db_handle, $database);
   <div class="row">
     <div class="col-sm-4">
       <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#22a6b3"><b><font size = "+1"><center>Catégories</font></b></center> </div> <a href="Categories.php">
+        <div class="panel-heading" style="background-color:#22a6b3"><b><font size = "+1"><center>Catégories</font></b></center> </div> <a href="Catégories.php">
         <div class="panel-body"><img src="loupe.jpg" class="img-responsive" style="height: 170px" alt="Image"></div>
         <div class="panel-footer">Clickez pour en savoir plus</div> </a>
       </div>
