@@ -31,12 +31,21 @@ $db_found = mysqli_select_db($db_handle, $database);
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
       <link rel="stylesheet" type="text/css" href="style.css">
       <script type="text/javascript">
-        
+       
        
 
       </script>
+      <style type="text/css">
+        body{ 
+             <?php if($_SESSION['PhotoFond']!="")
+           { ?>  
+                background-image:url("<?php echo $_SESSION['PhotoFond']; ?>") ;
+                background-color: none;" 
+       
+ <?php } else ?> background-color:#c7ecee; }
+      </style>
     </head>
-<body style="background-color:#c7ecee">
+<body>
 
 
 <nav class="navbar navbar-inverse" style="background-color:#22a6b3">
@@ -67,6 +76,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 </nav>
 
 
+
  
 
 
@@ -76,12 +86,14 @@ $db_found = mysqli_select_db($db_handle, $database);
 
   
       <center ><img src="logo2.png" width="500" height="150"> </center>
+       
    
 
 
 
 <div style="padding-top: 50px; padding-right: 250px; padding-left: 250px;">
   <div style=" border:5px solid; border-color: #22a6b3; padding-left: 30px;padding-right: 30px;background-color:#ffffff">
+
 
           
             <h1 style=" color : darkblue"> <center> Bienvenue </center></h1>       
@@ -98,8 +110,24 @@ $db_found = mysqli_select_db($db_handle, $database);
                                           <img src="<?php echo $_SESSION['Photoprofil']; ?>" alt="Photoprofil" height="150" width="110" style="border:solid;border-color:#22a6b3"/>
                                       </div> <?php } ?>
 
+                                      <?php  if($_SESSION['PhotoFond']=="")
+                                       { ?> <div style=" border:5px solid; border-color: #22a6b3;background-color:lightgrey; float: left;width:210px;height:62px">
+                                         
+                                          <form action="Formulaire3.php" class="form-horizontal" method="post" enctype="multipart/form-data" >
+                                             
+                                            <label for ="Photofond">  Ajouter une photo de fond? </label>
+                                            <div class="form-row">
+                                             <div class="form-group col-md-8">
+                                            <input type="file" id="PhotoFond" name="PhotoFond" style="width: 110px" required ></div>
+                                               <div class="form-group col-md-7">
 
-             <center>  <h2 style=" color : darkblue; padding-left: 120px" > <strong> <?php echo  $_SESSION['Pseudo']; ?> </strong> </h2><p style="padding-left: 120px"> Votre role :  <strong> <?php echo  $_SESSION['Role']; ?> </strong> </p> </center>
+                                             <input type="submit" name="buttonphotoFond" value="Poster "></div>
+                                          </div>
+                                          </form>
+                                      </div><?php  } ?>
+
+
+             <center style="padding-right:200px">  <h2 style=" color : darkblue; " > <strong> <?php echo  $_SESSION['Pseudo']; ?> </strong> </h2><p style="padding-left: 120px"> Votre role :  <strong> <?php echo  $_SESSION['Role']; ?> </strong> </p> </center>
 
 
             <center> 
