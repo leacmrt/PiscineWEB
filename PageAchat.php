@@ -80,7 +80,7 @@ session_start();
   <div class="row">
     <div class="col-sm-4">
       <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#22a6b3"><centre>Encgères </centre></div> <a href="enchère.png">
+        <div class="panel-heading" style="background-color:#22a6b3"><centre>Encgères </centre></div> <a href="Enchere.php">
         <div class="panel-body"><img src="enchere.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
         <div class="panel-footer">Clickez ici pour voir les offres en enchères !</div> </a>
       </div>
