@@ -95,7 +95,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                                       </div>
                                      <?php  } else if($_SESSION['Photoprofil']!=""){ ?>
                                         <div style=" border:5px solid; border-color: #22a6b3;background-color:lightgrey; float: right; width: 120px; height: 160px;">
-                                         <?php echo $_SESSION['Photoprofil']." width=\"110\" height=\"150\">"; ?>
+                                          <img src="<?php echo $_SESSION['Photoprofil'] ?>" alt="Photoprofil" height="150" width="110" style="border:solid;border-color:#22a6b3"/>
                                       </div> <?php } ?>
 
 
@@ -193,7 +193,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
                  {  
                    echo "<br><br>";
-                   echo" <center><h2> <a href=\"Formulaire_Nouvelle_Vente.php\">  Clickez pour vendre un objet </span> </a></h2>  <span class=\"glyphicon glyphicon-eur\" > </center>";
+                   echo" <center><h2> <a href=\"Formulaire_Nouvelle_Vente.php\">  Clickez pour vendre un objet </span> </a></h2>   </center>";
 
                     if ($db_found) 
                       {
@@ -245,22 +245,26 @@ $db_found = mysqli_select_db($db_handle, $database);
                                echo "</div>";
 
 
-                                    $sql = "SELECT * FROM items";
+                                    $sql = "SELECT * FROM (items)";
                                     $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
                                     echo "<center> <h2 style=\"color  :#5b6bea ;text-decoration : underline; \"> Voici les articles à vendre sur le site </h2> </center> <br> <br> ";
 
-                                    echo " <div class=\"row\">"; 
+                                    echo " <center><div class=\"row\" style=\"width:720px\">"; 
                                    if(mysqli_num_rows($result) != 0) 
                                    {
                                      $compte=1;
                                      while ($data = mysqli_fetch_assoc($result))
                                      {
                                        $array[$compte]=$data['ID'];
+
+                                       $sqlPseudo = "SELECT Nom FROM utilisateurs WHERE ID = ".$data['ID_vendeur']."";
+                                       $resultPseudo = mysqli_query($db_handle, $sqlPseudo);
+                                       $Pseudo = mysqli_fetch_row($resultPseudo)[0];
                                  
                               
                                        $essai= "button".$compte;
                                  
-                                echo "<center> <div class=\"col-6 col-sm-3\" style=\"  border:1px solid; border-color: black; padding-bottom: 50px\">";
+                                echo "<center><div class=\"col-6 col-sm-3\" style=\"  border:1px solid; border-color: black; padding-bottom: 50px;width: 240px\">";
                                 echo "<strong><br> <span title=\"Cliquez pour modifier l'item ".$compte."\">";
                                 echo "<form action=\"\"method=\"post\"><input type=\"submit\" name=\"".$essai;
                                 echo "\"value=\"".$compte." : ".$data['Nom']."\">";
@@ -275,6 +279,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                                 $_SESSION['Immediat']=$data['Immediat'];
                                 $_SESSION['Meilleure']=$data['Meilleure'];
                                 $_SESSION['Photo1']=$data['Photo1'];
+                                $_SESSION['Nom']=$data['Pseudo'];
 
                                 echo " <script> location.replace(\"article.php\"); </script>";
 
@@ -282,7 +287,10 @@ $db_found = mysqli_select_db($db_handle, $database);
 
                                   $compte=$compte+1;
                                   echo "</form>  </strong> <span class=\"glyphicon glyphicon-info-sign\"> </span></span> <br/>";
-                                  echo '<img src = "'.$data['Photo1'].'" width="150" height="150"></div>  </center>  '; 
+                                  echo '<img src = "'.$data['Photo1'].'" width="150" height="150"><br><br>
+                                  Vendu par: '.$Pseudo.'
+                                  </div>  
+                                  </center>  '; 
                                 
                                 }  
                                }
@@ -294,7 +302,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                                     $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
                                     echo "<center> <h2 style=\"color  :#5b6bea ;text-decoration : underline; \"> Voici les fournisseurs actifs </h2> </center> <br> <br> ";
 
-                             echo " <div class=\"row\">";
+                             echo " <center><div  style=\"width:720px\" class=\"row\"><center><div>";
                               $compte=1; 
                           if(mysqli_num_rows($result) != 0) 
                            {
@@ -307,11 +315,13 @@ $db_found = mysqli_select_db($db_handle, $database);
                                 
                                  
                                 echo "<center> <div class=\"col-6 col-sm-3\" style=\"  border:1px solid; border-color: black; padding-bottom: 50px;width: 240px; height: 220px;\">";
-                                echo "<br><form action=\"\"method=\"post\"><input type=\"submit\" Value= supprimer name=\"".$essai1."\">";
-                                echo "<br> Nom : ".$data['Nom']." <br> E-mail : ".$data['Mail'] ;
                                 if($data['Photoprofil']!="")
-                                  {   echo "<br><br> <center> ".$data['Photoprofil']." width=\"100\" height=\"100\"> </center>";
+                                  {   
+                                    echo '<img src="'.$data['Photoprofil'].'" alt="Photoprofil" height="150" width="110" style="border:solid;border-color:#22a6b3"/>';
                                   }
+                                echo "<br> Nom : ".$data['Nom']." <br> E-mail : ".$data['Mail'] ;
+                                
+                                echo "<br><form action=\"\"method=\"post\"><input type=\"submit\" Value= supprimer name=\"".$essai1."\">";
 
            
                                   echo " </div> </center> ";
@@ -329,6 +339,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 
                                   }
+
                                 }
                                   echo "</div> <br>";
                              }
