@@ -370,8 +370,8 @@ $ModifMe1 = isset($_POST["ModifMe1"])? $_POST["ModifMe1"] : "";
 
         ?>
 
-       <h2 style="color:#22a6b3"><b> <?php echo "<p style =\" float :right \"><u> Nom: </u>".$_SESSION['NomArticle'].'  <br/> <u>  Description </u> :'.$_SESSION['Description'] . ' <br> <u>  Catégorie: </u> '.$_SESSION['Categorie']. '<br/>
-        <u> Mode de vente : </u> '.$_SESSION['Enchere']. '  '.$_SESSION['Immediat'].' ' .$_SESSION['Meilleure'].' <br/> <u> Vendu par :</u>'.$SA.'</p>'; ?></b></h2>
+       <h4 style="color:#22a6b3; padding-left: 700px"><b> <?php echo "<p style =\" float :left; \"><u> Nom: </u>".$_SESSION['NomArticle'].'  <br/> <u>  Description </u> :'.$_SESSION['Description'] . ' <br> <u>  Catégorie: </u> '.$_SESSION['Categorie']. '<br/>
+        <u> Mode de vente : </u> '.$_SESSION['Enchere']. '  '.$_SESSION['Immediat'].' ' .$_SESSION['Meilleure'].' <br/> <u> Vendu par :</u>'.$SA.'</p>'; ?></b></h4><br><br><br><br>
        <br><br><br> 
 
         <?php echo '<center style=\" padding-bottom: 120px ; padding-left:600px \">'.'<img src="'.$_SESSION['Photo1'].'" width="200" height="200" > </center>'; ?>

@@ -10,10 +10,6 @@ $Description= isset($_POST["Description"])? $_POST["Description"] : "";
 $Description= str_replace(' ','&nbsp', $Description);
 
 
-//$Photo1 = isset($_FILES["Photo1"]['name'])? $_FILES["Photo1"]['name'] : "";
-//$Photo2 =  isset($_FILES["Photo2"]['name'])? $_FILES["Photo2"]['name'] : "";
-//$Photo3 = isset($_FILES["Photo3"]['name'])? $_FILES["Photo3"]['name'] : "";
-//$Video = isset($_FILES["Vidéo"]['name'])? $_FILES["Vidéo"]['name'] : "";
 $Photoprofil= isset($_FILES["Photoprofil"]['name'])? $_FILES["Photoprofil"]['name'] : "";
 
 $Categorie= isset($_POST["Categorie"])? $_POST["Categorie"] : "";
@@ -41,7 +37,7 @@ if( !is_uploaded_file($tmp_file3) )
     {}
 
 
-if(isset($_POST["Video"]))
+if(isset($_FILES["Video"]))
 {
 
 if (($_FILES["Video"]["type"] == "video/mp4"))
