@@ -11,7 +11,7 @@ $Description= str_replace(' ','&nbsp', $Description);
 $Photo1 = isset($_POST["Photo1"])? $_POST["Photo1"] : "";
 $Photo2 =  isset($_POST["Photo2"])? $_POST["Photo2"] : "";
 $Photo3 =isset($_POST["Photo3"])? $_POST["Photo3"] : "";
-$Video = isset($_POST["Vidéo"])? $_POST["Vidéo"] : "";
+$Video = isset($_POST["Video"])? $_POST["Video"] : "";
 $TypeIm=isset($_POST["TypeIm"])? $_POST["TypeIm"] : "";
 $TypeEn=isset($_POST["TypeEn"])? $_POST["TypeEn"] : "";
 $TypeMe=isset($_POST["TypeMe"])? $_POST["TypeMe"] : "";
@@ -75,7 +75,7 @@ if (isset($_POST['button']))
           $_SESSION['Photo1'] = $data['Photo1'] ;
           $_SESSION['Photo2'] = $data['Photo2'] ;
           $_SESSION['Photo3'] = $data['Photo3'] ;
-          $_SESSION['Vidéo'] = $data['Vidéo'] ;
+          $_SESSION['Video'] = $data['Video'] ;
           $_SESSION['Description'] = $data['Description'];
           $_SESSION['Enchere'] = $data['Enchere'];
           $_SESSION['Meilleure'] = $data['Meilleure'];
@@ -135,7 +135,7 @@ if (isset($_POST['button']))
                      $_SESSION['Photo1'] = $Photo1;
                      $_SESSION['Photo2'] = $Photo2;
                      $_SESSION['Photo3'] = $Photo3;
-                     $_SESSION['Vidéo'] = $Vidéo;
+                     $_SESSION['Video'] = $Video;
                      $_SESSION['Description'] = $_POST['Description'];
                      $_SESSION['Enchere'] = $Enchere;
                      $_SESSION['Meilleure'] =$Offre;

@@ -283,7 +283,7 @@ $db_found = mysqli_select_db($db_handle, $database);
       <h4> Nos valeurs  </h4>
       <br> Qualité, rapidité et fiabialité sont nos maîtres-mots. 
       <br> Ce site est protégé et aucunes de vos données confidentielles ne seront transmises à de tiers personnes ou organismes. 
-  </center>>
+  </center>
       
       
     </div>

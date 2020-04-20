@@ -13,7 +13,7 @@ $Description= str_replace(' ','&nbsp', $Description);
 //$Photo1 = isset($_FILES["Photo1"]['name'])? $_FILES["Photo1"]['name'] : "";
 //$Photo2 =  isset($_FILES["Photo2"]['name'])? $_FILES["Photo2"]['name'] : "";
 //$Photo3 = isset($_FILES["Photo3"]['name'])? $_FILES["Photo3"]['name'] : "";
-$Video = isset($_FILES["Vidéo"]['name'])? $_FILES["Vidéo"]['name'] : "";
+//$Video = isset($_FILES["Vidéo"]['name'])? $_FILES["Vidéo"]['name'] : "";
 $Photoprofil= isset($_FILES["Photoprofil"]['name'])? $_FILES["Photoprofil"]['name'] : "";
 
 $Categorie= isset($_POST["Categorie"])? $_POST["Categorie"] : "";
@@ -40,6 +40,12 @@ if( !is_uploaded_file($tmp_file3) )
     if( !move_uploaded_file($tmp_file3, $Photo3) )
     {}
 
+$tmp_file4 = $_FILES['Video']['tmp_name'];
+if( !is_uploaded_file($tmp_file4) )
+    {}
+ $Video = $_FILES['Video']['name'];
+    if( !move_uploaded_file($tmp_file4, $Video) )
+    {}
 
 
 ?>
