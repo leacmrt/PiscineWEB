@@ -60,7 +60,7 @@ $db_found = mysqli_select_db($db_handle, $database);
     <div style="float:left;">
            
       <p style="padding-left:200px">• La vente aux enchères en ligne pour la communauté ECE Paris <br></p>
-      <p style="padding-left:200px">• Trois méthodes d achat: Immediat, par enchère ou à la meilleure offre ! <br></p>
+      <p style="padding-left:200px">• Trois méthodes d achat : immediat, par enchère ou à la meilleure offre ! <br></p>
       <p style="padding-left:200px">• Livraison gratuite en France métropolitaine pour plus de 35€ d achat !<br></p>
       <p style="padding-left:200px">• Paiement sécurisé et assuré par INSEECpayment. <br></p>
       <p style="padding-left:200px">• Garantie qualitée ECE. Satisfait ou remboursé ! <br></p>
@@ -264,9 +264,13 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 <div class="container">    
   <div class="row">
-      <center>
+  <center>
       <h4> A PROPOS DE EBAY-ECE </h4>
-      <br> Explications : <br> Notre histoire : </center>
+      <br> Ce site est une plateforme de vente en ligne propre à l'ECE. <br> Vous trouverez tous ce dont vous avez besoin allant de la simple pièce de feraille aux accessoires
+       les plus prestigieux grâce à nos nombreux fournisseurs.
+      
+      <br> Cette plateforme a été fondé en 2020 grâce à la collaboration de 3 élèves dans le but de promouvoir des achats de proximité et de qualité au sein de l'ECE Paris.
+  </center>
       
       
     </div>
@@ -275,9 +279,11 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 <div class="container">    
   <div class="row">
-      <center>
+  <center>
       <h4> Nos valeurs  </h4>
-      <br> blablabla</center>
+      <br> Qualité, rapidité et fiabialité sont nos maîtres-mots. 
+      <br> Ce site est protégé et aucunes de vos données confidentielles ne seront transmises à de tiers personnes ou organismes. 
+  </center>>
       
       
     </div>
