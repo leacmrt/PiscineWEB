@@ -60,7 +60,7 @@ $db_found = mysqli_select_db($db_handle, $database);
     <div style="float:left;">
            
       <p style="padding-left:200px">• La vente aux enchères en ligne pour la communauté ECE Paris <br></p>
-      <p style="padding-left:200px">• Trois méthodes d achat : immediat, par enchère ou à la meilleure offre ! <br></p>
+      <p style="padding-left:200px">• Trois méthodes d achat: Immediat, par enchère ou à la meilleure offre ! <br></p>
       <p style="padding-left:200px">• Livraison gratuite en France métropolitaine pour plus de 35€ d achat !<br></p>
       <p style="padding-left:200px">• Paiement sécurisé et assuré par INSEECpayment. <br></p>
       <p style="padding-left:200px">• Garantie qualitée ECE. Satisfait ou remboursé ! <br></p>
@@ -190,7 +190,7 @@ $db_found = mysqli_select_db($db_handle, $database);
        $A= $_SESSION['ID_vendeur'];
         if($db_found)
         {
-              $sql = "SELECT * FROM vente_enchere  WHERE ID_Encherisseur =\"$A\" AND Fin =\"Oui\" " ;
+              $sql = "SELECT * FROM (vente_enchere JOIN items ON vente_enchere.ID_Item =  items.ID) WHERE ID_Encherisseur =\"$A\" AND Fin =\"Oui\" " ;
               $result = mysqli_query($db_handle, $sql);
 
               if(mysqli_num_rows($result)!=0) 
@@ -210,12 +210,13 @@ $db_found = mysqli_select_db($db_handle, $database);
                   $Vendeur=$data1['ID_vendeur'];
                   $sql2 = "INSERT INTO commandes(ID_Item,ID_Vendeur,ID_Acheteur,Prix) VALUES ('$I','$Vendeur','$A','$Prixfinal')"; 
                   $result2 = mysqli_query($db_handle, $sql2);
+                  $Nom= str_replace('&nbsp',' ', $data['Nom']);
 
                   $sql3 = "DELETE FROM vente_enchere WHERE ID_Item=\"$I\" "; 
                   $result3 = mysqli_query($db_handle, $sql3);
 
 
-                  echo "<script> alert(\"Vous avez encherit sur des items ".$data['ID_Vente']." Vous allez passer à la commande :\") </script>"; 
+                  echo "<script> alert(\"Vous avez gagné votre enchère pour cet item: ".$Nom." Vous allez passer à la commande :\") </script>"; 
                   $_SESSION['ModeEnch']="1";
                   $_SESSION['Prixfin']=$Prixfinal;
                   $_SESSION['IDENCH']=$I;
@@ -264,13 +265,13 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 <div class="container">    
   <div class="row">
-  <center>
+      <center>
       <h4> A PROPOS DE EBAY-ECE </h4>
       <br> Ce site est une plateforme de vente en ligne propre à l'ECE. <br> Vous trouverez tous ce dont vous avez besoin allant de la simple pièce de feraille aux accessoires
        les plus prestigieux grâce à nos nombreux fournisseurs.
       
       <br> Cette plateforme a été fondé en 2020 grâce à la collaboration de 3 élèves dans le but de promouvoir des achats de proximité et de qualité au sein de l'ECE Paris.
-  </center>
+      </center>
       
       
     </div>
@@ -279,18 +280,20 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 <div class="container">    
   <div class="row">
-  <center>
+      <center>
       <h4> Nos valeurs  </h4>
       <br> Qualité, rapidité et fiabialité sont nos maîtres-mots. 
-      <br> Ce site est protégé et aucunes de vos données confidentielles ne seront transmises à de tiers personnes ou organismes. 
-  </center>
+      <br> Ce site est protégé et aucunes de vos données confidentielles ne seront transmises à de tiers personnes ou organismes. </center>
       
       
     </div>
     
 </div><br>
 
+
+</div><br><br>
   <!-- /.container -->
+
 
   <!-- Footer -->
   <footer class="container-fluid text-center">
