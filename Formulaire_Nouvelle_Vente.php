@@ -120,7 +120,7 @@ session_start();
               </div>
               <div>
                 <input type="file" id="Photo3" name="Photo3" style="float: left;"> <p style="color:#22a6b3"> Photo 3 </p>
-                <input type="file" id="Vidéo" name="Video" style="float: left;"> <p style="color:#22a6b3"> Vidéo </p>
+                <input type="file" id="Video" name="Video"  accept="video/mp4" style="float: left;"> <p style="color:#22a6b3"> Vidéo </p>
               </div>
             </div>
           </div>

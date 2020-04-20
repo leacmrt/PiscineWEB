@@ -209,8 +209,8 @@ $db_found = mysqli_select_db($db_handle, $database);
                 <?php  if( $_SESSION['Role']=="Acheteur") { ?> 
                  <br><br><br><br><center>
 
-                  Votre panier  : <a href="panier.html" style="color: blue"><span class="glyphicon glyphicon-shopping-cart" > Votre panier  </span> </a><br>
-                  Catégorie: <a href="categorie.html" style="color: blue"><span class="glyphicon glyphicon-globe" > Catégorie </span> </a> <br>
+                  Votre panier  : <a href="panier.php" style="color: blue"><span class="glyphicon glyphicon-shopping-cart" > Votre panier  </span> </a><br>
+                  Catégorie: <a href="Catégories.php" style="color: blue"><span class="glyphicon glyphicon-globe" > Catégorie </span> </a> <br>
                   Achat: <a href="PageAchat.php" style="color: blue"><span class="glyphicon glyphicon-eur" > Achat </span> </a>
                    </center><?php    }  ?>
 
