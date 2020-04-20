@@ -36,7 +36,7 @@ $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Données de livraisons</title>
+  <title>Données de livraison</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -87,7 +87,7 @@ $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
   <div style=" border:5px solid; border-color: #22a6b3; padding-left: 30px;padding-right: 30px;background-color:#ffffff">
 
     <div class="text-center border border-light p-5">
-       <h3> Vos informations de payment </h3>
+       <h3> Vos informations de paiement </h3>
 
          <form class="form-horizontal" action="commande.php" method="post">
           <input type="hidden" name="ID_Item" value= <?php echo $ID_Item ?>>
