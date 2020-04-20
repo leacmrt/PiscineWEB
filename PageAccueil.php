@@ -10,7 +10,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 <html lang="en">
 
 <head>
-
+  <title>Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -61,7 +61,7 @@ $db_found = mysqli_select_db($db_handle, $database);
       <p style="padding-left:200px">• La vente aux enchères en ligne pour la communauté ECE Paris <br></p>
       <p style="padding-left:200px">• Trois méthodes d achat: Immediat, par enchère ou à la meilleure offre ! <br></p>
       <p style="padding-left:200px">• Livraison gratuite en France métropolitaine pour plus de 35€ d achat !<br></p>
-      <p style="padding-left:200px">• Payment sécurisé et assuré par INSEECpayment. <br></p>
+      <p style="padding-left:200px">• Paiement sécurisé et assuré par INSEECpayment. <br></p>
       <p style="padding-left:200px">• Garantie qualitée ECE. Satisfait ou remboursé ! <br></p>
 
     </div>
