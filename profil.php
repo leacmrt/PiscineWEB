@@ -23,7 +23,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 <!DOCTYPE html>
     <html lang="en">
     <head>
-      <title>Bootstrap Example</title>
+      <title>Mon compte</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -211,7 +211,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
                   Votre panier  : <a href="panier.html" style="color: blue"><span class="glyphicon glyphicon-shopping-cart" > Votre panier  </span> </a><br>
                   Catégorie: <a href="categorie.html" style="color: blue"><span class="glyphicon glyphicon-globe" > Catégorie </span> </a> <br>
-                  Achat: <a href="Achat.html" style="color: blue"><span class="glyphicon glyphicon-eur" > Achat </span> </a>
+                  Achat: <a href="PageAchat.php" style="color: blue"><span class="glyphicon glyphicon-eur" > Achat </span> </a>
                    </center><?php    }  ?>
 
 

@@ -10,7 +10,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 <html lang="en">
 
 <head>
-
+  <title>Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -61,7 +61,7 @@ $db_found = mysqli_select_db($db_handle, $database);
       <p style="padding-left:200px">• La vente aux enchères en ligne pour la communauté ECE Paris <br></p>
       <p style="padding-left:200px">• Trois méthodes d achat: Immediat, par enchère ou à la meilleure offre ! <br></p>
       <p style="padding-left:200px">• Livraison gratuite en France métropolitaine pour plus de 35€ d achat !<br></p>
-      <p style="padding-left:200px">• Payment sécurisé et assuré par INSEECpayment. <br></p>
+      <p style="padding-left:200px">• Paiement sécurisé et assuré par INSEECpayment. <br></p>
       <p style="padding-left:200px">• Garantie qualitée ECE. Satisfait ou remboursé ! <br></p>
 
     </div>
@@ -239,22 +239,22 @@ $db_found = mysqli_select_db($db_handle, $database);
   <div class="row">
     <div class="col-sm-4">
       <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#22a6b3"><b><font size = "+1"><center>Dernière offre</font></b></center> </div> <a href="categorie.html">
-        <div class="panel-body"><img src="offre1.jpg" class="img-responsive" style="width:100%,height: 170px" alt="Image"></div>
+        <div class="panel-heading" style="background-color:#22a6b3"><b><font size = "+1"><center>Catégories</font></b></center> </div> <a href="Categories.php">
+        <div class="panel-body"><img src="loupe.jpg" class="img-responsive" style="height: 170px" alt="Image"></div>
         <div class="panel-footer">Clickez pour en savoir plus</div> </a>
       </div>
     </div>
     <div class="col-sm-4"> 
       <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#22a6b3"><b><font size = "+1"><center>Bon plan de la semaine</font></b></center></div> <a href="achat.html">
-        <div class="panel-body"><img src="offre2.jpg" class="img-responsive" style="height: 170px" alt="Image"></div>
+        <div class="panel-heading" style="background-color:#22a6b3"><b><font size = "+1"><center>Achat</font></b></center></div> <a href="PageAchat.php">
+        <div class="panel-body"><img src="sac.jpg" class="img-responsive" style="height: 170px" alt="Image"></div>
         <div class="panel-footer">Cliquez pour en savoir plus</div> </a>
       </div>
     </div>
     <div class="col-sm-4"> 
       <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#22a6b3" ><b><font size = "+1"><center>Offre exclusive !</font></b></center></div> <a href="vendre.html">
-        <div class="panel-body"><img src="offre3.jpg" class="img-responsive" style="height: 170px" alt="Image"></div>
+        <div class="panel-heading" style="background-color:#22a6b3" ><b><font size = "+1"><center>Vente</font></b></center></div> <a href="Formulaire_Nouvelle_Vente.php">
+        <div class="panel-body"><img src="argent.jpg" class="img-responsive" style="height: 170px" alt="Image"></div>
         <div class="panel-footer">Clickez pour en savoir plus</div> </a>
       </div>
     </div>
@@ -283,31 +283,6 @@ $db_found = mysqli_select_db($db_handle, $database);
     
 </div><br>
 
-<div class="container">    
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#22a6b3">Catégories </div> <a href="categorie.html">
-        <div class="panel-body"><img src="loupe.png" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">Clickez pour en savoir plus</div> </a>
-      </div>
-    </div>
-    <div class="col-sm-4"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#22a6b3">Achat</div> <a href="PageAchat.php">
-        <div class="panel-body"><img src="shopping.png" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">Cliquez pour en savoir plus</div> </a>
-      </div>
-    </div>
-    <div class="col-sm-4"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#22a6b3">Vendre</div> <a href="Formulaire_Nouvelle_Vente.php">
-        <div class="panel-body"><img src="Vente.png" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">Clickez pour en savoir plus</div> </a>
-      </div>
-    </div>
-  </div>
-</div><br><br>
   <!-- /.container -->
 
   <!-- Footer -->
