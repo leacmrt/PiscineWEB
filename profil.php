@@ -127,7 +127,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                                       </div><?php  } ?>
 
 
-             <center style="padding-right:200px">  <h2 style=" color : darkblue; " > <strong> <?php echo  $_SESSION['Pseudo']; ?> </strong> </h2><p style="padding-left: 120px"> Votre role :  <strong> <?php echo  $_SESSION['Role']; ?> </strong> </p> </center>
+             <center style="padding-right:200px;">  <h2 style=" color : darkblue; padding-left: 190px" > <strong> <?php echo  $_SESSION['Pseudo']; ?> </strong> </h2><p style="padding-left: 190px"> Votre role :  <strong> <?php echo  $_SESSION['Role']; ?> </strong> </p> </center>
 
 
             <center> 
@@ -163,11 +163,12 @@ $db_found = mysqli_select_db($db_handle, $database);
                                  
                               
                                 $essai= "button".$compte;
+                                $Nom2= str_replace('&nbsp',' ', $data['Nom']);
             
                                 echo "<center> <div style=\" border:1px solid; border-color: black;width: 230px; height: 230px;text-decoration : underline;\">";
                                 echo "<strong><br> <span title=\"Cliquez pour modifier l'item ".$compte."\">";
                                 echo "<form action=\"\"method=\"post\"><input type=\"submit\" name=\"".$essai;
-                                echo "\"value=\"".$compte." : ".$data['Nom']."\">";
+                                echo "\"value=\"".$compte." : ".$Nom2."\">";
                                 
 
                                  if (isset($_POST[$essai]))
@@ -264,7 +265,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
                                 $compte=$compte+1;
                                 echo "</form>  </strong> <span class=\"glyphicon glyphicon-info-sign\"> </span></span> <br/>";
-                                echo '<img src = "'.$data['Photo1'].'" width="150" height="150"></div>  </center> '; 
+                                echo '<img src = "'.$data['Photo1'].'" width="150" height="160"></div>  </center> '; 
 
                               }
 
@@ -277,7 +278,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                                     $result = mysqli_query($db_handle, $sql);//regarder s'il y a de résultat
                                     echo "<center> <h2 style=\"color  :#5b6bea ;text-decoration : underline; \"> Voici les articles à vendre sur le site </h2> </center> <br> <br> ";
 
-                                    echo " <center><div class=\"row\" style=\"width:720px\">"; 
+                                    echo " <center><div class=\"row\" style=\"width:720px;\";>"; 
                                    if(mysqli_num_rows($result) != 0) 
                                    {
                                      $compte=1;
@@ -288,6 +289,8 @@ $db_found = mysqli_select_db($db_handle, $database);
                                        $sqlPseudo = "SELECT Nom FROM utilisateurs WHERE ID = ".$data['ID_vendeur']."";
                                        $resultPseudo = mysqli_query($db_handle, $sqlPseudo);
                                        $Pseudo = mysqli_fetch_row($resultPseudo)[0];
+
+                                       $Nom2= str_replace('&nbsp',' ', $data['Nom']);
                                  
                               
                                        $essai= "button".$compte;
@@ -295,7 +298,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                                 echo "<center><div class=\"col-6 col-sm-3\" style=\"  border:1px solid; border-color: black; padding-bottom: 50px;width: 240px\">";
                                 echo "<strong><br> <span title=\"Cliquez pour modifier l'item ".$compte."\">";
                                 echo "<form action=\"\"method=\"post\"><input type=\"submit\" name=\"".$essai;
-                                echo "\"value=\"".$compte." : ".$data['Nom']."\">";
+                                echo "\"value=\"".$compte." : ".$Nom2."\">";
                                 
 
                                  if (isset($_POST[$essai]))
@@ -342,7 +345,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                                 $essai1= "button1".$compte;
                                 
                                  
-                                echo "<center> <div class=\"col-6 col-sm-3\" style=\"  border:1px solid; border-color: black; padding-bottom: 50px;width: 240px; height: 220px;\">";
+                                echo "<center> <div class=\"col-6 col-sm-3\" style=\"  border:1px solid; border-color: black; padding-bottom: 50px;width: 240px; height: 240px;\">";
                                 if($data['Photoprofil']!="")
                                   {   
                                     echo '<img src="'.$data['Photoprofil'].'" alt="Photoprofil" height="150" width="110" style="border:solid;border-color:#22a6b3"/>';
