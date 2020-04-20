@@ -63,7 +63,7 @@ $Montant = mysqli_fetch_row($resultMontant)[0];
     
     <div style="padding-top: 100px; padding-bottom: 100px">
     <center><div style=" border: 5px solid; border-color: #22a6b3; height: 280px; width: 600px ">
-      <b><div style="padding-left: 50px; padding-right: 50px; padding-top: 50px; color: #22a6b3"><font size = "+1">Vous avez recu une offre de:<br>
+      <b><div style="padding-left: 50px; padding-right: 50px; padding-top: 50px; color: #22a6b3"><font size = "+1">Vous avez recu une offre de :<br>
 
         <form class="form-horizontal" action="Proposition_Me_Vendeur.php" method="post">
         <input type="hidden" name="ID_Offre" value= <?php echo $ID_Offre ?>>
