@@ -122,11 +122,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                        if($DifJ<-1)
                        { $DifM1=$DifM-1;
                          $DifJ1=31+$DifJ;
-<<<<<<< HEAD
-                       }else{  $DifM1=$DifM;
-=======
                        }else {  $DifM1=$DifM;
->>>>>>> f284217d0eea0f27079ab0498b904e984b05c590
                          $DifJ1=$DifJ;  }
                         echo "<br> Il vous reste ".$DifA ."années ,".$DifM1." mois, ".$DifJ1."pour encherir"; 
   

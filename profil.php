@@ -95,7 +95,7 @@ $db_found = mysqli_select_db($db_handle, $database);
                                       </div>
                                      <?php  } else if($_SESSION['Photoprofil']!=""){ ?>
                                         <div style=" border:5px solid; border-color: #22a6b3;background-color:lightgrey; float: right; width: 120px; height: 160px;">
-                                          <img src="<?php echo $_SESSION['Photoprofil'] ?>" alt="Photoprofil" height="150" width="110" style="border:solid;border-color:#22a6b3"/>
+                                          <img src="<?php echo $_SESSION['Photoprofil']; ?>" alt="Photoprofil" height="150" width="110" style="border:solid;border-color:#22a6b3"/>
                                       </div> <?php } ?>
 
 

@@ -13,8 +13,21 @@ $Video = isset($_POST["Vidéo"])? $_POST["Vidéo"] : "";
 $TypeIm=isset($_POST["TypeIm"])? $_POST["TypeIm"] : "";
 $TypeEn=isset($_POST["TypeEn"])? $_POST["TypeEn"] : "";
 $TypeMe=isset($_POST["TypeMe"])? $_POST["TypeMe"] : "";
-$Photoprofil= isset($_FILES["Photoprofil"]['name'])? $_FILES["Photoprofil"]['name'] : "";
+//$Photoprofil= isset($_FILES["Photoprofil"]['name'])? $_FILES["Photoprofil"]['name'] : "";
 $Categorie= isset($_POST["Categorie"])? $_POST["Categorie"] : "";
+$tmp_file = $_FILES['Photoprofil']['tmp_name'];
+
+if( !is_uploaded_file($tmp_file) )
+    {
+        echo("Le fichier est introuvable");
+    }
+ $Photoprofil = $_FILES['Photoprofil']['name'];
+    if( !move_uploaded_file($tmp_file, $Photoprofil) )
+    {
+        echo("Impossible de copier le fichier dans la base de donnée");
+    }
+
+
 
 $TypeEn= isset($_POST["TypeEn"])? $_POST["TypeEn"] : "";
 $TypeIm= isset($_POST["TypeIm"])? $_POST["TypeIm"] : "";
