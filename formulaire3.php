@@ -17,8 +17,6 @@ $TypeEn=isset($_POST["TypeEn"])? $_POST["TypeEn"] : "";
 $TypeMe=isset($_POST["TypeMe"])? $_POST["TypeMe"] : "";
 //$Photoprofil= isset($_FILES["Photoprofil"]['name'])? $_FILES["Photoprofil"]['name'] : "";
 $Categorie= isset($_POST["Categorie"])? $_POST["Categorie"] : "";
-echo $Description;
-
 
  $Photoprofil =isset($_FILES['Photoprofil']['name'])?$_FILES["Photoprofil"]['name'] : "";;
  $PhotoFond = isset($_FILES['PhotoFond']['name'])?$_FILES["PhotoFond"]['name'] : "";;   

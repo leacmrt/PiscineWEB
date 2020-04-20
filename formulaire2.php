@@ -9,8 +9,6 @@ $Nom= str_replace(' ','&nbsp', $Nom);
 $Description= isset($_POST["Description"])? $_POST["Description"] : "";
 $Description= str_replace(' ','&nbsp', $Description);
 
-echo $Description;
-
 
 //$Photo1 = isset($_FILES["Photo1"]['name'])? $_FILES["Photo1"]['name'] : "";
 //$Photo2 =  isset($_FILES["Photo2"]['name'])? $_FILES["Photo2"]['name'] : "";
@@ -23,24 +21,24 @@ $ID_Vendeur= $_SESSION['ID_vendeur'];
 
 $tmp_file = $_FILES['Photo1']['tmp_name'];
 if( !is_uploaded_file($tmp_file) )
-    {echo("Le fichier est introuvable");}
+    {}
  $Photo1 = $_FILES['Photo1']['name'];
     if( !move_uploaded_file($tmp_file, $Photo1) )
-    {echo("Impossible de copier le fichier dans la base de donnée");}
+    {}
 
   $tmp_file2 = $_FILES['Photo2']['tmp_name'];
 if( !is_uploaded_file($tmp_file2) )
-    {echo("Le fichier est introuvable");}
+    {}
  $Photo2 = $_FILES['Photo2']['name'];
     if( !move_uploaded_file($tmp_file2, $Photo2) )
-    {echo("Impossible de copier le fichier dans la base de donnée");}
+    {}
 
   $tmp_file3 = $_FILES['Photo3']['tmp_name'];
 if( !is_uploaded_file($tmp_file3) )
-    {echo("Le fichier est introuvable");}
+    {}
  $Photo3 = $_FILES['Photo3']['name'];
     if( !move_uploaded_file($tmp_file3, $Photo3) )
-    {echo("Impossible de copier le fichier dans la base de donnée");}
+    {}
 
 
 

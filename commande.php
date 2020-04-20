@@ -28,11 +28,11 @@ $bdd = "testpiscine";
 $db_handle = mysqli_connect('localhost', 'root', '' );
 $bdd_piscine = mysqli_select_db($db_handle, $bdd);
 
+$Mode= "";
 $ID_Item= isset($_POST["ID_Item"])?$_POST["ID_Item"] : "";
 $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
 
 $button1= isset($_POST["button1"])?$_POST["button1"] : "";
-echo $button1;
 $button2= isset($_POST["button2"])?$_POST["button2"] : "";
 $Adresse1= isset($_POST["Adresse1"])?$_POST["Adresse1"] : "";
 $Adresse2= isset($_POST["Adresse2"])?$_POST["Adresse2"] : "";
@@ -46,12 +46,6 @@ $Expiration= isset($_POST["Expiration"])?$_POST["Expiration"] : "";
 
 
 
-echo $ID_Item;
-echo $Mode;
-
-
-
-
 //     Récupération des données de Formulaire_Livraison.php 
 
 
@@ -62,7 +56,6 @@ echo $Mode;
            
             if($Adresse1!=""&&$Ville!=""&&$CodeP!=""&&$Pays!=""&&$CarteNom!=""&&$CarteNum!=""&&$CVC!=""&&$Expiration!="")//si tout les champs sont remplis (sauf adresse 2 on s'en fou) 
               { 
-                echo 'cahmps';
 
                           $sql = "SELECT * FROM donnees";
                            if ($CarteNum != "") {//on cherche le livre avec les paramètres titre et auteur
@@ -75,7 +68,6 @@ echo $Mode;
                           {echo "<script> window.alert(\"Le compte existe . <br>\")";}
                           else
                           {
-                                    echo 'sql';
 
                                $sql= "INSERT INTO donnees(Adresse1, Adresse2, Ville, CodeP, Pays, CarteNom,CarteNum,CVC,Expiration,ID_Vendeur)
                                VALUES('$Adresse1', '$Adresse2', '$Ville', '$CodeP','$Pays','$CarteNom','$CarteNum', '$CVC','$Expiration',\"".$_SESSION['ID_vendeur']."\")";
@@ -213,12 +205,14 @@ try    //Tentative de connexion à la bdd
           }
 
           //if ($Mode == 'Enchere')
-          
+          if (($Mode != 'Immediat')&&($Mode != 'Meilleur'))
+          {
           if($_SESSION['ModeEnch']==1)
           { 
             echo '<form action="commande4.php" method="post">
                 <input type="hidden" name="ID_Item" value='.$_SESSION['IDENCH'].'> 
           <a href="#" style=" color:#ffffff;"><b><font size = "+1"><input type="submit" name="buttonench" value="Continuer" style="background-color:#22a6b3;"></font></b></a>'.'   '.'<a href="Formulaire_livraison.php" style=" color:#ffffff;"><b><font size = "+1"></form>';
+          }
           }
           ?>
 
