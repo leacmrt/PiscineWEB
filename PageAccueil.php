@@ -60,8 +60,8 @@ $db_found = mysqli_select_db($db_handle, $database);
     <div style="float:left;">
            
       <p style="padding-left:200px">• La vente aux enchères en ligne pour la communauté ECE Paris <br></p>
-      <p style="padding-left:200px">• Trois méthodes d achat: Immediat, par enchère ou à la meilleure offre ! <br></p>
-      <p style="padding-left:200px">• Livraison gratuite en France métropolitaine pour plus de 35€ d achat !<br></p>
+      <p style="padding-left:200px">• Trois méthodes d'achat: immédiat, par enchère ou à la meilleure offre ! <br></p>
+      <p style="padding-left:200px">• Livraison gratuite en France métropolitaine pour plus de 35€ d'achat !<br></p>
       <p style="padding-left:200px">• Paiement sécurisé et assuré par INSEECpayment. <br></p>
       <p style="padding-left:200px">• Garantie qualitée ECE. Satisfait ou remboursé ! <br></p>
 
