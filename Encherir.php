@@ -50,7 +50,6 @@ $enchmax=$_SESSION['ID_vendeur'];
         <li><a href="Categories.php" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
         <li><a href="PageAchat.php" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
         <li><a href="Formulaire_Nouvelle_Vente.php" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="profil.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte</font></b></a></li>
@@ -71,7 +70,7 @@ $enchmax=$_SESSION['ID_vendeur'];
 
 <body style="background-color:#c7ecee;">
 
-<div class="container"> <div style="border:solid;border-color:#22a6b3;width:1100px;background-color:#ffffff;height:300px;padding-left: 30px;padding-top: 20px">   
+<div class="container"> <div style="border:solid;border-color:#22a6b3;width:1100px;background-color:#ffffff;height:350px;padding-left: 30px;padding-top: 20px">   
     <div class="row">
      
 
@@ -79,7 +78,9 @@ $enchmax=$_SESSION['ID_vendeur'];
       
         
         <center><h3 style="color:darkblue"> 
-          <ul> <?php echo "<div style=\"border:solid;border-color:#818bd8;width:350px;height:80px\"><br> Article : ".$_SESSION['NomENCH']."<br></div> </ul> <br> <ul> Souhaitez - vous encherir pour minimum ". $_SESSION['Vendeur_min']."€ ? <br>"; ?> </ul>
+          <ul> <?php echo "<div style=\"border:solid;border-color:#818bd8;width:350px;height:100px\"><br> Article : ".$_SESSION['NomENCH']."<br></div> </ul> <br> <ul> Souhaitez - vous encherir pour minimum ". $_SESSION['Vendeur_min']."€ ? <br><br>
+
+          En continuant vous vous engagez à acheter l'article si le vendeur accepte votre offre."; ?> </ul>
           
             
           <ul>
