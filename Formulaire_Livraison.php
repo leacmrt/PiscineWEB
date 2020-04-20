@@ -97,7 +97,7 @@ $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
 
               <div class='col-xs-12'>
                 <label class='control-label'>Adresse </label>
-                <input class='form-control' name="Adresse1"size='4' type='text' placeholder='Ligne 1'>
+                <input class='form-control' name="Adresse1"size='4' type='text' placeholder='Ligne 1' >
                 <input class='form-control' name="Adresse2"size='4' type='text' placeholder='Ligne 2'>
               </div><br><br><br><br>
               
@@ -127,7 +127,7 @@ $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
             <div class='form-row'>
               <div class='col-xs-12 '>
                 <label class='control-label'>Numéro de carte</label>
-                <input class='form-control' name='CarteNum' size='20' type='text'>
+                <input class='form-control' name='CarteNum' placeholder='Numéro' ssize='20' type='text'>
               </div><br><br><br>
             </div>
             <div class='form-row'>
