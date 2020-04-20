@@ -82,7 +82,7 @@ session_start();
       <div style="float:left;">
              
         <p style="padding-left:200px">• Bienvenue dans la section vente immédiate ! <br></p>
-        <p style="padding-left:200px">• Vous trouvez ici tous les en vente immédiate ! <br></p>
+        <p style="padding-left:200px">• Vous trouverez ici tous articles les en vente immédiate ! <br></p>
   
       </div>
     </div>
