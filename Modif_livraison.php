@@ -37,6 +37,7 @@ $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
 <body style="background-color:#c7ecee">
 
 
+<! Barre de navigation>
 <nav class="navbar navbar-inverse" style="background-color:#22a6b3">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -49,14 +50,13 @@ $Mode= isset($_POST["Mode"])?$_POST["Mode"] : "";
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="PageAcceuil.php"  style="color:#ecf0f1"><b><font size = "+1">Home</font></b></a></li>
-        <li><a href="Catégories.php" style="color:#ecf0f1"><b><font size = "+1">Catégories</font></b></a></li>
+        <li><a href="PageAccueil.php"  style="color:#ecf0f1" ><b><font size = "+1">Home</font></b></a></li>
+        <li><a href="Catégories.php" style="color:#ecf0f1" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom" ><b><font size = "+1">Catégories</font></b></a></li>
         <li><a href="PageAchat.php" style="color:#ecf0f1"><b><font size = "+1">Achat</font></b></a></li>
         <li><a href="Formulaire_Nouvelle_Vente.php" style="color:#ecf0f1"><b><font size = "+1">Vendre</font></b></a></li>
-        <li><a href="#" style="color:#ecf0f1"><b><font size = "+1">Admin</font></b></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="profil.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte : <?php echo $_SESSION['Mail']; ?></font></b></a></li>
+        <li><a href="profil.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-user"></span><b><font size = "+1"> Compte : <?php echo $_SESSION['Mail']; ?> </font></b></a></li>
         <li><a href="panier.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-shopping-cart"></span><b><font size = "+1"> Panier</font></b></a></li>
         <li><a href="deco.php" style="color:#ecf0f1"><span class="glyphicon glyphicon-off"></span><b><font size = "+1"> Deconnexion</font></b></a></li>
       </ul>
