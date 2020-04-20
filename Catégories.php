@@ -61,21 +61,21 @@ session_start();
     <div class="col-sm-4">
       <div class="panel panel-primary">
         <div class="panel-heading" style="background-color:#22a6b3"><b><font size = "+1"><center>Ferraille ou Trésor</font></b></center> </div> <a href="feraille.php">
-        <div class="panel-body"><img src="PhotoFeraille.jpg" class="img-responsive" style="width:100%,height: 170px" alt="Image"></div>
+        <div class="panel-body"><img src="offre1.jpg" class="img-responsive" style="width:100%,height: 170px" alt="Image"></div>
         <div class="panel-footer">Clickez pour en savoir plus</div> </a>
       </div>
     </div>
     <div class="col-sm-4"> 
       <div class="panel panel-primary">
         <div class="panel-heading" style="background-color:#22a6b3"><b><font size = "+1"><center>Bon pour le Musée</font></b></center></div> <a href="Musée.php">
-        <div class="panel-body"><img src="PhotoMusée.jpg" class="img-responsive" style="width:100%,height: 170px" alt="Image"></div>
+        <div class="panel-body"><img src="offre3.jpg" class="img-responsive" style="width:100%,height: 170px" alt="Image"></div>
         <div class="panel-footer">Cliquez pour en savoir plus</div> </a>
       </div>
     </div>
     <div class="col-sm-4"> 
       <div class="panel panel-primary">
         <div class="panel-heading" style="background-color:#22a6b3" ><b><font size = "+1"><center>Accessoire VIP</font></b></center></div> <a href="VIP.php">
-        <div class="panel-body"><img src="PhotoVIP.jpg" class="img-responsive" style="width:100%,height: 170px" alt="Image"></div>
+        <div class="panel-body"><img src="offre2.jpg" class="img-responsive" style="width:100%,height: 170px" alt="Image"></div>
         <div class="panel-footer">Clickez pour en savoir plus</div> </a>
       </div>
     </div>
