@@ -74,47 +74,34 @@ session_start();
     </div>
   </div>
 
+
+
 <div class="container">    
   <div class="row">
     <div class="col-sm-4">
       <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#22a6b3"> Enchères </div> <a href="enchere.php">
-        <div class="panel-body"><img src="enchère.png" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer"> 
-
-            Brève explication du système enchère. <br> 
-            Clickez ici pour voir les offres en enchères !
-
-        </div> </a>
-      </div>
-
-    </div>
-    <div class="col-sm-4"> 
-      <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#22a6b3">Achetez le maintenant </div> <a href="achetezlemaintenant.php">
-        <div class="panel-body"><img src="achetezlemaintenant.png" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer"> 
-
-            Brève explication du système achetez le maintenant. <br> 
-            Clickez ici pour voir les offres en achat immédiat !
-
-        </div> </a>
+        <div class="panel-heading" style="background-color:#22a6b3"><centre>Encgères </centre></div> <a href="enchère.png">
+        <div class="panel-body"><img src="enchere.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">Clickez ici pour voir les offres en enchères !</div> </a>
       </div>
     </div>
     <div class="col-sm-4"> 
       <div class="panel panel-primary">
-        <div class="panel-heading" style="background-color:#22a6b3"> Meilleure Offre </div> <a href="meilleureoffre.php">
-        <div class="panel-body"><img src="meilleureoffre.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer"> 
-
-            Brève explication du système meilleure offre. <br> 
-            Clickez ici pour voir les meilleures offres !
-
-        </div> </a>
+        <div class="panel-heading" style="background-color:#22a6b3"><centre>Achat immédiats</centre></div> <a href="achetezlemaintenant.php">
+        <div class="panel-body"><img src="buyitnow.png" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">Clickez ici pour voir les offres en achat immédiat !</div> </a>
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel panel-primary">
+        <div class="panel-heading" style="background-color:#22a6b3"><centre> Meilleur prix </centre></div> <a href="meilleureoffre.php">
+        <div class="panel-body"><img src="meilleur.png" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">Clickez ici pour voir les offres en meilleur prix !</div> </a>
       </div>
     </div>
   </div>
-</div><br><br>
+</div>
+<br><br>
   
 <!-- /.container -->
 
