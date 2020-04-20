@@ -10,6 +10,7 @@ $Role = isset($_POST["Role"])? $_POST["Role"] : "";
 $Mdp1= isset($_POST["Mdp1"])? $_POST["Mdp1"] : "";
 $Mdp2= isset($_POST["Mdp2"])? $_POST["Mdp2"] : "";
 $Photoprofil="";
+$PhotoFond="";
 
  
 $Mail1= isset($_POST["Mail1"])? $_POST["Mail1"] : ""; //partie connexion 
@@ -42,8 +43,8 @@ if (isset($_POST['button1'])) //inscription
 			if(mysqli_num_rows($result) == 0) 
 			{
 			  echo "Le mail n'est pas déjà utilisé . <br> ";
-              $sql= "INSERT INTO utilisateurs(Nom, Mail, Telephone, Role, Mdp, Photoprofil)
-                     VALUES('$Nom', '$Mail', '$Telephone', '$Role','$Mdp1','$Photoprofil')";
+              $sql= "INSERT INTO utilisateurs(Nom, Mail, Telephone, Role, Mdp, Photoprofil,PhotoFond)
+                     VALUES('$Nom', '$Mail', '$Telephone', '$Role','$Mdp1','$Photoprofil','$PhotoFond')";
                $result = mysqli_query($db_handle, $sql);
                echo "<script> window.alert(\"Vous êtes bien inscrit sur EBAY ECE\"); history.back(); </script>";
            } 
@@ -101,6 +102,7 @@ if (isset($_POST['button2'])) //connexion
              $_SESSION['Pseudo']= $data['Nom'];
              $_SESSION['Role']= $data['Role'];
              $_SESSION['Photoprofil']=$data['Photoprofil'];
+             $_SESSION['PhotoFond']=$data['PhotoFond'];
 		      }
            } 
 
