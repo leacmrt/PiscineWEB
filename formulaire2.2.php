@@ -5,7 +5,9 @@ session_start();
 //Provient du 1er firmulaire
 $ID=isset($_POST["ID"])? $_POST["ID"] : ""; //généré par phpmyadmin   
 $Nom= isset($_POST["Nom"])? $_POST["Nom"] : "";
+$Nom= str_replace(' ','&nbsp', $Nom);
 $Description= isset($_POST["Description"])? $_POST["Description"] : "";
+$Description= str_replace(' ','&nbsp', $Description);
 $Photo1 = isset($_POST["Photo1"])? $_POST["Photo1"] : "";
 $Photo2 =  isset($_POST["Photo2"])? $_POST["Photo2"] : "";
 $Photo3 =isset($_POST["Photo3"])? $_POST["Photo3"] : "";
@@ -15,6 +17,7 @@ $TypeEn=isset($_POST["TypeEn"])? $_POST["TypeEn"] : "";
 $TypeMe=isset($_POST["TypeMe"])? $_POST["TypeMe"] : "";
 $Photoprofil= isset($_FILES["Photoprofil"]['name'])? $_FILES["Photoprofil"]['name'] : "";
 $Categorie= isset($_POST["Categorie"])? $_POST["Categorie"] : "";
+echo $Description;
 
 $TypeEn= isset($_POST["TypeEn"])? $_POST["TypeEn"] : "";
 $TypeIm= isset($_POST["TypeIm"])? $_POST["TypeIm"] : "";

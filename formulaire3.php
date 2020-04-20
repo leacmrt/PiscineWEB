@@ -5,7 +5,9 @@ session_start();
 //Provient du 1er firmulaire
 $ID=isset($_POST["ID"])? $_POST["ID"] : ""; //généré par phpmyadmin   
 $Nom= isset($_POST["Nom"])? $_POST["Nom"] : "";
+$Nom= str_replace(' ','&nbsp', $Nom);
 $Description= isset($_POST["Description"])? $_POST["Description"] : "";
+$Description= str_replace(' ','&nbsp', $Description);
 $Photo1 = isset($_POST["Photo1"])? $_POST["Photo1"] : "";
 $Photo2 =  isset($_POST["Photo2"])? $_POST["Photo2"] : "";
 $Photo3 =isset($_POST["Photo3"])? $_POST["Photo3"] : "";
@@ -15,17 +17,13 @@ $TypeEn=isset($_POST["TypeEn"])? $_POST["TypeEn"] : "";
 $TypeMe=isset($_POST["TypeMe"])? $_POST["TypeMe"] : "";
 //$Photoprofil= isset($_FILES["Photoprofil"]['name'])? $_FILES["Photoprofil"]['name'] : "";
 $Categorie= isset($_POST["Categorie"])? $_POST["Categorie"] : "";
-$tmp_file = $_FILES['Photoprofil']['tmp_name'];
+echo $Description;
 
-if( !is_uploaded_file($tmp_file) )
-    {
-        echo("Le fichier est introuvable");
-    }
- $Photoprofil = $_FILES['Photoprofil']['name'];
-    if( !move_uploaded_file($tmp_file, $Photoprofil) )
-    {
-        echo("Impossible de copier le fichier dans la base de donnée");
-    }
+
+ $Photoprofil =isset($_FILES['Photoprofil']['name'])?$_FILES["Photoprofil"]['name'] : "";;
+ $PhotoFond = isset($_FILES['PhotoFond']['name'])?$_FILES["PhotoFond"]['name'] : "";;   
+
+  
 
 
 
@@ -177,7 +175,13 @@ if (isset($_POST['buttonphoto']))
       if ($db_found) 
       {
 
-
+         $tmp_file = $_FILES['Photoprofil']['tmp_name'];
+         if( !is_uploaded_file($tmp_file) )
+        {echo("Le fichier est introuvable");}
+        
+        $Photoprofil = $_FILES['Photoprofil']['name'];
+        if( !move_uploaded_file($tmp_file, $Photoprofil) )
+        {echo("Impossible de copier le fichier dans la base de donnée");}
 
         if($Photoprofil)
         { 
@@ -188,6 +192,42 @@ if (isset($_POST['buttonphoto']))
 
                 $result = mysqli_query($db_handle, $sql);
                 $_SESSION['Photoprofil']=$Photoprofil;
+                echo " <script> location.replace(\"profil.php\"); </script>";
+
+
+          }
+       }
+
+
+     }
+
+
+if (isset($_POST['buttonphotoFond']))
+  { 
+      if ($db_found) 
+      {
+
+        $tmp_file1 = $_FILES['PhotoFond']['tmp_name'];
+
+if( !is_uploaded_file($tmp_file1) )
+    {
+        echo("Le fichier est introuvable");
+    }
+ $PhotoFond = $_FILES['PhotoFond']['name'];
+    if( !move_uploaded_file($tmp_file1, $PhotoFond) )
+    {
+        echo("Impossible de copier le fichier dans la base de donnée");
+    }
+
+        if($PhotoFond)
+        { 
+
+
+
+                   $sql ='UPDATE utilisateurs SET PhotoFond="'.$PhotoFond.'" WHERE ID ="'.$ID_vendeur.'"';
+
+                $result = mysqli_query($db_handle, $sql);
+                $_SESSION['PhotoFond']=$PhotoFond;
                 echo " <script> location.replace(\"profil.php\"); </script>";
 
 

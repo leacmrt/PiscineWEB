@@ -5,7 +5,11 @@ session_start();
 
 $ID=isset($_POST["ID"])? $_POST["ID"] : ""; //généré par phpmyadmin   
 $Nom= isset($_POST["Nom"])? $_POST["Nom"] : "";
+$Nom= str_replace(' ','&nbsp', $Nom);
 $Description= isset($_POST["Description"])? $_POST["Description"] : "";
+$Description= str_replace(' ','&nbsp', $Description);
+
+echo $Description;
 
 
 //$Photo1 = isset($_FILES["Photo1"]['name'])? $_FILES["Photo1"]['name'] : "";
