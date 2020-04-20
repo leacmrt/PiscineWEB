@@ -4,7 +4,7 @@ session_start();
 
  if (isset($_SESSION['Mail']) && isset($_SESSION['Mdp']))  
  {
-      if ($_SESSION['Role'] == 'Vendeur' )
+      if (($_SESSION['Role'] == 'Vendeur')||($_SESSION['Role'] == 'ADMIN'))
     {
 
  ?>

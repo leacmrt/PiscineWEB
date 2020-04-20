@@ -40,6 +40,9 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 
 
+
+if (isset($_POST['button']))
+{
        //partie sql
                 
         if ($db_found) 
@@ -147,7 +150,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 
 
-
+}
 
   ?>
 
@@ -167,7 +170,7 @@ if (isset($_POST['buttonphoto']))
         { 
 
 
-                 echo "coucou";
+
                    $sql ='UPDATE utilisateurs SET Photoprofil="'.$Photoprofil.'" WHERE ID ="'.$ID_vendeur.'"';
 
                 $result = mysqli_query($db_handle, $sql);
