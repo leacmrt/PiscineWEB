@@ -46,7 +46,7 @@ $Prixmin = mysqli_fetch_row($resultPrixmin)[0];
        <div class="form" style=" padding-left: 400px; padding-right: 400px;padding-top: 150px;color:#22a6b3">
         <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
           <p><center><b><font size = "+1"> Clickez sur "Valider" pour confirmer votre offre de <?php echo $Montant ?> €.<br><br></font></b>
-            En cliquant continuant vous vous engagez à acheter l'article si le vendeur accepte votre offre.
+            En continuant vous vous engagez à acheter l'article si le vendeur accepte votre offre.
 
           <center></p>
   
