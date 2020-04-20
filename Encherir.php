@@ -101,8 +101,14 @@ $enchmax=$_SESSION['ID_vendeur'];
                $Prixmin=$_SESSION['Prix_min'];
                $PrixMax=$_SESSION['Prix_max'];
                $Prop= isset($_POST["NewEnch"])? $_POST["NewEnch"] : "";
-               
-               
+
+               if ($Prop<$_SESSION['Vendeur_min'])
+              {
+
+                echo " <script>  alert(\"Veuillez entrer une valeure suppérieure au montant minimal accépté\") ;location.replace(\"enchere.php\"); </script>";
+              }
+              else
+              {
                if($PrixMax==0&&$Prixmin==0)
                 { if($Prop>=$_SESSION['Vendeur_min'])
                    {$Prixmin=$Prop;
@@ -119,6 +125,7 @@ $enchmax=$_SESSION['ID_vendeur'];
                   $PrixMax=$Prop;
                   $go=1;
 
+                }
                 }
                 }
 
