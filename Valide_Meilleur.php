@@ -45,19 +45,22 @@ $Prixmin = mysqli_fetch_row($resultPrixmin)[0];
 
        <div class="form" style=" padding-left: 400px; padding-right: 400px;padding-top: 150px;color:#22a6b3">
         <div style="background-color: #ffffff; border: 5px solid; border-color: #22a6b3">
-          <p><center><b><font size = "+1"> Clickez sur "Valider" pour confirmer votre offre de <?php echo $Montant ?> €. </font></b><center></p>
+          <p><center><b><font size = "+1"> Clickez sur "Valider" pour confirmer votre offre de <?php echo $Montant ?> €.<br><br></font></b>
+            En continuant vous vous engagez à acheter l'article si le vendeur accepte votre offre.
+
+          <center></p>
   
             <form action="Proposition_Me_Acheteur.php" method="post">
               <input type="hidden" name="ID_Item" value=<?php echo $ID_Item ?>>
               <input type="hidden" name="Montant" value=<?php echo $Montant ?>>  
 
-              <div style="padding-top:25px;padding-bottom: 15px"><div style="padding-left:320px"><a href="#"><b><font size = "+1"><input type="submit" name="button" value="Ok!" style="background-color:#22a6b3;color: #ffffff;float:left"></font></b></a></div>
+              <div style="padding-top:25px;padding-bottom: 15px"><div style="padding-left:310px"><a href="#"><b><font size = "+1"><input type="submit" name="button" value="Valider" style="background-color:#22a6b3;color: #ffffff;float:left"></font></b></a></div>
             </form><br>
 
               <center><form action="Montant_Meilleur.php" method="post">
               <input type="hidden" name="ID_Item" value=<?php echo $ID_Item ?>>
 
-              <div style="padding-top:25px;padding-bottom: 15px"><div style="padding-left:305px"><a href="#"><b><font size = "+1"><input type="submit" name="button" value="Retour" style="background-color:#22a6b3;color: #ffffff;float:left"></font></b></a></div>
+              <div style="padding-top:25px;padding-bottom: 15px"><div style="padding-left:310px"><a href="#"><b><font size = "+1"><input type="submit" name="button" value="Retour" style="background-color:#22a6b3;color: #ffffff;float:left"></font></b></a></div>
             </form></center>
 
 

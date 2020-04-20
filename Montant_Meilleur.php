@@ -56,7 +56,7 @@ $ID_Item= isset($_POST["ID_Item"])?$_POST["ID_Item"] : "";
 
         <form class="form-horizontal" action="Valide_Meilleur.php" method="post">
         <input type="hidden" name="ID_Item" value= <?php echo $ID_Item ?>>
-        <input name="Montant" class="form-control" placeholder="Montant" type="text" size="2"><br><br>
+        <input name="Montant" class="form-control" placeholder="Montant" type="number"  size="2"><br><br>
 
         
         <input type="submit" name="button" value="Valider" style="background-color:#22a6b3; color: #ffffff"></font></b>

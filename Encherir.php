@@ -71,7 +71,7 @@ $enchmax=$_SESSION['ID_vendeur'];
 
 <body style="background-color:#c7ecee;">
 
-<div class="container"> <div style="border:solid;border-color:#22a6b3;width:1100px;background-color:#ffffff;height:300px;padding-left: 30px;padding-top: 20px">   
+<div class="container"> <div style="border:solid;border-color:#22a6b3;width:1100px;background-color:#ffffff;height:350px;padding-left: 30px;padding-top: 20px">   
     <div class="row">
      
 
@@ -79,7 +79,9 @@ $enchmax=$_SESSION['ID_vendeur'];
       
         
         <center><h3 style="color:darkblue"> 
-          <ul> <?php echo "<div style=\"border:solid;border-color:#818bd8;width:350px;height:80px\"><br> Article : ".$_SESSION['NomENCH']."<br></div> </ul> <br> <ul> Souhaitez - vous encherir pour minimum ". $_SESSION['Vendeur_min']."€ ? <br>"; ?> </ul>
+          <ul> <?php echo "<div style=\"border:solid;border-color:#818bd8;width:350px;height:100px\"><br> Article : ".$_SESSION['NomENCH']."<br></div> </ul> <br> <ul> Souhaitez - vous encherir pour minimum ". $_SESSION['Vendeur_min']."€ ? <br><br>
+
+          En continuant vous vous engagez à acheter l'article si le vendeur accepte votre offre."; ?> </ul>
           
             
           <ul>
