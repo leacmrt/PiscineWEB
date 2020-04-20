@@ -183,7 +183,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
                   Votre panier  : <a href="panier.html" style="color: blue"><span class="glyphicon glyphicon-shopping-cart" > Votre panier  </span> </a><br>
                   Catégorie: <a href="categorie.html" style="color: blue"><span class="glyphicon glyphicon-globe" > Catégorie </span> </a> <br>
-                  Achat: <a href="Achat.html" style="color: blue"><span class="glyphicon glyphicon-eur" > Achat </span> </a>
+                  Achat: <a href="PageAchat.html" style="color: blue"><span class="glyphicon glyphicon-eur" > Achat </span> </a>
                    </center><?php    }  ?>
 
 
