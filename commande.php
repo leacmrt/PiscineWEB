@@ -273,6 +273,4 @@ try    //Tentative de connexion à la bdd
   </footer>
 
 
-<!-- Toutes les informations ainsi que les images de la pièce de monnaie proviennent du site : http://www.sympatico.ca/actualites/decouvertes/histoire/monnaie-royale-canadienne-1.1508001 -->
-
 </html>
