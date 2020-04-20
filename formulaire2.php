@@ -37,8 +37,8 @@ if( !is_uploaded_file($tmp_file3) )
     {}
 
 
-if(isset($_FILES["Video"]))
-{
+$Video="";
+
 
 if (($_FILES["Video"]["type"] == "video/mp4"))
 {$tmp_file4 = $_FILES['Video']['tmp_name'];
@@ -48,8 +48,8 @@ if( !is_uploaded_file($tmp_file4) )
  $Video = $_FILES['Video']['name'];
     if( !move_uploaded_file($tmp_file4, $Video) )
     {//echo("Impossible de copier le fichier dans la base de donnée");
-}}else {echo "<script> alert(\"video est trop grande ou n'est pas sous format mp4>\"); location.replace(\"article.php\");</script>  ";}
- }else $Video="";
+}}
+
 
 
 ?>
